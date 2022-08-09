@@ -1,0 +1,140 @@
+.services {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+
+  padding: 50px;
+}
+
+.services-heading {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.service-text {
+  line-height: 30px;
+  margin-bottom: 50px;
+}
+
+.service-item {
+  height: 200px;
+  width: 400px;
+  position: relative;
+  margin-top: 20px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.service-item-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+
+  align-items: flex-start;
+  justify-content: center;
+}
+.service-item-content h3 {
+  color: white;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+.service-item-content p {
+  padding-left: 20px;
+  text-align: left;
+  color: white;
+  line-height: 20px;
+  font-size: 12px;
+}
+
+.service-item::after {
+  content: "";
+  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+  position: absolute;
+  z-index: -1;
+  opacity: 0.7;
+
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.service-heading-container {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+}
+.service-body {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .service-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+  }
+  .service-item {
+    flex-basis: 45%;
+    margin-left: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    border-radius: 5px;
+  }
+  .service-item-content {
+    flex-basis: 45%;
+  }
+  .service-item-content h3 {
+    font-size: 18px;
+    padding-right: 20px;
+
+    margin-bottom: 10px;
+  }
+  .service-item-content p {
+    font-size: 14px;
+    line-height: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .service-heading-container {
+    width: 700px;
+  }
+  .service-text {
+    text-align: center;
+  }
+  .service-body {
+    display: flex;
+    flex-direction: row;
+    margin-left: 300px;
+  }
+  .service-item {
+    flex-basis: 19%;
+  }
+  .service-item-content {
+    flex-basis: 19%;
+  }
+
+  .service-item-content h3 {
+    font-size: 16px;
+    padding-right: 20px;
+
+    margin-bottom: 10px;
+  }
+  .service-item-content p {
+    font-size: 12px;
+    line-height: 20px;
+    padding-right: 20px;
+  }
+}

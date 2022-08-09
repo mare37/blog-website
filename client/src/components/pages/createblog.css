@@ -1,0 +1,76 @@
+#create-blog {
+  height: 100vh;
+  padding-top: 70px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.post-container {
+  margin-top: 100px;
+  margin-left: 150px;
+}
+
+.post-container input {
+  display: block;
+}
+
+.title {
+  margin-bottom: 70px;
+  border-style: none;
+  height: 80px;
+  width: 1000px;
+  font-size: 42px;
+  background-color: transparent;
+  outline: none;
+}
+
+.title::placeholder {
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.create-blog-text {
+  border-style: none;
+  font-size: 20px;
+  outline: none;
+  width: 1000px;
+  height: 500px;
+  display: block;
+}
+.select-author {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 200px;
+}
+
+.select-author h3 {
+  display: inline;
+  margin: 10px;
+}
+
+.select-author select {
+  display: inline;
+  margin: 10px;
+}
+
+.publish-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 200px;
+}
+
+.publish-button button {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+}
+
+.publish-button button:hover {
+  background-color: white;
+  color: black;
+}
