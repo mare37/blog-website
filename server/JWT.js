@@ -22,7 +22,7 @@ const validateToken = (req, res, next) => {
 
   //check if they have a valid token
   try {
-    const validToken = verify(accessToken, "12uuy34");
+    const validToken = verify(accessToken, process.env.TOKEN_SECRET);
     if (validToken) {
       req.authenticated = true;
       return next();
