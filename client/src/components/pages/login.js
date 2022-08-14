@@ -11,19 +11,20 @@ function LogIn() {
   let navigate = useNavigate();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [page, setPage] = React.useState(true);
+  // const [page, setPage] = React.useState(true);
 
   // const cookieKey = "token";
-  const submitInfo = () => {
+  const submitInfo = (event) => {
+    event.preventDefault();
     Axios.post("http://localhost:8080/api/login", {
       email: email,
       password: password,
     }).then((response) => {
-      bake_cookie("token", response.data.accessToken);
-      if (response.data.auth) {
-      }
+      // bake_cookie("token", response.data.accessToken);
 
-      console.log(response.data.auth);
+      navigate("/admin");
+
+      console.log(response);
     });
   };
 
@@ -42,11 +43,23 @@ function LogIn() {
     }
   };
 
+  useEffect(() => {
+    Axios.get("http://localhost:8080/api/login").then((response) => {
+      //
+      if (response.data.login) {
+        console.log(response.data.login);
+        console.log("CODE 1 RAN");
+        navigate("/admin");
+      }
+      // console.log(isAuth);
+    });
+  }, []);
+
   return (
     <div>
       <form
         onSubmit={submitInfo}
-        onKeyDown={handleKeyDown}
+        // onKeyDown={handleKeyDown}
         className="login-container"
       >
         <label>Email</label>

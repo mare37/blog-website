@@ -50,6 +50,7 @@ app.post("/api/login", (req, res) => {
     if (err) {
       res.status(500).send(err);
     }
+    console.log(result);
     if (result.length > 0) {
       const dbpassword = result[0].password;
       bcrypt.compare(password, dbpassword, (err, match) => {

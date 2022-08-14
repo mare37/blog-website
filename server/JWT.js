@@ -4,10 +4,7 @@ require("dotenv").config();
 //app.use(cookieParser());
 
 function createToken(user) {
-  const accessToken = sign(
-    { email: user.email, id: user.userid },
-    process.env.TOKEN_SECRET
-  );
+  const accessToken = sign({ email: user.email, id: user.userid }, "12uuy34");
 
   return accessToken;
 }
