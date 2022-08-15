@@ -11,30 +11,80 @@ import CreateBlog from "./components/pages/createblog";
 import Post from "./components/pages/post";
 import LogIn from "./components/pages/login";
 import ProtectedRoute from "./components/pages/protectedroutes";
-import WithOutNavBar from "./components/pages/withoutnavbar";
-import { useLocation } from "react-router-dom";
+import WithNavBar from "./components/pages/withnavbar";
+import AddProject from "./components/pages/addproject";
+import ProjectList from "./components/pages/projectlist";
 
 function App() {
-  const location = useLocation();
   const [isAdmin, setIsAdmin] = React.useState(false);
-
-  if (location.pathname === "/admin") {
-    setIsAdmin(true);
-  }
 
   return (
     <div>
       <Router>
         <ScrollToTop />
-        {isAdmin && <Navbar />}
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/post/:postId" element={<Post />} />
-          <Route path="/login" element={<LogIn />} />
 
-          <Route element={<ProtectedRoute />}>
+        <Routes>
+          <Route
+            path="/"
+            exact
+            element={
+              <>
+                <Home /> <WithNavBar />
+              </>
+            }
+          />
+
+          <Route
+            path="/blog"
+            element={
+              <>
+                <Blog /> <WithNavBar />
+              </>
+            }
+          />
+          <Route
+            path="/post/:postId"
+            element={
+              <>
+                <Post /> <WithNavBar />
+              </>
+            }
+          />
+          <Route
+            path="/projectlist"
+            element={
+              <>
+                <ProjectList /> <WithNavBar />
+              </>
+            }
+          />
+
+          <Route
+            path="/login"
+            element={
+              <>
+                <LogIn /> <WithNavBar />
+              </>
+            }
+          />
+
+          <Route
+            element={
+              <>
+                <ProtectedRoute />
+              </>
+            }
+          >
             <Route path="/createblog" element={<CreateBlog />} />
+          </Route>
+          <Route
+            element={
+              <>
+                <ProtectedRoute />
+              </>
+            }
+          >
+            <Route path="/addproject" element={<AddProject />} />
           </Route>
 
           <Route element={<ProtectedRoute />}>

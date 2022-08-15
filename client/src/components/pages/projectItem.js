@@ -2,31 +2,30 @@ import React from "react";
 import "./blog.css";
 import { Navigate, useNavigate } from "react-router-dom";
 
-function BlogItem(props) {
+function ProjectItem(props) {
   let navigate = useNavigate();
   return (
     <div className="blog-post">
       <div className="heading">
-        <h2>{props.title}</h2>
-        <h3>{props.date}</h3>
+        <h2>{props.nameOfProject}</h2>
       </div>
       <div className="text">
         <p>
-          {props.blogposts.length > 200
-            ? props.blogposts.substring(0, 200) + "..."
-            : props.blogposts}
+          {props.projectDescription.length > 200
+            ? props.projectDescription.substring(0, 200) + "..."
+            : props.projectDescription}
         </p>
       </div>
       <button
         onClick={() => {
-          navigate(`/post/${props.id}`);
+          //navigate(`/post/${props.id}`);
         }}
         className="keep-reading-button"
       >
-        Keep Reading...
+        More...
       </button>
     </div>
   );
 }
 
-export default BlogItem;
+export default ProjectItem;

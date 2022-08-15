@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Axios from "axios";
 import "./createblog.css";
-import LogIn from "./login";
-//import { bake_cookie, read_cookie, delete_cookie } from "sfcookies";
-import { Navigate, useNavigate } from "react-router-dom";
 
 Axios.defaults.withCredentials = true;
 
@@ -17,6 +14,7 @@ function CreateBlog() {
       title: title,
       bodyText: bodyText,
       author: author,
+      date: new Date().toISOString().slice(0, 10),
       //cookies: { "access-token": read_cookie("token") },
     });
     console.log("Blog Posted");
@@ -45,6 +43,7 @@ function CreateBlog() {
           type="text"
           placeholder="Write here..."
         />
+
         <div className="select-author">
           <h3>Author: </h3>
           <select

@@ -26,6 +26,34 @@ app.use(cors({ origin: true, credentials: true }));
 //app.use(cors(corsOptions));
 app.use(cookieParser());
 
+app.get("/api/projectlist", (req, res) => {
+  db.query("SELECT * FROM projects", (err, result) => {
+    if (err) {
+      res.send(err);
+    }
+    res.send(result);
+  });
+});
+
+app.post("/api/createproject", validateToken, (req, res) => {
+  const projectName = req.body.projectTitle;
+  const projectDescription = req.body.projectDescription;
+
+  db.query(
+    "INSERT INTO projects (nameOfproject, projectDescription) VALUES(?,?)",
+    [projectName, projectDescription],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+      }
+    }
+  );
+
+  res.status(200).send("ok");
+});
+
 app.get("/api/logout", (req, res) => {
   res.cookie("access_token", "", {
     maxAge: 1,
@@ -129,9 +157,10 @@ app.post("/api/create", validateToken, (req, res) => {
   const title = req.body.title;
   const bodyText = req.body.bodyText;
   const author = req.body.author;
+  const date = req.body.date;
   db.query(
-    "INSERT INTO posts (title, blogposts, author) VALUES (?,?,?)",
-    [title, bodyText, author],
+    "INSERT INTO posts (title, blogposts, author, date) VALUES (?,?,?,?)",
+    [title, bodyText, author, date],
     (err, result) => {
       if (err) {
         console.log(err);

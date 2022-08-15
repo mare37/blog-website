@@ -18,6 +18,7 @@ function Blog() {
         key={key}
         id={item.id}
         title={item.title}
+        date={item.date}
         blogposts={item.blogposts}
       />
     );

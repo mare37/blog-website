@@ -1,17 +1,29 @@
-import React from "react";
-import "./admin.css";
+import React, { useState } from "react";
+import "./addproject.css";
+import { Link } from "react-router-dom";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 Axios.defaults.withCredentials = true;
 
-function Admin() {
+function AddProject() {
   let navigate = useNavigate();
+  const [projectTitle, setProjectTitle] = useState("");
+  const [projectDescription, setProjectDescription] = useState("");
+
   const logOut = () => {
     Axios.get("http://localhost:8080/api/logout").then((response) => {
       console.log(response);
       navigate("/");
+    });
+  };
+
+  const submitProject = () => {
+    Axios.post("http://localhost:8080/api/createproject", {
+      projectTitle: projectTitle,
+      projectDescription: projectDescription,
+    }).then((response) => {
+      console.log(response);
     });
   };
 
@@ -33,7 +45,7 @@ function Admin() {
             <img src="./images/content-writing.png" />
           </Link>
 
-          <Link to="/addproject" target="_blank">
+          <Link to="" target="_blank">
             <img src="./images/project.png" />
           </Link>
         </div>
@@ -46,36 +58,21 @@ function Admin() {
 
             <button onClick={logOut}>Log Out</button>
           </div>
-
           <div className="main-content">
-            <div className="content-container">
-              <div>
-                <h2>No. Of Articles </h2>
-                <h3>2</h3>
-              </div>
-              <div>
-                <h2>No. Of Projects </h2>
-                <h3>2</h3>
-              </div>
-              <div>
-                <h2>No. Of Visitors </h2>
-                <h3>2</h3>
-              </div>
-            </div>
-            <div className="content-container2">
-              <div>
-                <h2>Recent Articles</h2>
-                <h4>1 How to make a car like...</h4>
-                <h4>2 How to make a car like...</h4>
-                <h4>3 How to make a car like...</h4>
-              </div>
-              <div>
-                <h2>Recent Projects</h2>
-                <h4>1 How to make a car like...</h4>
-                <h4>2 How to make a car like...</h4>
-                <h4>3 How to make a car like...</h4>
-              </div>
-            </div>
+            <input
+              type="text"
+              placeholder="Project Name"
+              onChange={(e) => {
+                setProjectTitle(e.target.value);
+              }}
+            />
+            <textarea
+              placeholder="Description"
+              onChange={(e) => {
+                setProjectDescription(e.target.value);
+              }}
+            />
+            <button onClick={submitProject}>Submit</button>
           </div>
         </div>
       </div>
@@ -83,4 +80,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default AddProject;
