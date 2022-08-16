@@ -1,5 +1,5 @@
 import React from "react";
-import "./blog.css";
+import "../blog/blog.css";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function ProjectItem(props) {
@@ -18,7 +18,7 @@ function ProjectItem(props) {
       </div>
       <button
         onClick={() => {
-          //navigate(`/post/${props.id}`);
+          navigate(`/project/${props.id}`);
         }}
         className="keep-reading-button"
       >

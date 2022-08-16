@@ -18,6 +18,7 @@ function ProjectList() {
     return (
       <ProjectItem
         key={key}
+        id={item.idprojects}
         nameOfProject={item.nameOfProject}
         projectDescription={item.projectDescription}
       />
