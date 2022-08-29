@@ -10,7 +10,7 @@ function CreateBlog() {
   const [author, setAuthor] = useState("Jacon Keya");
 
   function submitPost() {
-    Axios.post("http://localhost:8080/api/create", {
+    Axios.post("http://localhost:8080/blogpost", {
       title: title,
       bodyText: bodyText,
       author: author,

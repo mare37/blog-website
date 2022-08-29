@@ -7,7 +7,7 @@ function Blog() {
   const [postList, setPostList] = React.useState([]);
 
   React.useEffect(() => {
-    Axios.get("http://localhost:8080/api/get/").then((postsData) => {
+    Axios.get("http://localhost:8080/blogpost").then((postsData) => {
       setPostList(postsData.data);
     });
   }, []);

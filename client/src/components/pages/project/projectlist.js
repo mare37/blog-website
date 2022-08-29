@@ -8,7 +8,7 @@ Axios.defaults.withCredentials = true;
 function ProjectList() {
   const [projects, setProjects] = useState([]);
   useEffect(() => {
-    Axios.get("http://localhost:8080/api/projectlist").then((response) => {
+    Axios.get("http://localhost:8080/project").then((response) => {
       console.log(response.data);
       setProjects(response.data);
     });

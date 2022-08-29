@@ -8,7 +8,7 @@ function Post() {
   const [post, setPost] = React.useState({});
 
   React.useEffect(() => {
-    Axios.get(`http://localhost:8080/api/getpost/${postId}`).then((data) => {
+    Axios.get(`http://localhost:8080/blogpost/${postId}`).then((data) => {
       setPost({
         title: data.data[0].title,
         blogposts: data.data[0].blogposts,

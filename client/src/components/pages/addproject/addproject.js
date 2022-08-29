@@ -19,7 +19,7 @@ function AddProject() {
   };
 
   const submitProject = () => {
-    Axios.post("http://localhost:8080/api/createproject", {
+    Axios.post("http://localhost:8080/project", {
       projectTitle: projectTitle,
       projectDescription: projectDescription,
     }).then((response) => {

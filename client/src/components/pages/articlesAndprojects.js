@@ -1,37 +1,65 @@
 import React, { useEffect, useState } from "react";
-import "./admin.css";
+
+import "./articlesAndprojects.css";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 Axios.defaults.withCredentials = true;
 
-function Admin() {
+const BlogPostsElement = (props) => {
+  return (
+    <div className="element-container">
+      <p className="element-id">{props.id}</p>
+      <p className="element-title">{props.title}</p>
+      <p className="element-date">{props.date}</p>
+      <div className="element-buttons">
+        <button>Update</button>
+        <button>Delete</button>
+      </div>
+    </div>
+  );
+};
+
+const ProjectsElement = (props) => {
+  return (
+    <div className="element-container">
+      <p className="element-id">{props.id}</p>
+      <p className="element-title">{props.nameOfProject}</p>
+      <p className="element-description">{props.description}</p>
+      <div className="element-buttons">
+        <button>Update</button>
+        <button>Delete</button>
+      </div>
+    </div>
+  );
+};
+
+function ArticlesAndProjects() {
   let navigate = useNavigate();
-  const [numberOfBlogPosts, setNumberOfBlogPosts] = useState(null);
-  const [numberOfProjects, setNumberOfProjects] = useState(null);
+
   const [blogPosts, setBlogPosts] = useState([]);
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    // Getting number of articles from the backend
+    // Getting blog posts from the backend
     Axios.get("http://localhost:8080/blogpost").then((response) => {
-      setNumberOfBlogPosts(response.data.length);
-      setBlogPosts(response.data.slice(0, 3));
+      setBlogPosts(response.data);
     });
     //Getting number of projects from the backend
     Axios.get("http://localhost:8080/project").then((response) => {
-      setNumberOfProjects(response.data.length);
-      setProjects(response.data.slice(0, 3));
+      setProjects(response.data);
     });
   }, []);
 
   let blogPostsData = blogPosts.map((item, key) => {
     let title = item.title;
-    if (item.title.length > 20) {
-      title = item.title.substring(0, 20) + "...";
+    if (item.title.length > 80) {
+      title = item.title.substring(0, 80) + "...";
     }
-    return <h4 key={key}>{`${item.id}  ${title}`}</h4>;
+    return (
+      <BlogPostsElement key={key} id={item.id} title={title} date={item.date} />
+    );
   });
 
   let projectsData = projects.map((item, key) => {
@@ -39,7 +67,14 @@ function Admin() {
     if (projectName.length > 20) {
       projectName = projectName.substring(0, 20) + "...";
     }
-    return <h4 key={key}>{`${item.idprojects}  ${projectName}`}</h4>;
+    return (
+      <ProjectsElement
+        key={key}
+        id={item.idprojects}
+        nameOfProject={item.nameOfProject}
+        description={item.projectDescription}
+      />
+    );
   });
 
   const logOut = () => {
@@ -82,37 +117,22 @@ function Admin() {
           </div>
 
           <div className="main-content">
-            <div className="content-container">
-              <div>
-                <h2>No. Of Articles </h2>
-                <h3>{numberOfBlogPosts}</h3>
-              </div>
-              <div>
-                <h2>No. Of Projects </h2>
-                <h3>{numberOfProjects}</h3>
-              </div>
-              <div>
-                <h2>No. Of Visitors </h2>
-                <h3>2</h3>
-              </div>
+            <div className="headings-container">
+              <p className="heading-id">ID</p>
+              <p className="heading-title">Title</p>
+              <p className="heading-date">Date</p>
             </div>
-            <div className="content-container2">
-              <div>
-                <h2>Recent Articles</h2>
-                {blogPostsData}
-                <p
-                  onClick={() => {
-                    navigate("/articlesandprojects");
-                  }}
-                >
-                  All Articles
-                </p>
-              </div>
-              <div>
-                <h2>Recent Projects</h2>
-                {projectsData}
-              </div>
+            <div className="blogposts">{blogPostsData}</div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <div className="headings-container">
+              <p className="heading-id">ID</p>
+              <p className="heading-title">Project Name</p>
+              <p className="heading-date">Description</p>
             </div>
+            <div className="blogposts">{projectsData}</div>
           </div>
         </div>
       </div>
@@ -120,4 +140,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default ArticlesAndProjects;

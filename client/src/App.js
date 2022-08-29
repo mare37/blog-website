@@ -14,6 +14,8 @@ import ProtectedRoute from "./components/pages/protectedroutes";
 import WithNavBar from "./components/pages/withnavbar";
 import AddProject from "./components/pages/addproject/addproject";
 import ProjectList from "./components/pages/project/projectlist";
+import ProjectPage from "./components/pages/project/projectpage";
+import ArticlesAndProjects from "./components/pages/articlesAndprojects";
 
 function App() {
   const [isAdmin, setIsAdmin] = React.useState(false);
@@ -63,7 +65,7 @@ function App() {
             path="/project/:projectId"
             element={
               <>
-                <Post /> <WithNavBar />
+                <ProjectPage /> <WithNavBar />
               </>
             }
           />
@@ -77,27 +79,23 @@ function App() {
             }
           />
 
-          <Route
-            element={
-              <>
-                <ProtectedRoute />
-              </>
-            }
-          >
+          <Route element={<ProtectedRoute />}>
             <Route path="/createblog" element={<CreateBlog />} />
           </Route>
-          <Route
-            element={
-              <>
-                <ProtectedRoute />
-              </>
-            }
-          >
+
+          <Route element={<ProtectedRoute />}>
             <Route path="/addproject" element={<AddProject />} />
           </Route>
 
           <Route element={<ProtectedRoute />}>
             <Route path="/admin" element={<Admin />} />
+          </Route>
+
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path="/articlesandprojects"
+              element={<ArticlesAndProjects />}
+            />
           </Route>
         </Routes>
       </Router>
