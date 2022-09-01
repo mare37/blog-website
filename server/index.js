@@ -14,7 +14,7 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(cookieParser());
 
 //routes
-app.use("/blogpost", validateToken, postsRoute);
+app.use("/blogpost", postsRoute);
 app.use("/project", projectsRoute);
 app.use(usersRoute);
 

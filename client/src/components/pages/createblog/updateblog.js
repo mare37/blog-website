@@ -1,24 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "./createblog.css";
+import { useParams, useNavigate } from "react-router-dom";
 
 Axios.defaults.withCredentials = true;
 
-function CreateBlog() {
+function UpdateBlog() {
+  const navigate = useNavigate();
+  const { postId } = useParams();
+
   const [title, setTitle] = useState("");
   const [bodyText, setBodyText] = useState("");
   const [author, setAuthor] = useState("Jacon Keya");
 
-  function submitPost() {
-    Axios.post("http://localhost:8080/blogpost", {
+  useEffect(() => {
+    Axios.get(`http://localhost:8080/blogpost/${postId}`).then((response) => {
+      setTitle(response.data[0].title);
+      setBodyText(response.data[0].blogposts);
+    });
+  }, []);
+
+  function updatePost() {
+    Axios.put(`http://localhost:8080/blogpost/${postId}`, {
       title: title,
-      id: 1,
       bodyText: bodyText,
       author: author,
       date: new Date().toISOString().slice(0, 10),
-      //cookies: { "access-token": read_cookie("token") },
-    });
-    console.log("Blog Posted");
+    })
+      .then((response) => {
+        console.log(response.data);
+        navigate("/articlesandprojects");
+        alert("Updated successfully!Click Ok");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -29,17 +45,21 @@ function CreateBlog() {
             setTitle(() => {
               return e.target.value;
             });
+            console.log(title);
           }}
+          value={title}
           className="title"
           type="text"
           placeholder="Title..."
         />
+
         <textarea
           onChange={(e) => {
             setBodyText(() => {
               return e.target.value;
             });
           }}
+          value={bodyText}
           className="create-blog-text"
           type="text"
           placeholder="Write here..."
@@ -59,11 +79,11 @@ function CreateBlog() {
         </div>
 
         <div className="publish-button">
-          <button onClick={submitPost}>Publish</button>
+          <button onClick={updatePost}>Update</button>
         </div>
       </div>
     </div>
   );
 }
 
-export default CreateBlog;
+export default UpdateBlog;

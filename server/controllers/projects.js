@@ -34,4 +34,25 @@ const getOneproject = (req, res) => {
   res.send(projectId);
 };
 
-module.exports = { postProject, getAllProjects, getOneproject };
+const deleteOneProject = (req, res) => {
+  const id = req.body.id;
+  db.query(
+    "DELETE FROM projects WHERE idprojects = ?",
+    [id],
+    (err, response) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(response);
+    }
+  );
+
+  res.send("Project Deleted");
+};
+
+module.exports = {
+  postProject,
+  getAllProjects,
+  getOneproject,
+  deleteOneProject,
+};

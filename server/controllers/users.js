@@ -22,14 +22,13 @@ const logIn = (req, res) => {
 
           const accessToken = createToken(result[0]);
           res.cookie("access_token", accessToken, {
-            maxAge: 3600000,
+            maxAge: 36000000,
             httpOnly: true,
             secure: true,
           });
 
           res.send({
             auth: true,
-            accessToken: accessToken,
             message: "You are logged in!",
           });
         } else {
@@ -41,7 +40,7 @@ const logIn = (req, res) => {
         }
       });
     } else {
-      res.send("User doesnt exist");
+      res.status(400).send("User doesnt exist");
     }
   });
 };

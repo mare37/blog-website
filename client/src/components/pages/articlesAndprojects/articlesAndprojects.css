@@ -9,7 +9,7 @@
   justify-content: flex-start;
   align-items: center;
   background-color: black;
-  height: 100vh;
+  height: 100%;
 }
 
 .side-bar img {
@@ -47,6 +47,11 @@
   display: flex;
   flex-direction: row;
   height: 70px;
+  border-style: solid;
+  border-width: 1px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
 
   align-items: center;
   justify-content: space-between;
@@ -73,11 +78,12 @@
 }
 
 .main-content {
-  background-color: rgb(238, 236, 236);
+  background-color: rgb(32, 25, 25);
   display: flex;
   flex-direction: column;
 
   padding: 30px;
+  margin-top: 50px;
   margin-right: 10px;
   margin-left: 20px;
 }
@@ -134,11 +140,11 @@
 }
 
 .blogposts {
-  background-color: white;
+  background-color: whitesmoke;
   max-height: 180px;
   overflow: scroll;
   overflow-x: hidden;
-  margin-top: 10px;
+  border-radius: 5px;
 }
 .blogposts::-webkit-scrollbar-track {
   border: 1px solid white;
@@ -177,7 +183,7 @@
 .element-container {
   display: flex;
   flex-direction: row;
-  padding: 5px;
+  padding: 3px;
 }
 .element-buttons {
   display: inline;
@@ -186,12 +192,28 @@
 .element-buttons button {
   padding: 3px;
   margin: 2px;
+  border: none;
+  color: white;
+  border-radius: 3px;
+}
+.element-buttons .delete {
+  background-color: rgb(196, 74, 74);
+}
+.element-buttons .delete:hover {
+  background-color: red;
+}
+.element-buttons .update {
+  background-color: rgb(93, 211, 93);
+}
+.element-buttons .update:hover {
+  background-color: green;
 }
 
 .headings-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 50px;
 }
 
 .headings-container .heading-id {
@@ -208,6 +230,7 @@
 .headings-container p {
   font-weight: 500;
   font-size: 18px;
+  color: #f7f7f7;
 }
 
 .element-description {

@@ -15,8 +15,8 @@ import WithNavBar from "./components/pages/withnavbar";
 import AddProject from "./components/pages/addproject/addproject";
 import ProjectList from "./components/pages/project/projectlist";
 import ProjectPage from "./components/pages/project/projectpage";
-import ArticlesAndProjects from "./components/pages/articlesAndprojects";
-
+import ArticlesAndProjects from "./components/pages/articlesAndprojects/articlesAndprojects";
+import UpdateBlog from "./components/pages/createblog/updateblog";
 function App() {
   const [isAdmin, setIsAdmin] = React.useState(false);
 
@@ -96,6 +96,9 @@ function App() {
               path="/articlesandprojects"
               element={<ArticlesAndProjects />}
             />
+          </Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/updateblog/:postId" element={<UpdateBlog />} />
           </Route>
         </Routes>
       </Router>

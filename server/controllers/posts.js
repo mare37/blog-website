@@ -2,9 +2,11 @@ const db = require("../config/database");
 
 const postBlog = (req, res) => {
   const title = req.body.title;
+  const id = req.body.id;
   const bodyText = req.body.bodyText;
   const author = req.body.author;
   const date = req.body.date;
+  console.log(id);
   db.query(
     "INSERT INTO posts (title, blogposts, author, date) VALUES (?,?,?,?)",
     [title, bodyText, author, date],
@@ -12,20 +14,21 @@ const postBlog = (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(result);
+        // console.log(result);
       }
     }
   );
 
-  res.send("CREATE BLOG");
+  res.send("Blog Created");
 };
 
 const getAllBlogPosts = (req, res) => {
+  console.log(req.body.id);
   db.query("SELECT * FROM posts", (err, result) => {
     if (err) {
       console.log(err);
     } else {
-      console.log(result);
+      // console.log(result);
       res.send(result);
     }
   });
@@ -38,10 +41,47 @@ const getOneBlogPost = (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      console.log(result);
+      //console.log(result);
       res.send(result);
     }
   });
 };
 
-module.exports = { postBlog, getAllBlogPosts, getOneBlogPost };
+const deleteOneBlogPost = (req, res) => {
+  const id = req.body.id;
+  console.log(id);
+  db.query("DELETE FROM posts WHERE id = ?", [id], (err, response) => {
+    if (err) {
+      console.log(err);
+    }
+    // console.log(response);
+  });
+
+  res.send("Blog Post Deleted");
+};
+
+const updateBlogPost = (req, res) => {
+  const { postId } = req.params;
+  const title = req.body.title;
+  const blogpost = req.body.bodyText;
+  console.log(req.params);
+  db.query(
+    "UPDATE posts SET title = ?, blogposts = ? WHERE id = ?",
+    [title, blogpost, postId],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send("Failed");
+      }
+      res.send("Update succesfull");
+    }
+  );
+};
+
+module.exports = {
+  postBlog,
+  getAllBlogPosts,
+  getOneBlogPost,
+  deleteOneBlogPost,
+  updateBlogPost,
+};

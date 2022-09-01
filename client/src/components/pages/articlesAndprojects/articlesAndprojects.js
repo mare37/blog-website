@@ -4,46 +4,29 @@ import "./articlesAndprojects.css";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { BlogPostsElement, ProjectsElement } from "./elements";
 
 Axios.defaults.withCredentials = true;
 
-const BlogPostsElement = (props) => {
-  return (
-    <div className="element-container">
-      <p className="element-id">{props.id}</p>
-      <p className="element-title">{props.title}</p>
-      <p className="element-date">{props.date}</p>
-      <div className="element-buttons">
-        <button>Update</button>
-        <button>Delete</button>
-      </div>
-    </div>
-  );
-};
-
-const ProjectsElement = (props) => {
-  return (
-    <div className="element-container">
-      <p className="element-id">{props.id}</p>
-      <p className="element-title">{props.nameOfProject}</p>
-      <p className="element-description">{props.description}</p>
-      <div className="element-buttons">
-        <button>Update</button>
-        <button>Delete</button>
-      </div>
-    </div>
-  );
-};
+//------------------------------------------------------------------------------------
 
 function ArticlesAndProjects() {
   let navigate = useNavigate();
 
   const [blogPosts, setBlogPosts] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [confirmationPage, setConfirmationPage] = useState(false);
+  const [id, setId] = useState(null);
+
+  //-------------------------------------------------------------
+
+  //--------------------------------------------------------------------
 
   useEffect(() => {
     // Getting blog posts from the backend
-    Axios.get("http://localhost:8080/blogpost").then((response) => {
+    Axios.get("http://localhost:8080/blogpost", {}).then((response) => {
+      //console.log(response.data);
       setBlogPosts(response.data);
     });
     //Getting number of projects from the backend
@@ -118,21 +101,25 @@ function ArticlesAndProjects() {
 
           <div className="main-content">
             <div className="headings-container">
-              <p className="heading-id">ID</p>
+              <p className="heading-id">Id</p>
               <p className="heading-title">Title</p>
               <p className="heading-date">Date</p>
             </div>
-            <div className="blogposts">{blogPostsData}</div>
+            <div className="blogposts">
+              {blogPosts.length === 0 ? "No posts to show" : blogPostsData}
+            </div>
             <br />
             <br />
             <br />
             <br />
             <div className="headings-container">
-              <p className="heading-id">ID</p>
+              <p className="heading-id">Id</p>
               <p className="heading-title">Project Name</p>
               <p className="heading-date">Description</p>
             </div>
-            <div className="blogposts">{projectsData}</div>
+            <div className="blogposts">
+              {projects.length === 0 ? "No projects to show" : projectsData}
+            </div>
           </div>
         </div>
       </div>
