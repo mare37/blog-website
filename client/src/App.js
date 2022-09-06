@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Blog from "./components/pages/blog/blog";
 import Navbar from "./components/Home/Navbar/navbar";
 import Admin from "./components/pages/admin/admin";
-//import Footer from "./components/Home/Footer/footer";
+import Footer from "./components/Home/Footer/footer";
 import ScrollToTop from "./scrollTop";
 import CreateBlog from "./components/pages/createblog/createblog";
 import Post from "./components/pages/blog/post";
@@ -17,6 +17,7 @@ import ProjectList from "./components/pages/project/projectlist";
 import ProjectPage from "./components/pages/project/projectpage";
 import ArticlesAndProjects from "./components/pages/articlesAndprojects/articlesAndprojects";
 import UpdateBlog from "./components/pages/createblog/updateblog";
+import UpdateProject from "./components/pages/addproject/updateproject";
 function App() {
   const [isAdmin, setIsAdmin] = React.useState(false);
 
@@ -100,7 +101,11 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/updateblog/:postId" element={<UpdateBlog />} />
           </Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/updateproject/:postId" element={<UpdateProject />} />
+          </Route>
         </Routes>
+        <Footer />
       </Router>
     </div>
   );

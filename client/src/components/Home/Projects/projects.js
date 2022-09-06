@@ -3,14 +3,14 @@ import "./projects.css";
 import Project from "./project";
 import projectsData from "../../projectsdata";
 
-function Projects() {
-  let data = projectsData.map((dataItem) => {
+function Projects(props) {
+  let data = props.projectsData.map((dataItem) => {
     return (
       <Project
-        key={dataItem.id}
-        heading1={dataItem.heading1}
-        heading2={dataItem.heading2}
-        body={dataItem.body}
+        key={dataItem.idprojects}
+        heading1={"Project"}
+        heading2={dataItem.nameOfProject}
+        body={dataItem.projectDescription}
       />
     );
   });

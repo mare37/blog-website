@@ -1,0 +1,154 @@
+#admin-mainbar {
+  width: 100vw;
+}
+.admin-mainbar {
+}
+
+.admin-maincontent {
+  display: flex;
+  flex-direction: column;
+
+  padding: 30px;
+  margin-right: 10px;
+}
+
+.admin-contentcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.admin-contentcontainer div {
+  /* height: 200px;
+  width: 300px;
+  border-color: black;
+  background-color: white;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;*/
+
+  height: 250px;
+  width: 250px;
+  border-radius: 10px;
+  border-width: 1px;
+  padding: 30px;
+
+  border-color: rgb(245, 242, 242);
+  box-shadow: 0 0 18px 0px rgb(208, 204, 204);
+  margin-bottom: 50px;
+  transition: 0.3 ease box-shadow;
+}
+
+.admin-contentcontainer p {
+  font-size: 18px;
+}
+
+.admin-contentcontainer h3 {
+  margin-top: 10px;
+  font-size: 32px;
+  border-bottom-color: black;
+}
+
+.admin-contentcontainer2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.admin-contentcontainer2 div {
+  /*width: 350px;
+  border-color: black;
+  background-color: white;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 30px;
+  padding-bottom: 40px;*/
+
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  border-width: 1px;
+  padding: 30px;
+
+  border-color: rgb(245, 242, 242);
+  box-shadow: 0 0 18px 0px rgb(208, 204, 204);
+  margin-bottom: 50px;
+  transition: 0.3 ease box-shadow;
+}
+
+.admin-blogpostpreview-headings {
+  font-size: 18px;
+}
+
+.blogpost-preview {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.admin-preview-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: solid;
+  border-top-color: purple;
+  border-top-width: 1px;
+}
+
+.admin-preview-button button {
+  padding: 6px 16px;
+  background-color: purple;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.admin-preview-button button:hover {
+  box-shadow: 0 0 18px 0px rgb(134, 127, 127);
+}
+
+.admin-contentcontainer2 h4 {
+  margin-top: 10px;
+  font-size: 32px;
+  border-bottom-color: black;
+}
+
+@media only screen and (min-width: 1200px) {
+  .admin-contentcontainer {
+    flex-direction: row;
+    justify-content: center;
+
+    padding: 30px;
+  }
+
+  .admin-contentcontainer div {
+    height: 150px;
+    margin-left: 25px;
+  }
+
+  .admin-contentcontainer2 {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .admin-contentcontainer2 div {
+    height: 200px;
+    margin-left: 20px;
+  }
+}

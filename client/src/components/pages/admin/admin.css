@@ -1,26 +1,10 @@
 .admin {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-}
+  width: 100vw;
 
-.side-bar {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: black;
-}
-
-.side-bar img {
-  height: 40px;
-  width: 40px;
-  margin-top: 20px;
-  filter: invert(1);
-  margin-bottom: 30px;
   position: relative;
 }
 
-.hide {
+/*.hide {
   position: absolute;
   top: 20px;
   bottom: 0;
@@ -39,103 +23,16 @@
 }
 .blog-icon:hover + .hide {
   visibility: visible;
-}
-.main-bar {
-}
-.navigation-bar {
-  display: flex;
-  flex-direction: row;
-  height: 70px;
-
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 10px;
-}
-.navigation-bar button {
-  height: 30px;
-  padding: 0 30px;
-  border-radius: 10px;
-  background-color: red;
-  border: none;
-  color: white;
-}
-
-.navigation-bar button:hover {
-  background-color: crimson;
-}
-.navigation-bar img {
-  height: 20px;
-  margin-right: 10px;
-}
-.navigation-bar h1 {
-  display: inline;
-}
-
-.main-content {
-  background-color: rgb(238, 236, 236);
-  display: flex;
-  flex-direction: column;
-
-  padding: 30px;
-  margin-right: 10px;
-}
-
-.content-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  align-items: center;
-}
-
-.content-container div {
-  height: 200px;
-  width: 350px;
-  border-color: black;
-  background-color: white;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.content-container2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  align-items: center;
-  margin-top: 50px;
-}
-
-.content-container2 div {
-  width: 350px;
-  border-color: black;
-  background-color: white;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  padding-top: 30px;
-  padding-bottom: 40px;
-}
-
-.content-container2 h2 {
-  margin-bottom: 20px;
-}
-.content-container2 h4 {
-  margin-bottom: 10px;
-}
+}*/
 
 @media only screen and (min-width: 1200px) {
-  .content-container {
+  /* .content-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+  }*/
+  .admin {
+    max-width: 1300px;
   }
 }

@@ -3,10 +3,12 @@ const db = require("../config/database");
 const postProject = (req, res) => {
   const projectName = req.body.projectTitle;
   const projectDescription = req.body.projectDescription;
+  const date = req.body.date;
+  console.log(date);
 
   db.query(
-    "INSERT INTO projects (nameOfproject, projectDescription) VALUES(?,?)",
-    [projectName, projectDescription],
+    "INSERT INTO projects (nameOfproject, projectDescription, date) VALUES(?,?,?)",
+    [projectName, projectDescription, date],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -31,7 +33,17 @@ const getAllProjects = (req, res) => {
 const getOneproject = (req, res) => {
   const { projectId } = req.params;
   console.log(projectId);
-  res.send(projectId);
+  db.query(
+    "SELECT * FROM projects WHERE idprojects = ?",
+    [projectId],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send("Failed to get project");
+      }
+      res.status(200).send(result);
+    }
+  );
 };
 
 const deleteOneProject = (req, res) => {
@@ -50,9 +62,27 @@ const deleteOneProject = (req, res) => {
   res.send("Project Deleted");
 };
 
+const updateOneProject = (req, res) => {
+  const { projectId } = req.params;
+  const title = req.body.projectTitle;
+  const description = req.body.projectDescription;
+  db.query(
+    "UPDATE projects SET nameOfProject = ?, projectDescription = ? WHERE idprojects = ?",
+    [title, description, projectId],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(400).send(err);
+      }
+      res.status(200).send(result);
+    }
+  );
+};
+
 module.exports = {
   postProject,
   getAllProjects,
   getOneproject,
   deleteOneProject,
+  updateOneProject,
 };

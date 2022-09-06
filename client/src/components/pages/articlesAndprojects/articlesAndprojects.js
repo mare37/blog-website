@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { BlogPostsElement, ProjectsElement } from "./elements";
+import NavBar from "../admin/admin-navbar";
+import SideBar from "../admin/admin-sidebar";
 
 Axios.defaults.withCredentials = true;
 
@@ -55,7 +57,7 @@ function ArticlesAndProjects() {
         key={key}
         id={item.idprojects}
         nameOfProject={item.nameOfProject}
-        description={item.projectDescription}
+        date={item.date}
       />
     );
   });
@@ -70,58 +72,46 @@ function ArticlesAndProjects() {
   return (
     <div>
       <div className="admin">
-        <div className="side-bar">
-          <Link to="/" target="_blank">
-            <img className="home" src="./images/home2.png" />
-            <p className="hide">Home</p>
-          </Link>
-
-          <Link to="/blog" target="_blank">
-            <img className="blog-icon" src="./images/symbols.png" />
-            <p className="hide">Blog</p>
-          </Link>
-
-          <Link to="/createblog" target="_blank">
-            <img src="./images/content-writing.png" />
-          </Link>
-
-          <Link to="/addproject" target="_blank">
-            <img src="./images/project.png" />
-          </Link>
-        </div>
+        <NavBar />
         <div className="main-bar">
-          <div className="navigation-bar">
-            <div>
-              <img src="./images/dashboard.png" />
-              <h1>Dashboard</h1>
-            </div>
-
-            <button onClick={logOut}>Log Out</button>
-          </div>
-
           <div className="main-content">
-            <div className="headings-container">
-              <p className="heading-id">Id</p>
-              <p className="heading-title">Title</p>
-              <p className="heading-date">Date</p>
+            <div className="postsAndprojects-heading">
+              <p className="adm-p1">Your Blog Posts</p>
+              <p className="adm-p2">All blog posts you have in the database</p>
             </div>
             <div className="blogposts">
+              <div id="element-container2">
+                <div className="element-container2">
+                  <p className="element-id">Id</p>
+                  <p className="element-title">Blog Post Title</p>
+                  <p className="date-and-buttons">Created</p>
+                </div>
+              </div>
+
               {blogPosts.length === 0 ? "No posts to show" : blogPostsData}
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <div className="headings-container">
-              <p className="heading-id">Id</p>
-              <p className="heading-title">Project Name</p>
-              <p className="heading-date">Description</p>
+            <div className="adm-buffer"></div>
+
+            <div className="postsAndprojects-heading">
+              <p className="adm-p1">Your Projects</p>
+              <p className="adm-p2">All projects you have in the database</p>
             </div>
-            <div className="blogposts">
-              {projects.length === 0 ? "No projects to show" : projectsData}
+            <div className={"blogposts"}>
+              <div className="element-container2">
+                <p className="element-id">Id</p>
+                <p className="element-title">Project</p>
+                <p className="date-and-buttons">Created</p>
+              </div>
+              {projects.length === 0 ? (
+                <p className="no-projects-posts">No projects to show </p>
+              ) : (
+                projectsData
+              )}
             </div>
+            <div className="adm-buffer"></div>
           </div>
         </div>
+        <SideBar />
       </div>
     </div>
   );

@@ -1,29 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./addproject.css";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 Axios.defaults.withCredentials = true;
 
-function AddProject() {
+function UpdateProject() {
+  const { postId } = useParams();
   let navigate = useNavigate();
   const [projectTitle, setProjectTitle] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
 
-  /* Date.prototype.today = () => {
-    return (
-      (this.getDate() < 10 ? "0" : "") +
-      this.getDate() +
-      "/" +
-      (this.getMonth() + 1 < 10 ? "0" : "") +
-      (this.getMonth() + 1) +
-      "/" +
-      this.getFullYear()
-    );
-  };*/
-  let newDate = new Date();
-  // console.log(new Date());
+  useEffect(() => {
+    Axios.get(`http://localhost:8080/project/${postId}`).then((response) => {
+      console.log(response.data);
+      setProjectTitle(response.data[0].nameOfProject);
+      setProjectDescription(response.data[0].projectDescription);
+    });
+  }, []);
 
   const logOut = () => {
     Axios.get("http://localhost:8080/api/logout").then((response) => {
@@ -32,13 +27,14 @@ function AddProject() {
     });
   };
 
-  const submitProject = () => {
-    Axios.post("http://localhost:8080/project", {
+  const update = () => {
+    Axios.put(`http://localhost:8080/project/${postId}`, {
       projectTitle: projectTitle,
       projectDescription: projectDescription,
-      date: new Date().toISOString().slice(0, 10),
     }).then((response) => {
       console.log(response);
+      alert("Project Updated succesfully!");
+      navigate("/articlesandprojects");
     });
   };
 
@@ -75,6 +71,7 @@ function AddProject() {
           </div>
           <div className="main-content">
             <input
+              value={projectTitle}
               type="text"
               placeholder="Project Name"
               onChange={(e) => {
@@ -82,12 +79,13 @@ function AddProject() {
               }}
             />
             <textarea
+              value={projectDescription}
               placeholder="Description"
               onChange={(e) => {
                 setProjectDescription(e.target.value);
               }}
             />
-            <button onClick={submitProject}>Submit</button>
+            <button onClick={update}>Update</button>
           </div>
         </div>
       </div>
@@ -95,4 +93,4 @@ function AddProject() {
   );
 }
 
-export default AddProject;
+export default UpdateProject;

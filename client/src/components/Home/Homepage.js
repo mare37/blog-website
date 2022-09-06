@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Axios from "axios";
 
 import Hero from "./Hero/hero";
 import Services from "./Services/services";
@@ -7,11 +8,18 @@ import About from "./About/about";
 import ContactInfo from "./ContactInfo/contactinfo";
 
 function Home() {
+  const [projectsData, setProjectsData] = useState([]);
+  useEffect(() => {
+    Axios.get("http://localhost:8080/project").then((response) => {
+      console.log(response.data);
+      setProjectsData(response.data);
+    });
+  }, []);
   return (
     <div>
       <Hero />
       <Services />
-      <Projects />
+      <Projects projectsData={projectsData} />
       <About />
       <ContactInfo />
     </div>

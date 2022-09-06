@@ -1,0 +1,34 @@
+.admin-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: purple;
+  position: absolute;
+  top: 150px;
+  left: -140%;
+}
+
+@media only screen and (min-width: 1200px) {
+  .admin-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: purple;
+    position: absolute;
+    top: 150px;
+    left: 50px;
+    padding: 20px;
+    border-radius: 35px;
+  }
+
+  .admin-sidebar img {
+    height: 40px;
+    width: 40px;
+    margin-top: 20px;
+    filter: invert(1);
+    margin-bottom: 30px;
+    position: relative;
+  }
+}

@@ -56,24 +56,26 @@ export function BlogPostsElement(props) {
     <div className="element-container">
       <p className="element-id">{props.id}</p>
       <p className="element-title">{props.title}</p>
-      <p className="element-date">{props.date}</p>
-      <div className="element-buttons">
-        <button
-          onClick={() => {
-            navigate(`/updateblog/${props.id}`);
-          }}
-          className="update"
-        >
-          Update
-        </button>
-        <button
-          onClick={() => {
-            confirm(props.id, "BlogPostsElement");
-          }}
-          className="delete"
-        >
-          Delete
-        </button>
+      <div className="date-and-buttons">
+        <p className="element-date">{props.date}</p>
+        <div className="element-buttons">
+          <button
+            onClick={() => {
+              navigate(`/updateblog/${props.id}`);
+            }}
+            className="update"
+          >
+            Update
+          </button>
+          <button
+            onClick={() => {
+              confirm(props.id, "BlogPostsElement");
+            }}
+            className="delete"
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -85,24 +87,26 @@ export const ProjectsElement = (props) => {
     <div className="element-container">
       <p className="element-id">{props.id}</p>
       <p className="element-title">{props.nameOfProject}</p>
-      <p className="element-description">{props.description}</p>
-      <div className="element-buttons">
-        <button
-          onClick={() => {
-            navigate(`/update${props.id}`);
-          }}
-          className="update"
-        >
-          Update
-        </button>
-        <button
-          onClick={() => {
-            confirm(props.id, "ProjectsElement");
-          }}
-          className="delete"
-        >
-          Delete
-        </button>
+      <div className="date-and-buttons">
+        <p className="element-date">{props.date}</p>
+        <div className="element-buttons">
+          <button
+            onClick={() => {
+              navigate(`/updateproject/${props.id}`);
+            }}
+            className="update"
+          >
+            Update
+          </button>
+          <button
+            onClick={() => {
+              confirm(props.id, "ProjectsElement");
+            }}
+            className="delete"
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );
