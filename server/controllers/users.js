@@ -58,9 +58,9 @@ const register = (req, res) => {
       [email, hash],
       (err, result) => {
         if (err) {
-          res.status(404).send("REGISTER NOT FOUND");
+          res.status(404).send(err);
         } else {
-          res.send("USER REGISTERED");
+          resstatus(200).send("USER REGISTERED");
         }
       }
     );

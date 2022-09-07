@@ -2,8 +2,12 @@
 import React, { useEffect } from "react";
 import Axios from "axios";
 import "./login.css";
-import { bake_cookie, read_cookie, delete_cookie } from "sfcookies";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import schema from "./formValidation";
+
+import { useNavigate } from "react-router-dom";
 
 Axios.defaults.withCredentials = true;
 
@@ -11,7 +15,12 @@ function LogIn() {
   let navigate = useNavigate();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  // const [page, setPage] = React.useState(true);
+
+  const Form = () => {
+    const { register, handleSubmit } = useForm({
+      resolver: yupResolver(schema),
+    });
+  };
 
   // const cookieKey = "token";
   const submitInfo = (event) => {
@@ -34,7 +43,6 @@ function LogIn() {
         email: email,
         password: password,
       }).then((response) => {
-        bake_cookie("token", response.data.accessToken);
         if (response.data.auth) {
         }
 
@@ -57,11 +65,7 @@ function LogIn() {
 
   return (
     <div>
-      <form
-        onSubmit={submitInfo}
-        // onKeyDown={handleKeyDown}
-        className="login-container"
-      >
+      <form onSubmit={submitInfo} className="login-container">
         <label>Email</label>
         <input
           onChange={(e) => {
@@ -69,6 +73,8 @@ function LogIn() {
             console.log(email);
           }}
           type="text"
+          name="email"
+          placeholder="Email"
         />
         <label>Password</label>
         <input
@@ -76,7 +82,9 @@ function LogIn() {
             setPassword(e.target.value);
             console.log(password);
           }}
-          type="text"
+          type="password"
+          name="password"
+          placeholder="Password"
         />
         <button>Log In</button>
       </form>

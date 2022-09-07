@@ -1,4 +1,11 @@
 #admin-navigationbar {
+  width: 100vw;
+  height: auto;
+  position: fixed;
+  background-color: white;
+  z-index: 1000;
+  left: 0;
+  top: 0;
 }
 
 .admin-navigationbar {
@@ -79,4 +86,8 @@
   .admin-navbar-menu-icon {
     display: none;
   }
+}
+
+a {
+  color: black;
 }

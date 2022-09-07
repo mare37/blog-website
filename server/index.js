@@ -18,11 +18,7 @@ app.use("/blogpost", postsRoute);
 app.use("/project", projectsRoute);
 app.use(usersRoute);
 
-app.listen(8080, () => {
-  console.log(`Server running...`);
-});
-
-/* //"ALTER TABLE posts AUTO_INCREMENT = 1"
+//"ALTER TABLE posts AUTO_INCREMENT = 1"
 
 app.get("/", validateToken, (req, res) => {
   //db
@@ -32,4 +28,8 @@ app.get("/", validateToken, (req, res) => {
   //  ();
 
   res.send("HOME");
-});  */
+});
+
+app.listen(8080, () => {
+  console.log(`Server running...`);
+});

@@ -1,7 +1,7 @@
 import React from "react";
 import "./admin-navbar.css";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -20,10 +20,10 @@ function Navbar() {
   return (
     <div id="admin-navigationbar">
       <div className="admin-navigationbar">
-        <div>
-          <img src="./images/dashboard.png" />
+        <Link className="dashboard-link" to="/admin">
+          <img alt="img" src="./images/dashboard.png" />
           <h1>Dashboard</h1>
-        </div>
+        </Link>
 
         <div className="admin-navbar-container">
           <p className="welcome-name">Welcome Jacone</p>

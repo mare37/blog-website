@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "./createblog.css";
 import { useParams, useNavigate } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 Axios.defaults.withCredentials = true;
 
@@ -18,7 +20,7 @@ function UpdateBlog() {
       setTitle(response.data[0].title);
       setBodyText(response.data[0].blogposts);
     });
-  }, []);
+  }, [postId]);
 
   function updatePost() {
     Axios.put(`http://localhost:8080/blogpost/${postId}`, {
@@ -36,6 +38,27 @@ function UpdateBlog() {
         console.log(err);
       });
   }
+
+  const confirm = () => {
+    confirmAlert({
+      title: "Confirm",
+      message: "Click Ok To Update",
+      buttons: [
+        {
+          label: "  Ok",
+          onClick: () => {
+            updatePost();
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {
+            alert("Click ok");
+          },
+        },
+      ],
+    });
+  };
 
   return (
     <div id="create-blog">
@@ -79,7 +102,7 @@ function UpdateBlog() {
         </div>
 
         <div className="publish-button">
-          <button onClick={updatePost}>Update</button>
+          <button onClick={confirm}>Update</button>
         </div>
       </div>
     </div>

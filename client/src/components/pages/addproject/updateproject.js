@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./addproject.css";
-import { Link } from "react-router-dom";
+
 import Axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 Axios.defaults.withCredentials = true;
 
@@ -18,14 +20,7 @@ function UpdateProject() {
       setProjectTitle(response.data[0].nameOfProject);
       setProjectDescription(response.data[0].projectDescription);
     });
-  }, []);
-
-  const logOut = () => {
-    Axios.get("http://localhost:8080/api/logout").then((response) => {
-      console.log(response);
-      navigate("/");
-    });
-  };
+  }, [postId]);
 
   const update = () => {
     Axios.put(`http://localhost:8080/project/${postId}`, {
@@ -38,54 +33,59 @@ function UpdateProject() {
     });
   };
 
+  const confirm = () => {
+    confirmAlert({
+      title: "Confirm",
+      message: "Click Ok To Update",
+      buttons: [
+        {
+          label: "  Ok",
+          onClick: () => {
+            update();
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {
+            alert("Click ok");
+          },
+        },
+      ],
+    });
+  };
+
   return (
     <div>
-      <div className="admin">
-        <div className="side-bar">
-          <Link to="/" target="_blank">
-            <img className="home" src="./images/home2.png" />
-            <p className="hide">Home</p>
-          </Link>
+      <div className="add-project">
+        <br />
+        <br />
+        <br />
+        <div className="post-container">
+          <input
+            onChange={(e) => {
+              setProjectTitle(() => {
+                return e.target.value;
+              });
+            }}
+            className="title"
+            type="text"
+            value={projectTitle}
+            placeholder="Project Title..."
+          />
+          <textarea
+            onChange={(e) => {
+              setProjectDescription(() => {
+                return e.target.value;
+              });
+            }}
+            className="create-blog-text"
+            type="text"
+            value={projectDescription}
+            placeholder="Write here..."
+          />
 
-          <Link to="/blog" target="_blank">
-            <img className="blog-icon" src="./images/symbols.png" />
-            <p className="hide">Blog</p>
-          </Link>
-
-          <Link to="/createblog" target="_blank">
-            <img src="./images/content-writing.png" />
-          </Link>
-
-          <Link to="" target="_blank">
-            <img src="./images/project.png" />
-          </Link>
-        </div>
-        <div className="main-bar">
-          <div className="navigation-bar">
-            <div>
-              <img src="./images/dashboard.png" />
-              <h1>Dashboard</h1>
-            </div>
-
-            <button onClick={logOut}>Log Out</button>
-          </div>
-          <div className="main-content">
-            <input
-              value={projectTitle}
-              type="text"
-              placeholder="Project Name"
-              onChange={(e) => {
-                setProjectTitle(e.target.value);
-              }}
-            />
-            <textarea
-              value={projectDescription}
-              placeholder="Description"
-              onChange={(e) => {
-                setProjectDescription(e.target.value);
-              }}
-            />
-            <button onClick={update}>Update</button>
+          <div className="publish-button">
+            <button onClick={confirm}>Update</button>
           </div>
         </div>
       </div>

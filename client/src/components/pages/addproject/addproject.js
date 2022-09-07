@@ -1,36 +1,21 @@
 import React, { useState } from "react";
 import "./addproject.css";
-import { Link } from "react-router-dom";
-import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+import Axios from "axios";
+
+import NavBar from "../admin/admin-navbar";
+import SideBar from "../admin/admin-sidebar";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+//Using css from createblog.css
 
 Axios.defaults.withCredentials = true;
 
 function AddProject() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [projectTitle, setProjectTitle] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
-
-  /* Date.prototype.today = () => {
-    return (
-      (this.getDate() < 10 ? "0" : "") +
-      this.getDate() +
-      "/" +
-      (this.getMonth() + 1 < 10 ? "0" : "") +
-      (this.getMonth() + 1) +
-      "/" +
-      this.getFullYear()
-    );
-  };*/
-  let newDate = new Date();
-  // console.log(new Date());
-
-  const logOut = () => {
-    Axios.get("http://localhost:8080/api/logout").then((response) => {
-      console.log(response);
-      navigate("/");
-    });
-  };
 
   const submitProject = () => {
     Axios.post("http://localhost:8080/project", {
@@ -38,57 +23,66 @@ function AddProject() {
       projectDescription: projectDescription,
       date: new Date().toISOString().slice(0, 10),
     }).then((response) => {
+      navigate("/articlesAndprojects");
+      alert("Project Posted Successfully");
       console.log(response);
+    });
+  };
+
+  const confirm = () => {
+    confirmAlert({
+      title: "Confirm",
+      message: "Click Ok To Publish",
+      buttons: [
+        {
+          label: "  Ok",
+          onClick: () => {
+            submitProject();
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {
+            alert("Click ok");
+          },
+        },
+      ],
     });
   };
 
   return (
     <div>
-      <div className="admin">
-        <div className="side-bar">
-          <Link to="/" target="_blank">
-            <img className="home" src="./images/home2.png" />
-            <p className="hide">Home</p>
-          </Link>
+      <div className="add-project">
+        <NavBar />
+        <br />
+        <br />
+        <br />
+        <div className="post-container">
+          <input
+            onChange={(e) => {
+              setProjectTitle(() => {
+                return e.target.value;
+              });
+            }}
+            className="title"
+            type="text"
+            placeholder="Project Title..."
+          />
+          <textarea
+            onChange={(e) => {
+              setProjectDescription(() => {
+                return e.target.value;
+              });
+            }}
+            className="create-blog-text"
+            type="text"
+            placeholder="Write here..."
+          />
 
-          <Link to="/blog" target="_blank">
-            <img className="blog-icon" src="./images/symbols.png" />
-            <p className="hide">Blog</p>
-          </Link>
-
-          <Link to="/createblog" target="_blank">
-            <img src="./images/content-writing.png" />
-          </Link>
-
-          <Link to="" target="_blank">
-            <img src="./images/project.png" />
-          </Link>
-        </div>
-        <div className="main-bar">
-          <div className="navigation-bar">
-            <div>
-              <img src="./images/dashboard.png" />
-              <h1>Dashboard</h1>
-            </div>
-
-            <button onClick={logOut}>Log Out</button>
+          <div className="publish-button">
+            <button onClick={confirm}>Publish</button>
           </div>
-          <div className="main-content">
-            <input
-              type="text"
-              placeholder="Project Name"
-              onChange={(e) => {
-                setProjectTitle(e.target.value);
-              }}
-            />
-            <textarea
-              placeholder="Description"
-              onChange={(e) => {
-                setProjectDescription(e.target.value);
-              }}
-            />
-            <button onClick={submitProject}>Submit</button>
-          </div>
+          <SideBar />
         </div>
       </div>
     </div>

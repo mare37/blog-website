@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import "./createblog.css";
+import NavBar from "../admin/admin-navbar.js";
+import SideBar from "../admin/admin-sidebar";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { useNavigate } from "react-router-dom";
 
 Axios.defaults.withCredentials = true;
 
 function CreateBlog() {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [bodyText, setBodyText] = useState("");
   const [author, setAuthor] = useState("Jacon Keya");
@@ -17,12 +23,41 @@ function CreateBlog() {
       author: author,
       date: new Date().toISOString().slice(0, 10),
       //cookies: { "access-token": read_cookie("token") },
-    });
-    console.log("Blog Posted");
+    })
+      .then((response) => {
+        console.log(response);
+        navigate("/articlesandprojects");
+        alert("Blog created successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
+  const confirm = () => {
+    confirmAlert({
+      title: "Confirm",
+      message: "Click Ok To Publish",
+      buttons: [
+        {
+          label: "  Ok",
+          onClick: () => {
+            submitPost();
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {
+            alert("Click ok");
+          },
+        },
+      ],
+    });
+  };
 
   return (
     <div id="create-blog">
+      <NavBar />
       <div className="post-container">
         <input
           onChange={(e) => {
@@ -59,8 +94,9 @@ function CreateBlog() {
         </div>
 
         <div className="publish-button">
-          <button onClick={submitPost}>Publish</button>
+          <button onClick={confirm}>Publish</button>
         </div>
+        <SideBar />
       </div>
     </div>
   );

@@ -112,4 +112,9 @@ export const ProjectsElement = (props) => {
   );
 };
 
-export default { ProjectsElement, BlogPostsElement };
+const elements = {
+  ProjectsElement,
+  BlogPostsElement,
+};
+
+export default elements;

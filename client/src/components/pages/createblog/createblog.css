@@ -1,5 +1,4 @@
 #create-blog {
-  height: 100vh;
   padding-top: 70px;
   display: flex;
   align-items: flex-start;
@@ -7,8 +6,8 @@
 }
 
 .post-container {
-  margin-top: 100px;
-  margin-left: 150px;
+  margin-top: 50px;
+  margin-left: 250px;
 }
 
 .post-container input {
@@ -16,7 +15,7 @@
 }
 
 .title {
-  margin-bottom: 70px;
+  margin-bottom: 20px;
   border-style: none;
   height: 80px;
   width: 1000px;
@@ -35,14 +34,13 @@
   font-size: 20px;
   outline: none;
   width: 1000px;
-  height: 500px;
+  height: 300px;
   display: block;
 }
 .select-author {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 200px;
 }
 
 .select-author h3 {

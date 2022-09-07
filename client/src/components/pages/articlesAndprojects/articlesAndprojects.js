@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import "./articlesAndprojects.css";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import axios from "axios";
+
 import { BlogPostsElement, ProjectsElement } from "./elements";
 import NavBar from "../admin/admin-navbar";
 import SideBar from "../admin/admin-sidebar";
@@ -14,12 +12,8 @@ Axios.defaults.withCredentials = true;
 //------------------------------------------------------------------------------------
 
 function ArticlesAndProjects() {
-  let navigate = useNavigate();
-
   const [blogPosts, setBlogPosts] = useState([]);
   const [projects, setProjects] = useState([]);
-  const [confirmationPage, setConfirmationPage] = useState(false);
-  const [id, setId] = useState(null);
 
   //-------------------------------------------------------------
 
@@ -61,13 +55,6 @@ function ArticlesAndProjects() {
       />
     );
   });
-
-  const logOut = () => {
-    Axios.get("http://localhost:8080/api/logout").then((response) => {
-      console.log(response);
-      navigate("/");
-    });
-  };
 
   return (
     <div>
