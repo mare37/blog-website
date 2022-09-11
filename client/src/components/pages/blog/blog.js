@@ -27,12 +27,20 @@ function Blog() {
   return (
     <>
       <div id="blog">
-        <div className="blog">
-          <div className="top-heading">
-            <h1>Latest Blog Posts</h1>
-          </div>
-          {blogData}
+        <div
+          style={{
+            backgroundImage: "url(./images/blogimage.jpg)",
+            backgroundSize: "cover",
+            zIndex: "20",
+            position: "relative",
+            marginTop: "69px",
+            height: "250px",
+          }}
+          className="blog-image"
+        >
+          <p className="top-heading">Latest Posts</p>{" "}
         </div>
+        <div className="blog">{blogData}</div>
       </div>
     </>
   );

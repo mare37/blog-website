@@ -4,51 +4,30 @@ import Axios from "axios";
 import "./login.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import schema from "./formValidation";
-
 import { useNavigate } from "react-router-dom";
 
 Axios.defaults.withCredentials = true;
 
 function LogIn() {
   let navigate = useNavigate();
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
 
-  const Form = () => {
-    const { register, handleSubmit } = useForm({
-      resolver: yupResolver(schema),
-    });
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  // const cookieKey = "token";
-  const submitInfo = (event) => {
-    event.preventDefault();
+  const submitInfo = (data) => {
     Axios.post("http://localhost:8080/api/login", {
-      email: email,
-      password: password,
+      email: data.email,
+      password: data.password,
     }).then((response) => {
-      // bake_cookie("token", response.data.accessToken);
-
       navigate("/admin");
-
-      console.log(response);
+      console.log(response.data);
     });
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      Axios.post("http://localhost:8080/api/login", {
-        email: email,
-        password: password,
-      }).then((response) => {
-        if (response.data.auth) {
-        }
-
-        console.log(response.data.auth);
-      });
-    }
   };
 
   useEffect(() => {
@@ -64,29 +43,21 @@ function LogIn() {
   }, []);
 
   return (
-    <div>
-      <form onSubmit={submitInfo} className="login-container">
-        <label>Email</label>
+    <div id="login">
+      <form onSubmit={handleSubmit(submitInfo)} className="login-container">
+        <p>Login</p>
+
+        <input placeholder="Enter Email" {...register("email")} />
+        {errors.email && <p>Enter a valid email</p>}
+
         <input
-          onChange={(e) => {
-            setEmail(e.target.value);
-            console.log(email);
-          }}
-          type="text"
-          name="email"
-          placeholder="Email"
-        />
-        <label>Password</label>
-        <input
-          onChange={(e) => {
-            setPassword(e.target.value);
-            console.log(password);
-          }}
           type="password"
-          name="password"
           placeholder="Password"
+          {...register("password")}
         />
-        <button>Log In</button>
+        {errors.password && <p>Password not valid</p>}
+
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

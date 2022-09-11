@@ -9,7 +9,7 @@ function Navbar() {
   const logOut = () => {
     Axios.get("http://localhost:8080/api/logout").then((response) => {
       console.log(response);
-      navigate("/");
+      navigate("/login");
     });
   };
   function handleClick() {

@@ -1,56 +1,92 @@
 #blog {
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
 
 .blog {
-  margin-top: 73px;
-
-  background-color: #15172e;
+  margin-top: 20px;
+  background-color: white;
   border-top-color: antiquewhite;
   border-top-width: 3px;
 }
 
 .blog-post {
-  background-color: rgb(90, 94, 113);
-  margin: 25px;
-  border-radius: 5px;
+  background-color: white;
+  border-radius: 10px;
   padding: 50px 20px;
 }
 
-.top-heading h1 {
+.blog-image::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(21, 13, 13);
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.top-heading {
   color: white;
-  margin: 20px;
+  margin-top: 73px;
+  font-size: 48px;
+  margin-left: 20px;
+  margin-top: 150px;
 }
 
 .heading {
   margin: 10px;
-  color: white;
+  color: black;
 }
 .heading h2 {
   margin-bottom: 10px;
 }
 .heading h3 {
   font-weight: 200;
-  color: yellow;
+  color: black;
 }
 
 .text {
   margin: 10px;
   line-height: 25px;
-  color: white;
+  color: black;
 }
 
 .keep-reading-button {
   margin: 10px;
-  padding: 10px 20px;
+  padding: 15px 25px;
+  border-radius: 25px;
   margin-top: 20px;
-  background-color: rgb(155, 155, 205);
-  color: black;
+  background-color: rgb(2, 57, 89);
+  color: white;
   border: none;
 }
 
 .keep-reading-button:hover {
   background-color: rgb(92, 92, 186);
   cursor: pointer;
+}
+
+@media only screen and (min-width: 1200px) {
+  #blog {
+  }
+
+  .blog {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    grid-gap: 30px;
+    margin-left: 100px;
+  }
+
+  .blog-post {
+    flex-basis: 40%;
+  }
+
+  .top-heading {
+    margin-right: 0;
+  }
 }

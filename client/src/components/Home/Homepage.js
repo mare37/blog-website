@@ -8,6 +8,10 @@ import About from "./About/about";
 import ContactInfo from "./ContactInfo/contactinfo";
 
 function Home() {
+  if (window.scrollY > 300) {
+    console.log("Scrolling");
+  }
+
   const [projectsData, setProjectsData] = useState([]);
   useEffect(() => {
     Axios.get("http://localhost:8080/project").then((response) => {

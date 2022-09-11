@@ -1,9 +1,7 @@
 .services {
   display: flex;
-
   flex-direction: column;
   align-items: center;
-
   padding: 50px;
 }
 
@@ -114,11 +112,13 @@
   .service-text {
     text-align: center;
   }
+
   .service-body {
-    display: flex;
-    flex-direction: row;
-    margin-left: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
   }
+
   .service-item {
     flex-basis: 19%;
   }

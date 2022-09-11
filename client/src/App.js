@@ -20,6 +20,24 @@ import UpdateBlog from "./components/pages/createblog/updateblog";
 import UpdateProject from "./components/pages/addproject/updateproject";
 function App() {
   const [isAdmin, setIsAdmin] = React.useState(false);
+  // let [headerScrollClass, setHeaderScrollClass] = React.useState(false);
+
+  if (window.scrollY > 300) {
+    console.log("Scrolling");
+  }
+
+  /* const changeBackground = () => {
+    if (window.scrollY > 400) {
+      // console.log(window.scrollY);
+      setHeaderScrollClass(true);
+      console.log(headerScrollClass);
+    } else {
+      setHeaderScrollClass(false);
+      console.log(headerScrollClass);
+    }
+  };
+
+  window.addEventListener("scroll", changeBackground);*/
 
   return (
     <div>
@@ -75,7 +93,7 @@ function App() {
             path="/login"
             element={
               <>
-                <LogIn /> <WithNavBar />
+                <LogIn />
               </>
             }
           />

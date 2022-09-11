@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 import { HashLink } from "react-router-hash-link";
 
 function Navbar() {
   let [click, setClick] = React.useState(true);
+  let [headerScrollClass, setHeaderScrollClass] = React.useState(false);
   // let [styleDiv, setStyle] = React.useState(false);
   //  const ref = React.useRef(null);
 
@@ -20,6 +21,13 @@ function Navbar() {
     });
     // console.log(click);
   }
+
+  //
+
+  /* React.useEffect(() => {
+    setPath(window.location.pathname);
+  }, []);
+  console.log(window.location.pathname);*/
 
   //-----------------------------------------------------------------
 
@@ -37,9 +45,39 @@ function Navbar() {
 
   //--------------------------------------------------------------------
 
+  const changeBackground = () => {
+    if (window.scrollY > 400) {
+      console.log(window.scrollY);
+      setHeaderScrollClass(true);
+      console.log(`${headerScrollClass} This`);
+    } else {
+      console.log(window.scrollY);
+      setHeaderScrollClass(false);
+      console.log(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", changeBackground);
+    return () => {
+      window.removeEventListener("scroll", changeBackground);
+    };
+  }, [headerScrollClass]);
+
+  let headerClass;
+  if (window.location.pathname === "/blog") {
+    console.log("/blog");
+    headerClass = "header-blog";
+  }
+  if (window.location.pathname === "/" && headerScrollClass === true) {
+    console.log(window.scrollY);
+    // console.log("Home");
+    headerClass = "header-scroll ";
+  }
+
   return (
     <nav id="header">
-      <div className="header">
+      <div className={headerClass}>
         <div className="nav">
           <section className="navbar-logo">
             <Link to="/">
