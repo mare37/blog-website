@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./navbar.css";
 import { HashLink } from "react-router-hash-link";
 
@@ -46,7 +46,7 @@ function Navbar() {
   //--------------------------------------------------------------------
 
   const changeBackground = () => {
-    if (window.scrollY > 400) {
+    if (window.scrollY > 100) {
       console.log(window.scrollY);
       setHeaderScrollClass(true);
       console.log(`${headerScrollClass} This`);
@@ -64,9 +64,18 @@ function Navbar() {
     };
   }, [headerScrollClass]);
 
+  const { postId } = useParams();
+
   let headerClass;
-  if (window.location.pathname === "/blog") {
+  if (
+    window.location.pathname === "/blog" ||
+    window.location.pathname === "/projectlist"
+  ) {
     console.log("/blog");
+    headerClass = "header-blog";
+  }
+  if (window.location.pathname === `/post/${postId}`) {
+    console.log(`/post/${postId}`);
     headerClass = "header-blog";
   }
   if (window.location.pathname === "/" && headerScrollClass === true) {

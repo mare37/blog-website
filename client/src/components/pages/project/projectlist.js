@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./projectlist.css";
 import ProjectItem from "./projectItem";
 import Axios from "axios";
+//import Navbar from "../Home/Navbar/navbar";
 
 Axios.defaults.withCredentials = true;
 
@@ -27,12 +28,25 @@ function ProjectList() {
 
   return (
     <>
-      <div id="blog">
-        <div className="blog">
-          <div className="top-heading">
-            <h1>Case Studies</h1>
-            {projectData}
-          </div>
+      <div id="projectlist">
+        <div
+          style={{
+            backgroundImage: "url(./images/blogimage.jpg)",
+            backgroundSize: "cover",
+            zIndex: "20",
+            position: "relative",
+            height: "250px",
+          }}
+          className="projectList-image"
+        >
+          <p className="projectlist-top-heading">Case Studies</p>
+        </div>
+        <div className="projectlist-top-text">
+          We always go the extra mile to deliver top-notch products for you.
+          Have a look at some of our success cases!
+        </div>
+        <div className="projectlist">
+          <div className="project-data-container">{projectData}</div>
         </div>
       </div>
     </>

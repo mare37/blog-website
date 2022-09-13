@@ -21,10 +21,27 @@ function Post() {
 
   return (
     <div id="post-background">
+      <div className="post-header">
+        <div>
+          <h2>
+            <span> AI </span> BLOG
+          </h2>
+          <p>Latest artificial inteligence information</p>
+        </div>
+      </div>
       <div className="post-cont">
-        <div className="title">{post.title}</div>
-        <div className="body">{post.blogposts}</div>
-        <div className="author">{post.author}</div>
+        <h2 className="post-title">{post.title}</h2>
+        <div className="post-date">Friday 15th September</div>
+        <div className="post-author">{`Posted by ${post.author}`}</div>
+
+        <div className="post-body">{post.blogposts}</div>
+      </div>
+
+      <div className="post-subscribe-newsletter">
+        <div className="post-subscribe-box">
+          <input placeholder="Email" />
+          <button>Subscribe To Our Newsletter</button>
+        </div>
       </div>
     </div>
   );

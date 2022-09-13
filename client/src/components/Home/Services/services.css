@@ -3,16 +3,20 @@
   flex-direction: column;
   align-items: center;
   padding: 50px;
+  margin-top: -120px;
+  z-index: 10;
 }
 
 .services-heading {
   margin-top: 50px;
   margin-bottom: 20px;
+  z-index: 11;
 }
 
 .service-text {
   line-height: 30px;
   margin-bottom: 50px;
+  z-index: 11;
 }
 
 .service-item {
@@ -22,7 +26,7 @@
   margin-top: 20px;
   border-radius: 10px;
   position: relative;
-  z-index: 1;
+  z-index: 5;
   overflow: hidden;
 }
 
@@ -63,6 +67,10 @@
 
 .service-heading-container {
   display: flex;
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  z-index: 11;
 
   flex-direction: column;
   align-items: center;
@@ -107,7 +115,7 @@
 
 @media only screen and (min-width: 1200px) {
   .service-heading-container {
-    width: 700px;
+    width: 900px;
   }
   .service-text {
     text-align: center;

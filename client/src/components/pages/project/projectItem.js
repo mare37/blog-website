@@ -3,27 +3,39 @@ import "../blog/blog.css";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function ProjectItem(props) {
-  let navigate = useNavigate();
+  const [details, setDetails] = React.useState(false);
+
+  const handleDetails = () => {
+    setDetails((prev) => {
+      console.log(!prev);
+      return !prev;
+    });
+  };
+
   return (
-    <div className="blog-post">
-      <div className="heading">
-        <h2>{props.nameOfProject}</h2>
-      </div>
-      <div className="text">
-        <p>
-          {props.projectDescription.length > 200
-            ? props.projectDescription.substring(0, 200) + "..."
-            : props.projectDescription}
-        </p>
-      </div>
-      <button
-        onClick={() => {
-          navigate(`/project/${props.id}`);
-        }}
-        className="keep-reading-button"
+    <div id="projectItem">
+      <div
+        onMouseOver={handleDetails}
+        onMouseOut={handleDetails}
+        className=" projectItem-image-container "
       >
-        More...
-      </button>
+        {details ? (
+          <div className="projectItem-details">Hello</div>
+        ) : (
+          <div
+            style={{
+              backgroundImage: "url(./images/projectlist-image.jpg)",
+              backgroundSize: "cover",
+              zIndex: "20",
+              position: "relative",
+              marginTop: "69px",
+              height: "550px",
+              width: "400px",
+            }}
+            className="projectItem-image"
+          ></div>
+        )}
+      </div>
     </div>
   );
 }

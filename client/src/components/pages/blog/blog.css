@@ -9,12 +9,14 @@
   background-color: white;
   border-top-color: antiquewhite;
   border-top-width: 3px;
+
+  display: inline-block;
 }
 
 .blog-post {
   background-color: white;
   border-radius: 10px;
-  padding: 50px 20px;
+  padding: 20px 20px;
 }
 
 .blog-image::after {
@@ -70,16 +72,16 @@
   cursor: pointer;
 }
 
+.post-subscribe-newsletter {
+  display: none;
+}
+
 @media only screen and (min-width: 1200px) {
   #blog {
   }
-
   .blog {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 80%;
-    grid-gap: 30px;
     margin-left: 100px;
+    width: 60%;
   }
 
   .blog-post {
@@ -87,6 +89,12 @@
   }
 
   .top-heading {
-    margin-right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .post-subscribe-newsletter {
+    display: inline-block;
+    width: 20%;
   }
 }
