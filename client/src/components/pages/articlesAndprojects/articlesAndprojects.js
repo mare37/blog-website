@@ -9,15 +9,9 @@ import SideBar from "../admin/admin-sidebar";
 
 Axios.defaults.withCredentials = true;
 
-//------------------------------------------------------------------------------------
-
 function ArticlesAndProjects() {
   const [blogPosts, setBlogPosts] = useState([]);
   const [projects, setProjects] = useState([]);
-
-  //-------------------------------------------------------------
-
-  //--------------------------------------------------------------------
 
   useEffect(() => {
     // Getting blog posts from the backend

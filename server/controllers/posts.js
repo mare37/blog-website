@@ -28,7 +28,6 @@ const getAllBlogPosts = (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      // console.log(result);
       res.send(result);
     }
   });
@@ -41,7 +40,6 @@ const getOneBlogPost = (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      //console.log(result);
       res.send(result);
     }
   });
@@ -49,12 +47,11 @@ const getOneBlogPost = (req, res) => {
 
 const deleteOneBlogPost = (req, res) => {
   const id = req.body.id;
-  console.log(id);
+
   db.query("DELETE FROM posts WHERE id = ?", [id], (err, response) => {
     if (err) {
       console.log(err);
     }
-    // console.log(response);
   });
 
   res.send("Blog Post Deleted");
@@ -64,7 +61,7 @@ const updateBlogPost = (req, res) => {
   const { postId } = req.params;
   const title = req.body.title;
   const blogpost = req.body.bodyText;
-  console.log(req.params);
+
   db.query(
     "UPDATE posts SET title = ?, blogposts = ? WHERE id = ?",
     [title, blogpost, postId],

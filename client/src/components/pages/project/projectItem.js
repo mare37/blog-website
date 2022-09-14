@@ -1,6 +1,5 @@
 import React from "react";
 import "../blog/blog.css";
-import { Navigate, useNavigate } from "react-router-dom";
 
 function ProjectItem(props) {
   const [details, setDetails] = React.useState(false);
@@ -20,7 +19,15 @@ function ProjectItem(props) {
         className=" projectItem-image-container "
       >
         {details ? (
-          <div className="projectItem-details">Hello</div>
+          <div className="projectItem-details">
+            <h2>Monitoring App</h2>
+            <p>
+              The largest athletic merchandise and video engagement platform for
+              sports fans, where everyone can find merchandise, live streaming
+              events, and training videos with local and world-known athletes.
+            </p>
+            <button>Learn More</button>
+          </div>
         ) : (
           <div
             style={{
@@ -29,11 +36,13 @@ function ProjectItem(props) {
               zIndex: "20",
               position: "relative",
               marginTop: "69px",
-              height: "550px",
-              width: "400px",
+              height: "450px",
+              width: "350px",
             }}
             className="projectItem-image"
-          ></div>
+          >
+            <p className="projectItem-image-heading">Monitoring App</p>
+          </div>
         )}
       </div>
     </div>

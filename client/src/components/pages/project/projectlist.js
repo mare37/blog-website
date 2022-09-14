@@ -36,6 +36,7 @@ function ProjectList() {
             zIndex: "20",
             position: "relative",
             height: "250px",
+            marginTop: "69px",
           }}
           className="projectList-image"
         >
