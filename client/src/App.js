@@ -18,6 +18,7 @@ import ProjectPage from "./components/pages/project/projectpage";
 import ArticlesAndProjects from "./components/pages/articlesAndprojects/articlesAndprojects";
 import UpdateBlog from "./components/pages/createblog/updateblog";
 import UpdateProject from "./components/pages/addproject/updateproject";
+import ContactPage from "./components/pages/contact/contactpage";
 function App() {
   const [isAdmin, setIsAdmin] = React.useState(false);
   // let [headerScrollClass, setHeaderScrollClass] = React.useState(false);
@@ -60,6 +61,14 @@ function App() {
             element={
               <>
                 <Blog /> <WithNavBar />
+              </>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <>
+                <WithNavBar /> <ContactPage />
               </>
             }
           />

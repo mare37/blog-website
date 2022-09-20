@@ -47,13 +47,10 @@ function Navbar() {
 
   const changeBackground = () => {
     if (window.scrollY > 100) {
-      console.log(window.scrollY);
       setHeaderScrollClass(true);
-      console.log(`${headerScrollClass} This`);
     } else {
       console.log(window.scrollY);
       setHeaderScrollClass(false);
-      console.log(false);
     }
   };
 
@@ -69,7 +66,8 @@ function Navbar() {
   let headerClass;
   if (
     window.location.pathname === "/blog" ||
-    window.location.pathname === "/projectlist"
+    window.location.pathname === "/projectlist" ||
+    window.location.pathname === "/contact"
   ) {
     console.log("/blog");
     headerClass = "header-blog";
@@ -97,34 +95,37 @@ function Navbar() {
                 src="./images/deep-learning.png"
               />
             </Link>
+            <Link to="/contact">
+              <button className="navbar-contact-us">Contact Us</button>
+            </Link>
           </section>
           <ul
-            onClick={changeMobileMenu}
+            onClick={handleClick}
             className={click ? "unorder-list" : "unorder-list active"}
           >
             <li>
               <Link className="list-item" to="/">
-                Home
+                HOME
               </Link>
             </li>
             <li>
               <Link className="list-item" to="/blog">
-                Blog
+                BLOG
               </Link>
             </li>
             <li>
               <HashLink className="list-item" to="/#services">
-                Services
+                SERVICES
               </HashLink>
             </li>
             <li>
               <HashLink className="list-item" to="/#projects">
-                Projects
+                PROJECTS
               </HashLink>
             </li>
             <li>
               <HashLink className="list-item" to="/#about">
-                About
+                ABOUT
               </HashLink>
             </li>
           </ul>
