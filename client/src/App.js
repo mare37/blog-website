@@ -19,6 +19,7 @@ import ArticlesAndProjects from "./components/pages/articlesAndprojects/articles
 import UpdateBlog from "./components/pages/createblog/updateblog";
 import UpdateProject from "./components/pages/addproject/updateproject";
 import ContactPage from "./components/pages/contact/contactpage";
+import Messages from "./components/pages/messages/messages";
 function App() {
   const [isAdmin, setIsAdmin] = React.useState(false);
   // let [headerScrollClass, setHeaderScrollClass] = React.useState(false);
@@ -130,6 +131,9 @@ function App() {
           </Route>
           <Route element={<ProtectedRoute />}>
             <Route path="/updateproject/:postId" element={<UpdateProject />} />
+          </Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/messages" element={<Messages />} />
           </Route>
         </Routes>
         <Footer />

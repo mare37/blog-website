@@ -27,6 +27,11 @@ function Navbar() {
 
         <div className="admin-navbar-container">
           <p className="welcome-name">Welcome Jacone</p>
+          <Link to="/messages">
+            <p className="admin-navbar-messages">
+              Message(s) <span>6</span>
+            </p>
+          </Link>
 
           <button onClick={logOut}>Log Out</button>
 

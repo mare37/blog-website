@@ -1,7 +1,44 @@
 import React from "react";
 import "./contactpage.css";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import Axios from "axios";
+
+const schema = yup.object().shape({
+  fullName: yup.string().required(),
+  email: yup.string().email().required(),
+  phoneNumber: yup.number().required(),
+  message: yup.string().required(),
+});
+
+Axios.defaults.withCredentials = true;
 
 function ContactPage() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const submitForm = (data) => {
+    //console.log(data);
+
+    Axios.post("http://localhost:8080/contact", {
+      fullName: data.fullName,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+      message: data.message,
+    }).then((response) => {
+      window.location.reload();
+      alert("MESSAGE SENT SUCCESSFULLY!");
+
+      console.log(response);
+    });
+  };
+
   return (
     <div id="contact-page">
       <div
@@ -24,14 +61,20 @@ function ContactPage() {
         </p>
       </div>
 
-      <form className="contact-form">
+      <form onSubmit={handleSubmit(submitForm)} className="contact-form">
         <div>
-          <input placeholder="Full Name" /> <input placeholder="Email" />
+          <input placeholder="Full Name" {...register("fullName")} />
+          {errors.fullName && <p>Not Valid</p>}
+          <input placeholder="Email" {...register("email")} />
+          {errors.email && <p>Not Valid</p>}
         </div>
         <div>
-          <input placeholder="Phone Number" /> <input placeholder="Message" />
+          <input placeholder="Phone Number" {...register("phoneNumber")} />
+          {errors.phoneNumber && <p>Not Valid</p>}
+          <input placeholder="Message" {...register("message")} />
+          {errors.message && <p>Not Valid</p>}
         </div>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

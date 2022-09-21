@@ -53,6 +53,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .admin-navbar-menu-icon {
@@ -80,6 +81,32 @@
   margin-top: 10px;
   margin-right: 10px;
   z-index: 1005;
+}
+.admin-navbar-messages {
+  position: relative;
+  margin-right: 30px;
+  padding: 13px 13px;
+}
+
+.admin-navbar-messages:hover {
+  text-decoration: rgb(216, 0, 0);
+}
+
+.admin-navbar-messages span {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: red;
+  width: 16px;
+  height: 16px;
+  color: white;
+  border: none;
+  padding: 2px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 @media only screen and (min-width: 1200px) {

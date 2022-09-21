@@ -1,0 +1,58 @@
+.messages-container {
+  margin-top: 150px;
+  margin-left: 200px;
+  width: 1000px;
+  height: 350px;
+  margin-bottom: 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  border: solid;
+  border-radius: 30px;
+  border-width: 1px;
+  border-color: rgb(239, 239, 239);
+  background-color: rgb(239, 239, 239);
+}
+
+.messages-inner-container {
+  width: 90%;
+  height: 100%;
+  padding: 20px;
+  border-left: solid;
+  border-right: solid;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-left-color: rgb(191, 189, 189);
+  border-right-color: rgb(191, 189, 189);
+  overflow: scroll;
+}
+
+.messages-heading {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  border-bottom: solid;
+}
+
+.messages-sender-name {
+  flex: 0.2;
+}
+.messages-sender-message {
+  flex: 0.6;
+}
+.messages-date {
+  flex: 0.2;
+}
+
+.messagesElement {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-bottom: solid;
+  border-bottom-width: 1px;
+  padding: 6px 0;
+  border-bottom-color: rgb(220, 220, 220);
+}
