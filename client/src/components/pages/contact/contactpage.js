@@ -31,11 +31,12 @@ function ContactPage() {
       email: data.email,
       phoneNumber: data.phoneNumber,
       message: data.message,
+      status: "unread",
     }).then((response) => {
-      window.location.reload();
-      alert("MESSAGE SENT SUCCESSFULLY!");
+      //window.location.reload();
 
       console.log(response);
+      // alert("MESSAGE SENT SUCCESSFULLY!");
     });
   };
 

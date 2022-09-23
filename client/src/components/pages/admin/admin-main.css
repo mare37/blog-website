@@ -18,6 +18,7 @@
   justify-content: space-between;
   width: 100%;
   align-items: center;
+  margin-top: 30px;
 }
 
 .admin-contentcontainer div {
@@ -32,7 +33,7 @@
   align-items: center;
   justify-content: center;*/
 
-  height: 250px;
+  height: 150px;
   width: 250px;
   border-radius: 10px;
   border-width: 1px;
@@ -40,7 +41,7 @@
 
   border-color: rgb(245, 242, 242);
   box-shadow: 0 0 18px 0px rgb(208, 204, 204);
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   transition: 0.3 ease box-shadow;
 }
 
@@ -86,6 +87,10 @@
   box-shadow: 0 0 18px 0px rgb(208, 204, 204);
   margin-bottom: 50px;
   transition: 0.3 ease box-shadow;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .admin-blogpostpreview-headings {
@@ -133,12 +138,13 @@
   .admin-contentcontainer {
     flex-direction: row;
     justify-content: center;
+    margin-top: 0;
 
     padding: 30px;
   }
 
   .admin-contentcontainer div {
-    height: 150px;
+    height: 120px;
     margin-left: 25px;
   }
 

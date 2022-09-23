@@ -48,7 +48,7 @@ function Main() {
 
   return (
     <div id="admin-mainbar">
-      <div className="admin-mainbar">
+      <div>
         <div className="admin-maincontent">
           <div className="admin-contentcontainer">
             <div>
@@ -66,10 +66,13 @@ function Main() {
           </div>
           <div className="admin-contentcontainer2">
             <div>
-              <p className="admin-blogpostpreview-headings">
-                RECENT BLOG POSTS
-              </p>
-              {blogPostsData}
+              <section>
+                <p className="admin-blogpostpreview-headings">
+                  RECENT BLOG POSTS
+                </p>
+                {blogPostsData}
+              </section>
+
               <section className="admin-preview-button">
                 <button
                   onClick={() => {
@@ -81,8 +84,13 @@ function Main() {
               </section>
             </div>
             <div>
-              <p className="admin-blogpostpreview-headings">RECENT PROJECTS</p>
-              {projects.length === 0 ? "No recent projects" : projectsData}
+              <section>
+                <p className="admin-blogpostpreview-headings">
+                  RECENT PROJECTS
+                </p>
+                {projects.length === 0 ? "No recent projects" : projectsData}
+              </section>
+
               <section className="admin-preview-button">
                 <button
                   onClick={() => {

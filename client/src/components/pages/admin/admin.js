@@ -10,11 +10,7 @@ function Admin() {
     <div>
       <div className="admin">
         <Navbar />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+
         <br />
         <br />
         <br />

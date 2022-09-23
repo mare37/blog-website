@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const MessageElement = (props) => {
+  const navigate = useNavigate();
   return (
     <div className="messagesElement">
       <p className="messages-sender-name">{props.fullName}</p>

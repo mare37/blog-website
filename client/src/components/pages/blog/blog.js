@@ -12,17 +12,20 @@ function Blog() {
     });
   }, []);
 
-  let blogData = postList.map((item, key) => {
-    return (
-      <BlogItem
-        key={key}
-        id={item.id}
-        title={item.title}
-        date={item.date}
-        blogposts={item.blogposts}
-      />
-    );
-  });
+  let blogData = postList
+    .slice(0)
+    .reverse()
+    .map((item, key) => {
+      return (
+        <BlogItem
+          key={key}
+          id={item.id}
+          title={item.title}
+          date={item.date}
+          blogposts={item.blogposts}
+        />
+      );
+    });
 
   return (
     <>

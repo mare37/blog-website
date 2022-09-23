@@ -1,3 +1,4 @@
+const { response } = require("express");
 const db = require("../config/database");
 
 const postContact = (req, res) => {
@@ -5,10 +6,12 @@ const postContact = (req, res) => {
   const email = req.body.email;
   const phoneNumber = req.body.phoneNumber;
   const message = req.body.message;
+  const status = req.body.status;
+  console.log(status);
 
   db.query(
-    "INSERT INTO contactinfo (fullName,email,phoneNumber,message) VALUES (?,?,?,?)",
-    [fullName, email, phoneNumber, message],
+    "INSERT INTO contactinfo (fullName,email,phoneNumber,message,status) VALUES (?,?,?,?,?)",
+    [fullName, email, phoneNumber, message, status],
     (err, result) => {
       if (err) {
         res.send(err);
@@ -28,4 +31,39 @@ const getAllContacts = (req, res) => {
   });
 };
 
-module.exports = { postContact, getAllContacts };
+const changeReadStatus = (req, res) => {
+  const status = "read";
+  const id = req.body.id;
+  console.log(id);
+  db.query(
+    "UPDATE contactinfo SET status = ?  WHERE idcontactinfo = ?",
+    [status, id],
+    (err, response) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send(response);
+    }
+  );
+};
+
+const deleteOneMesage = (req, res) => {
+  const id = req.body.id;
+  db.query(
+    "DELETE FROM contactinfo WHERE idcontactinfo = ?",
+    [id],
+    (err, response) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(400).send(response);
+    }
+  );
+};
+
+module.exports = {
+  postContact,
+  getAllContacts,
+  changeReadStatus,
+  deleteOneMesage,
+};
