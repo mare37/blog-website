@@ -39,6 +39,7 @@ const getOneBlogPost = (req, res) => {
   db.query(`SELECT * FROM posts WHERE id = ${postId} `, (err, result) => {
     if (err) {
       console.log(err);
+      res.status(404).send(err);
     } else {
       res.send(result);
     }

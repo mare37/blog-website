@@ -25,30 +25,41 @@ function ArticlesAndProjects() {
     });
   }, []);
 
-  let blogPostsData = blogPosts.map((item, key) => {
-    let title = item.title;
-    if (item.title.length > 80) {
-      title = item.title.substring(0, 80) + "...";
-    }
-    return (
-      <BlogPostsElement key={key} id={item.id} title={title} date={item.date} />
-    );
-  });
+  let blogPostsData = blogPosts
+    .slice(0)
+    .reverse()
+    .map((item, key) => {
+      let title = item.title;
+      if (item.title.length > 80) {
+        title = item.title.substring(0, 80) + "...";
+      }
+      return (
+        <BlogPostsElement
+          key={key}
+          id={item.id}
+          title={title}
+          date={item.date}
+        />
+      );
+    });
 
-  let projectsData = projects.map((item, key) => {
-    let projectName = item.nameOfProject;
-    if (projectName.length > 20) {
-      projectName = projectName.substring(0, 20) + "...";
-    }
-    return (
-      <ProjectsElement
-        key={key}
-        id={item.idprojects}
-        nameOfProject={item.nameOfProject}
-        date={item.date}
-      />
-    );
-  });
+  let projectsData = projects
+    .slice(0)
+    .reverse()
+    .map((item, key) => {
+      let projectName = item.nameOfProject;
+      if (projectName.length > 20) {
+        projectName = projectName.substring(0, 20) + "...";
+      }
+      return (
+        <ProjectsElement
+          key={key}
+          id={item.idprojects}
+          nameOfProject={item.nameOfProject}
+          date={item.date}
+        />
+      );
+    });
 
   return (
     <div>

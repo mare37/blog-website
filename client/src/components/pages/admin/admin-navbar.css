@@ -87,6 +87,17 @@
   margin-right: 30px;
   padding: 13px 13px;
 }
+.welcome-name {
+  display: none;
+}
+.change-password {
+  font-size: 15px;
+}
+.admin-navbar-options {
+  border: none;
+  outline: none;
+  font-size: 18px;
+}
 
 .admin-navbar-messages:hover {
   text-decoration: rgb(216, 0, 0);

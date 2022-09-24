@@ -1,9 +1,16 @@
 import React from "react";
 import "./projects.css";
+import { useNavigate } from "react-router-dom";
 
 function Project(props) {
+  const navigate = useNavigate();
   return (
-    <div className="project">
+    <div
+      onClick={() => {
+        navigate(`/project/${props.id}`);
+      }}
+      className="project"
+    >
       <section className="content">
         <h1 className="content-heading">{props.heading1}</h1>
         <h3 className="content-subheading">{props.heading2}</h3>

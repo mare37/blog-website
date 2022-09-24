@@ -1,7 +1,9 @@
 import React from "react";
 import "../blog/blog.css";
+import { useNavigate } from "react-router-dom";
 
 function ProjectItem(props) {
+  const navigate = useNavigate();
   const [details, setDetails] = React.useState(false);
 
   const handleDetails = () => {
@@ -26,7 +28,13 @@ function ProjectItem(props) {
               sports fans, where everyone can find merchandise, live streaming
               events, and training videos with local and world-known athletes.
             </p>
-            <button>Learn More</button>
+            <button
+              onClick={() => {
+                navigate(`/project/${props.id}`);
+              }}
+            >
+              Learn More
+            </button>
           </div>
         ) : (
           <div

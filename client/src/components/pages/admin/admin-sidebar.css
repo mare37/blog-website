@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: purple;
+  background-color: #212529;
   position: absolute;
   top: 150px;
   left: -140%;
@@ -15,7 +15,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: purple;
+    background-color: rgb(2, 57, 89);
     position: absolute;
     top: 150px;
     left: 50px;

@@ -20,6 +20,7 @@ import UpdateBlog from "./components/pages/createblog/updateblog";
 import UpdateProject from "./components/pages/addproject/updateproject";
 import ContactPage from "./components/pages/contact/contactpage";
 import Messages from "./components/pages/messages/messages";
+import ChangePassword from "./components/pages/changepassword/changepassword";
 function App() {
   const [isAdmin, setIsAdmin] = React.useState(false);
   // let [headerScrollClass, setHeaderScrollClass] = React.useState(false);
@@ -134,6 +135,9 @@ function App() {
           </Route>
           <Route element={<ProtectedRoute />}>
             <Route path="/messages" element={<Messages />} />
+          </Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/changepassword" element={<ChangePassword />} />
           </Route>
         </Routes>
         <Footer />

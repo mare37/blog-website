@@ -16,9 +16,10 @@ const logIn = (req, res) => {
     console.log(result);
     if (result.length > 0) {
       const dbpassword = result[0].password;
+      // console.log(result[0].password);
       bcrypt.compare(password, dbpassword, (err, match) => {
         if (match) {
-          console.log(result[0]);
+          // console.log(result[0]);
 
           const accessToken = createToken(result[0]);
           res.cookie("access_token", accessToken, {
@@ -60,7 +61,7 @@ const register = (req, res) => {
         if (err) {
           res.status(404).send(err);
         } else {
-          resstatus(200).send("USER REGISTERED");
+          restatus(200).send("USER REGISTERED");
         }
       }
     );
@@ -76,4 +77,57 @@ const logOut = (req, res) => {
   res.status(200).send("You have logged out");
 };
 
-module.exports = { logIn, getLogin, register, logOut };
+//password reset
+
+const resetPassword = (req, res) => {
+  const email = req.body.email;
+  const currentPassword = req.body.currentPassword;
+  const newPassword = req.body.newPassword;
+  // console.log(currentPassword + newPassword + email);
+
+  db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(400).send({
+        auth: false,
+        message: err,
+      });
+    }
+    if (result.length > 0) {
+      console.log(result[0].password);
+      const databasePassword = result[0].password;
+      bcrypt.compare(currentPassword, databasePassword).then((match) => {
+        if (match) {
+          bcrypt.hash(newPassword, 10).then((hash) => {
+            db.query(
+              "UPDATE users SET password = ?",
+              [hash],
+              (err, success) => {
+                if (err) {
+                  res.send(err);
+                }
+                res.status(200).send({
+                  auth: true,
+                  message: "Password Changed Successfully",
+                });
+              }
+            );
+          });
+        }
+        if (!match) {
+          res.status(400).send({
+            auth: false,
+            message: "Wrong Password",
+          });
+        }
+      });
+    } else {
+      res.status(400).send({
+        auth: false,
+        message: "User doesnt exist",
+      });
+    }
+  });
+};
+
+module.exports = { logIn, getLogin, register, logOut, resetPassword };

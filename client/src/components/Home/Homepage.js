@@ -16,7 +16,8 @@ function Home() {
   useEffect(() => {
     Axios.get("http://localhost:8080/project").then((response) => {
       console.log(response.data);
-      setProjectsData(response.data);
+      const projectsArray = response.data.slice(0, 2);
+      setProjectsData(projectsArray);
     });
   }, []);
   return (

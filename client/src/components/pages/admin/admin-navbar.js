@@ -15,6 +15,12 @@ function Navbar() {
     });
   };
 
+  const check = (e) => {
+    if (e.target.value === "change password") {
+      navigate("/changepassword");
+    }
+  };
+
   useEffect(() => {
     Axios.get("http://localhost:8080/contact").then((response) => {
       console.log(response.data);
@@ -48,7 +54,17 @@ function Navbar() {
         </Link>
 
         <div className="admin-navbar-container">
-          <p className="welcome-name">Welcome Jacone</p>
+          <select
+            name="welcome"
+            onChange={(e) => {
+              check(e);
+            }}
+            className="admin-navbar-options"
+          >
+            <option className="welcome-name">Welcome Jacon Keya</option>
+            <option className="change-password">change password</option>
+          </select>
+
           <Link to="/messages">
             <p className="admin-navbar-messages">
               Message(s) <span>{numberOfMessages}</span>

@@ -6,7 +6,7 @@ function ServiceItem(props) {
     <div
       className="service-item"
       style={{
-        backgroundImage: `url(./images/computer2.jpg)`,
+        backgroundImage: `url(./images/projectlist-image2.jpg)`,
         backgroundSize: "cover",
       }}
     >

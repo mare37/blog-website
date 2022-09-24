@@ -1,19 +1,23 @@
 import React from "react";
 import "./projects.css";
 import Project from "./project";
-import projectsData from "../../projectsdata";
 
+//Data being drawn from the Homepage component!
 function Projects(props) {
-  let data = props.projectsData.map((dataItem) => {
-    return (
-      <Project
-        key={dataItem.idprojects}
-        heading1={"Project"}
-        heading2={dataItem.nameOfProject}
-        body={dataItem.projectDescription}
-      />
-    );
-  });
+  let data = props.projectsData
+    .slice(0)
+    .reverse()
+    .map((dataItem) => {
+      return (
+        <Project
+          key={dataItem.idprojects}
+          id={dataItem.idprojects}
+          heading1={"Project"}
+          heading2={dataItem.nameOfProject}
+          body={dataItem.projectDescription}
+        />
+      );
+    });
 
   return (
     <div id="projects">
