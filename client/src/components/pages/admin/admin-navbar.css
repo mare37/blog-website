@@ -54,6 +54,7 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  position: relative;
 }
 
 .admin-navbar-menu-icon {
@@ -118,6 +119,44 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.admin-navbar-bar {
+  position: relative;
+}
+
+.admin-navbar-options {
+  position: absolute;
+
+  border: solid;
+  border-color: grey;
+  border-width: 1px;
+  background-color: white;
+  box-shadow: 0 0 18px 0px rgb(208, 204, 204);
+  transition: 1000ms ease top;
+}
+
+.admin-navbar-options.active {
+  top: -500%;
+  transition: 1000ms ease top;
+}
+
+.admin-navbar-options p {
+  font-size: 14px;
+  margin: 2px;
+}
+.admin-navbar-welcomename {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-navbar-welcomename p {
+  margin-right: 0px;
+}
+.admin-navbar-welcomename img {
+  height: 15px;
 }
 
 @media only screen and (min-width: 1200px) {

@@ -94,7 +94,6 @@ const resetPassword = (req, res) => {
       });
     }
     if (result.length > 0) {
-      console.log(result[0].password);
       const databasePassword = result[0].password;
       bcrypt.compare(currentPassword, databasePassword).then((match) => {
         if (match) {

@@ -2,23 +2,20 @@ import React, { useEffect, useState } from "react";
 import "./admin-navbar.css";
 import Axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 function Navbar() {
   const navigate = useNavigate();
   let [click, setClick] = useState(true);
   let [numberOfMessages, setNumberOfMessages] = useState(null);
   let [messagesArray, setMessagesArray] = useState([]);
+  let [clickDropMenu, setclickDropMenu] = useState(false);
+
   const logOut = () => {
     Axios.get("http://localhost:8080/api/logout").then((response) => {
       console.log(response);
       navigate("/login");
     });
-  };
-
-  const check = (e) => {
-    if (e.target.value === "change password") {
-      navigate("/changepassword");
-    }
   };
 
   useEffect(() => {
@@ -45,6 +42,11 @@ function Navbar() {
       return !preValue;
     });
   }
+  const handleDropMenuClick = () => {
+    setclickDropMenu((preValue) => {
+      return !preValue;
+    });
+  };
   return (
     <div id="admin-navigationbar">
       <div className="admin-navigationbar">
@@ -54,16 +56,34 @@ function Navbar() {
         </Link>
 
         <div className="admin-navbar-container">
-          <select
-            name="welcome"
-            onChange={(e) => {
-              check(e);
-            }}
-            className="admin-navbar-options"
-          >
-            <option className="welcome-name">Welcome Jacon Keya</option>
-            <option className="change-password">change password</option>
-          </select>
+          <div className="admin-navbar-bar ">
+            <div className="admin-navbar-welcomename">
+              <p>Welcome Jacon!</p>
+              <img
+                onClick={handleDropMenuClick}
+                src="./images/down-arrow.png"
+                alt="image"
+              />
+            </div>
+
+            <div
+              className={
+                clickDropMenu
+                  ? "admin-navbar-options"
+                  : "admin-navbar-options active"
+              }
+            >
+              <Link to="/changepassword">
+                <p>Change Password</p>
+              </Link>
+              <HashLink to="/changepassword#upload-picture">
+                <p>Upload Photo</p>
+              </HashLink>
+              <HashLink to="/changepassword#upload-resume">
+                <p>Upload Resume</p>
+              </HashLink>
+            </div>
+          </div>
 
           <Link to="/messages">
             <p className="admin-navbar-messages">
