@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const { validateToken } = require("./JWT");
+const bodyParser = require("body-parser");
 
 //importing routes
 const postsRoute = require("./routes/posts");

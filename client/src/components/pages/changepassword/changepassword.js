@@ -24,20 +24,29 @@ function ChangePassword() {
 
   const saveFile = (e) => {
     const file = e.target.files;
-    setFile(file[0]);
+    setFile(e.target.files[0]);
     setFileName(file[0].name);
   };
 
-  const uploadPhoto = (e) => {
+  const uploadPhoto = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("file", file);
+    console.log(file);
+    formData.append("image", file);
     formData.append("fileName", fileName);
-    Axios.post("http://localhost:8080/photo", {
-      formData,
-    }).then((response) => {
-      console.log(response.data);
-    });
+
+    try {
+      const res = await Axios({
+        method: "post",
+        url: "http://localhost:8080/photo",
+        withCredentials: true,
+        header: { "content-Type": "multipart-/form-data" },
+        data: formData,
+      });
+      console.log(res);
+    } catch (ex) {
+      console.log(ex);
+    }
   };
 
   return (
@@ -73,7 +82,7 @@ function ChangePassword() {
         </form>
       </div>
       <div id="upload" className="changepassword">
-        <form name="will" encType="multipart/form-data" id="upload-picture">
+        <form name={fileName} encType="multipart/form-data" id="upload-picture">
           Upload Your Picture
           <input
             type="file"
