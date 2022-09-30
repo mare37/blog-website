@@ -76,6 +76,7 @@ function Navbar() {
               <Link to="/changepassword">
                 <p>Change Password</p>
               </Link>
+
               <HashLink to="/changepassword#upload-picture">
                 <p>Upload Photo</p>
               </HashLink>

@@ -19,6 +19,13 @@ function Messages() {
     message: "",
   });
 
+  const reloadContacts = () => {
+    Axios.get("http://localhost:8080/contact").then((response) => {
+      setMessagesArray(response.data);
+      setNumberOfMessages(response.data.length);
+    });
+  };
+
   const handleReadStatus = (id) => {
     Axios.put("http://localhost:8080/contact", {
       id: id,
@@ -133,7 +140,7 @@ function Messages() {
                 <img
                   onClick={() => {
                     setMessagesTab(true);
-                    //window.location.reload();
+                    reloadContacts();
                   }}
                   alt="image"
                   src="./images/close.png"

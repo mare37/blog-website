@@ -8,8 +8,10 @@ function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [file, setFile] = useState();
-  const [fileName, setFileName] = useState("");
+  const [file, setPhoto] = useState();
+  const [fileName, setPhotoName] = useState("");
+  const [resume, setResume] = useState();
+  const [resumeName, setResumeName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,10 +24,35 @@ function ChangePassword() {
     });
   };
 
-  const saveFile = (e) => {
+  const savePhoto = (e) => {
     const file = e.target.files;
-    setFile(e.target.files[0]);
-    setFileName(file[0].name);
+    setPhoto(e.target.files[0]);
+    setPhotoName(file[0].name);
+  };
+  const saveResume = (e) => {
+    const file = e.target.files;
+    setResume(e.target.files[0]);
+    setResumeName(file[0].name);
+  };
+
+  const uploadResume = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("resume", resume);
+    formData.append("fileName", resumeName);
+
+    try {
+      const res = await Axios({
+        method: "post",
+        url: "http://localhost:8080/resume",
+        withCredentials: true,
+        header: { "content-Type": "multipart-/form-data" },
+        data: formData,
+      });
+      console.log(res);
+    } catch (ex) {
+      console.log(ex);
+    }
   };
 
   const uploadPhoto = async (e) => {
@@ -82,12 +109,12 @@ function ChangePassword() {
         </form>
       </div>
       <div id="upload" className="changepassword">
-        <form name={fileName} encType="multipart/form-data" id="upload-picture">
+        <form id="upload-picture">
           Upload Your Picture
           <input
             type="file"
             onChange={(e) => {
-              saveFile(e);
+              savePhoto(e);
             }}
           />
           <button onClick={uploadPhoto} type="submit">
@@ -97,7 +124,13 @@ function ChangePassword() {
 
         <form id="upload-resume">
           Upload Your Resume
-          <button>Upload</button>
+          <input
+            type="file"
+            onChange={(e) => {
+              saveResume(e);
+            }}
+          />
+          <button onClick={uploadResume}>Upload</button>
         </form>
       </div>
     </div>

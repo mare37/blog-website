@@ -10,17 +10,18 @@ const postsRoute = require("./routes/posts");
 const projectsRoute = require("./routes/projects");
 const usersRoute = require("./routes/users");
 const contactRoute = require("./routes/contacts");
-const photoRoute = require("./routes/photo");
+const photoAndResumeRoute = require("./routes/photo-and-resume");
 
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 app.use(cookieParser());
+app.use(express.static("./public"));
 
 //routes
 app.use("/blogpost", postsRoute);
 app.use("/project", projectsRoute);
 app.use("/contact", contactRoute);
-app.use("/photo", photoRoute);
+app.use(photoAndResumeRoute);
 app.use(usersRoute);
 
 //"ALTER TABLE posts AUTO_INCREMENT = 1"

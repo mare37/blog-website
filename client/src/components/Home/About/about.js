@@ -1,7 +1,20 @@
 import React from "react";
 import "./about.css";
+import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-function About() {
+Axios.defaults.withCredentials = true;
+
+function About(props) {
+  const navigate = useNavigate();
+  const downloadResume = () => {
+    Axios.get("http://localhost:8080/resume")
+      .then((response) => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div id="about2">
       <div id="about">
@@ -18,10 +31,12 @@ function About() {
             only five centuries, but also the leap into electronic typesetting,
             remaining essentially unchanged. It was popularised
           </p>
-          <button className="button">Download Resume</button>
+          <a href="http://localhost:8080/resume">
+            <button className="button">Download Resume</button>
+          </a>
         </section>
         <section className="image-container">
-          <img className="about-image" src="./images/developer.jpg" alt="img" />
+          <img className="about-image" src={`${props.image}`} alt="img" />
         </section>
       </div>
     </div>

@@ -7,10 +7,10 @@ function Projects(props) {
   let data = props.projectsData
     .slice(0)
     .reverse()
-    .map((dataItem) => {
+    .map((dataItem, index) => {
       return (
         <Project
-          key={dataItem.idprojects}
+          key={index}
           id={dataItem.idprojects}
           heading1={"Project"}
           heading2={dataItem.nameOfProject}
