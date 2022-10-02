@@ -67,7 +67,10 @@ function ArticlesAndProjects() {
         <NavBar />
         <div className="main-bar">
           <div className="main-content">
-            <div className="postsAndprojects-heading">
+            <div
+              id="postsAndprojects-heading-1"
+              className="postsAndprojects-heading"
+            >
               <p className="adm-p1">Your Blog Posts</p>
               <p className="adm-p2">All blog posts you have in the database</p>
             </div>
@@ -84,7 +87,10 @@ function ArticlesAndProjects() {
             </div>
             <div className="adm-buffer"></div>
 
-            <div className="postsAndprojects-heading">
+            <div
+              id="postsAndprojects-heading-2"
+              className="postsAndprojects-heading"
+            >
               <p className="adm-p1">Your Projects</p>
               <p className="adm-p2">All projects you have in the database</p>
             </div>

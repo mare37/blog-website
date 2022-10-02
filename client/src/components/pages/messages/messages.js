@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
+import Axios from "axios";
 import Navbar from "../admin/admin-navbar";
 import SideBar from "../admin/admin-sidebar";
 //import MessageElement from "./messagesElements";
-import Axios from "axios";
+
 import "./messages.css";
-import { useNavigate } from "react-router-dom";
 
 function Messages() {
-  const navigate = useNavigate();
   const [messagesArray, setMessagesArray] = useState([]);
   const [messagesTab, setMessagesTab] = useState(true);
   const [numberOfMessages, setNumberOfMessages] = useState(0);
-  //const [messageRead, setMessageRead] = useState(false);
   const [info, setInfo] = useState({
     fullName: "",
     email: "",
@@ -32,13 +30,22 @@ function Messages() {
     });
   };
 
+  const handleDeleteAll = () => {
+    Axios({
+      method: "delete",
+      url: "http://localhost:8080/contact",
+    }).then((response) => {
+      console.log(response.data);
+    });
+    window.location.reload();
+  };
+
   const handleDelete = (id) => {
     console.log(id);
     Axios({
       method: "delete",
-      url: "http://localhost:8080/contact",
+      url: `http://localhost:8080/contact/${id}`,
       header: "application/json",
-      data: { id: id },
     }).then((response) => {
       console.log(response.data);
     });
@@ -50,7 +57,7 @@ function Messages() {
       <div
         className={props.status ? "messagesElement active" : "messagesElement"}
       >
-        <p
+        <div
           onClick={() => {
             setMessagesTab(false);
             setInfo(() => {
@@ -63,13 +70,14 @@ function Messages() {
             });
             handleReadStatus(props.id);
           }}
-          className="messages-sender-name"
+          className="messages-information-container"
         >
-          {props.fullName}
-        </p>
-        <p className="messages-sender-message">{props.message}</p>
-        <div className="messages-date">
-          <p>04/08/2022</p>
+          <p className="messages-sender-name">{props.fullName}</p>
+          <p className="messages-sender-message">{props.message}</p>
+          <p className="messages-date">04/08/2022</p>
+        </div>
+
+        <div className="messages-delete">
           <button
             onClick={() => {
               handleDelete(props.id);
@@ -82,14 +90,12 @@ function Messages() {
     );
   };
 
-  console.log(info);
   useEffect(() => {
     Axios.get("http://localhost:8080/contact").then((response) => {
       setMessagesArray(response.data);
       setNumberOfMessages(response.data.length);
     });
   }, []);
-  //console.log(messagesArray);
 
   let messagesData = messagesArray
     .slice(0)
@@ -125,11 +131,21 @@ function Messages() {
           <div className="messages-container">
             <div className="messages-inner-container">
               <div className="messages-heading">
-                <p className="messages-sender-name">Sender Name</p>
-                <p className="messages-sender-message">Message</p>
-                <p className="messages-date2">Date</p>
+                <div className="messages-information-container">
+                  <p className="messages-sender-name">Sender Name</p>
+                  <p className="messages-sender-message">Message</p>
+                  <p className="messages-date">Date</p>
+                </div>
+
+                <div className="messages-delete">
+                  <button onClick={handleDeleteAll}>Delete All Messages</button>
+                </div>
               </div>
-              {numberOfMessages !== 0 ? messagesData : <p>Inbox Empty</p>}
+              {numberOfMessages !== 0 ? (
+                messagesData
+              ) : (
+                <p className="messages-inbox-empty">Inbox Empty</p>
+              )}
             </div>
           </div>
         ) : (

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./admin-main.css";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import SideBar from "./admin-sidebar";
 
 function Main() {
@@ -31,7 +32,8 @@ function Main() {
     }
     return (
       <p className="blogpost-preview" key={key}>
-        {`\u2022 ${title}`}
+        <span>{`\u2022`}</span>
+        {title}
       </p>
     );
   });
@@ -42,7 +44,9 @@ function Main() {
       projectName = projectName.substring(0, 30) + "...";
     }
     return (
-      <p key={key} className="blogpost-preview">{`\u2022 ${projectName}`}</p>
+      <li key={key} className="blogpost-preview">
+        {projectName}
+      </li>
     );
   });
 
@@ -52,16 +56,30 @@ function Main() {
         <div className="admin-maincontent">
           <div className="admin-contentcontainer">
             <div>
-              <p>BLOG POSTS </p>
-              <h3>{numberOfBlogPosts}</h3>
+              <HashLink to="/articlesandprojects#postsAndprojects-heading-1">
+                <span>{`>>`}</span>
+              </HashLink>
+
+              <section>
+                <p>BLOG POSTS </p>
+                <h3>{numberOfBlogPosts}</h3>
+              </section>
             </div>
             <div>
-              <p>PROJECTS</p>
-              <h3>{numberOfProjects}</h3>
+              <HashLink to="/articlesandprojects#postsAndprojects-heading-2">
+                <span>{`>>`}</span>
+              </HashLink>
+              <section>
+                <p>PROJECTS</p>
+                <h3>{numberOfProjects}</h3>
+              </section>
             </div>
             <div>
-              <p>WEBSITE VISITORS</p>
-              <h3>2</h3>
+              <span>{`>>`}</span>
+              <section>
+                <p>WEBSITE VISITORS</p>
+                <h3>2</h3>
+              </section>
             </div>
           </div>
           <div className="admin-contentcontainer2">

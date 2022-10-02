@@ -27,6 +27,8 @@
   border-left-color: rgb(191, 189, 189);
   border-right-color: rgb(191, 189, 189);
   overflow: scroll;
+
+  border-radius: 15px;
 }
 
 .messages-inner-container2 {
@@ -40,6 +42,7 @@
   border-left-color: rgb(191, 189, 189);
   border-right-color: rgb(191, 189, 189);
   overflow: scroll;
+  background-color: white;
 }
 .messages-inner-container2 img {
   height: 15px;
@@ -60,19 +63,33 @@
 }
 
 .messages-sender-name {
-  flex: 0.2;
+  flex: 0.25;
 }
 .messages-sender-message {
   flex: 0.5;
 }
 .messages-date {
-  flex: 0.3;
+  flex: 0.25;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
+.messages-delete {
+  flex: 0.2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .messages-date2 {
   flex: 0.3;
+}
+
+.messages-information-container {
+  flex: 0.8;
+  display: flex;
+  flex-direction: row;
 }
 
 .messagesElement {
@@ -86,6 +103,24 @@
   cursor: pointer;
 }
 
+.messagesElement:hover {
+  box-shadow: 0 0 18px 0px rgb(208, 204, 204);
+}
+
 .messagesElement.active {
+  font-weight: bolder;
+  background-color: rgb(231, 243, 252);
+}
+.messagesElement.active:hover {
+  box-shadow: 0 0 18px 0px rgb(208, 204, 204);
+}
+
+.messages-inbox-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  font-size: 28px;
   font-weight: bold;
 }

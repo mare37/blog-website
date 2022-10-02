@@ -98,6 +98,9 @@ function Navbar() {
             <Link to="/contact">
               <button className="navbar-contact-us">Contact Us</button>
             </Link>
+            <Link to="/projectlist">
+              <button className="navbar-contact-us">Case Studies</button>
+            </Link>
           </section>
           <ul
             onClick={handleClick}

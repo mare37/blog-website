@@ -1,10 +1,17 @@
 import React from "react";
 import "./footer.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Footer() {
   const navigate = useNavigate();
   const date = new Date().getFullYear();
+
+  const openLink = (url) => {
+    const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+    if (newWindow) newWindow.opener = null;
+
+    console.log(url);
+  };
 
   return (
     <div id="footer">
@@ -14,9 +21,15 @@ function Footer() {
           <p className="footer-text">One stop shopforeverything nmachine</p>
         </section>
         <section className="footer-social-icons">
-          <img src="./images/facebook.png" alt="img" />
-          <img src="./images/instagram.png   " alt="img" />
-          <img src=" ./images/twitter.png   " alt="img" />
+          <a href="https://facebook.com" target={"_blank"}>
+            <img src="./images/facebook.png" alt="img" />
+          </a>
+          <a href="https://instagram.com" target={"_blank"}>
+            <img src="./images/instagram.png" alt="img" />
+          </a>
+          <a href="https://twitter.com" target={"_blank"}>
+            <img src=" ./images/twitter.png" alt="img" />
+          </a>
         </section>
         <div className="footer-terms">
           <p>Terms And Conditions</p> <p>Private Policy</p>

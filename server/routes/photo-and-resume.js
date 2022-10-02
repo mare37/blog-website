@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 express.static("./public");
 const cors = require("cors");
-const db = require("../config/database");
 const multer = require("multer");
 const path = require("path");
 const bodyParser = require("body-parser");

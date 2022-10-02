@@ -139,6 +139,13 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/changepassword" element={<ChangePassword />} />
           </Route>
+          <Route
+            path="/sociallink"
+            element={() => {
+              window.location.href = "https://facebook.com";
+              return null;
+            }}
+          />
         </Routes>
         <Footer />
       </Router>

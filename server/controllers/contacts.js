@@ -48,7 +48,8 @@ const changeReadStatus = (req, res) => {
 };
 
 const deleteOneMesage = (req, res) => {
-  const id = req.body.id;
+  const { id } = req.params;
+  console.log(id);
   db.query(
     "DELETE FROM contactinfo WHERE idcontactinfo = ?",
     [id],
@@ -56,9 +57,20 @@ const deleteOneMesage = (req, res) => {
       if (err) {
         res.status(400).send(err);
       }
-      res.status(400).send(response);
+      res.status(200).send(response);
     }
   );
+};
+
+const deleteAllMessages = (req, res) => {
+  db.query("DELETE FROM contactinfo", (err, response) => {
+    if (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+    console.log(response);
+    res.status(200).send(response);
+  });
 };
 
 module.exports = {
@@ -66,4 +78,5 @@ module.exports = {
   getAllContacts,
   changeReadStatus,
   deleteOneMesage,
+  deleteAllMessages,
 };

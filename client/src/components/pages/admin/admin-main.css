@@ -48,6 +48,32 @@
 .admin-contentcontainer p {
   font-size: 18px;
 }
+.admin-contentcontainer span {
+  display: inline-block;
+  vertical-align: top;
+  padding-bottom: 20px;
+  color: rgb(2, 57, 89);
+  font-weight: bolder;
+  font-size: 30px;
+
+  width: 60px;
+}
+
+.admin-contentcontainer span:hover {
+  color: blue;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.admin-contentcontainer section {
+  display: inline-block;
+  margin-top: 8px;
+  height: 100px;
+  width: 170px;
+  border-bottom: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(2, 57, 89);
+}
 
 .admin-contentcontainer h3 {
   margin-top: 10px;
@@ -104,6 +130,13 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.blogpost-preview span {
+  color: rgb(2, 57, 89);
+  height: 18px;
+  font-weight: bolder;
+  width: 30px;
+}
+
 .admin-preview-button {
   display: flex;
   flex-direction: row;
@@ -111,13 +144,13 @@
   margin-top: 25px;
   padding-top: 25px;
   border-top: solid;
-  border-top-color: purple;
+  border-top-color: rgb(2, 57, 89);
   border-top-width: 1px;
 }
 
 .admin-preview-button button {
   padding: 6px 16px;
-  background-color: purple;
+  background-color: rgb(2, 57, 89);
   border: none;
   color: white;
   border-radius: 5px;
