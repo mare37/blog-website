@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Axios from "axios";
 import "./createblog.css";
+import { Editor } from "@tinymce/tinymce-react";
+
 import { useParams, useNavigate } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
@@ -15,12 +17,23 @@ function UpdateBlog() {
   const [bodyText, setBodyText] = useState("");
   const [author, setAuthor] = useState("Jacon Keya");
 
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      let text = editorRef.current.getContent();
+      setBodyText(text);
+      //  let plainText = editorRef.getContent({ format: text });
+      console.log(bodyText);
+    }
+  };
+
   useEffect(() => {
     Axios.get(`http://localhost:8080/blogpost/${postId}`).then((response) => {
       setTitle(response.data[0].title);
       setBodyText(response.data[0].blogposts);
     });
   }, [postId]);
+  //  console.log(bodyText);
 
   function updatePost() {
     Axios.put(`http://localhost:8080/blogpost/${postId}`, {
@@ -76,17 +89,27 @@ function UpdateBlog() {
           placeholder="Title..."
         />
 
-        <textarea
-          onChange={(e) => {
-            setBodyText(() => {
-              return e.target.value;
-            });
+        <Editor
+          onInit={(evt, editor) => (editorRef.current = editor)}
+          initialValue={bodyText}
+          init={{
+            height: 500,
+            menubar: false,
+            plugins: [
+              "advlist autolink lists link image charmap print preview anchor",
+              "searchreplace visualblocks code fullscreen",
+              "insertdatetime media table paste code help wordcount",
+            ],
+            toolbar:
+              "undo redo | formatselect | " +
+              "bold italic backcolor | alignleft aligncenter " +
+              "alignright alignjustify | bullist numlist outdent indent | " +
+              "removeformat | help",
+            content_style:
+              "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
           }}
-          value={bodyText}
-          className="create-blog-text"
-          type="text"
-          placeholder="Write here..."
         />
+        <button onClick={log}>Log editor content</button>
 
         <div className="select-author">
           <h3>Author: </h3>

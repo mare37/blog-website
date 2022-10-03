@@ -2,6 +2,10 @@
   margin-top: 70px;
 }
 
+.foo {
+  white-space: unset;
+}
+
 .post-header {
   height: 200px;
   border-bottom: solid;
@@ -50,6 +54,7 @@
 .post-cont .post-body {
   margin-bottom: 30px;
   font-weight: 500;
+  white-space: pre-line;
 }
 
 .post-cont .post-author {

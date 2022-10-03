@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Axios from "axios";
 import "./createblog.css";
+import { Editor } from "@tinymce/tinymce-react";
+
 import NavBar from "../admin/admin-navbar.js";
 import SideBar from "../admin/admin-sidebar";
 import { confirmAlert } from "react-confirm-alert";
@@ -55,6 +57,16 @@ function CreateBlog() {
     });
   };
 
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      let text = editorRef.current.getContent();
+      setBodyText(text);
+      //  let plainText = editorRef.getContent({ format: text });
+      console.log(bodyText);
+    }
+  };
+
   return (
     <div id="create-blog">
       <NavBar />
@@ -69,31 +81,44 @@ function CreateBlog() {
           type="text"
           placeholder="Title..."
         />
-        <textarea
-          onChange={(e) => {
-            setBodyText(() => {
-              return e.target.value;
-            });
-          }}
-          className="create-blog-text"
-          type="text"
-          placeholder="Write here..."
-        />
 
-        <div className="select-author">
-          <h3>Author: </h3>
-          <select
-            onChange={(e) => {
-              setAuthor(() => {
-                return e.target.value;
-              });
-            }}
-          >
-            <option value="Jacon Kenya">Jacon Keya</option>
-          </select>
-        </div>
+        <Editor
+          className="create-blog-text"
+          onInit={(evt, editor) => (editorRef.current = editor)}
+          initialValue="<p>This is the initial content of the editor.</p>"
+          init={{
+            content_css: "document",
+            height: 500,
+            menubar: false,
+            plugins: [
+              "advlist autolink lists link image charmap print preview anchor",
+              "searchreplace visualblocks code fullscreen",
+              "insertdatetime media table paste code help wordcount",
+            ],
+            toolbar:
+              "undo redo | formatselect | " +
+              "bold italic backcolor | alignleft aligncenter " +
+              "alignright alignjustify | bullist numlist outdent indent | " +
+              "removeformat | help",
+            content_style:
+              "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+          }}
+        />
+        <button onClick={log}>Log editor content</button>
 
         <div className="publish-button">
+          <div className="select-author">
+            <h3>Author: </h3>
+            <select
+              onChange={(e) => {
+                setAuthor(() => {
+                  return e.target.value;
+                });
+              }}
+            >
+              <option value="Jacon Kenya">Jacon Keya</option>
+            </select>
+          </div>
           <button onClick={confirm}>Publish</button>
         </div>
         <SideBar />

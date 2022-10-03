@@ -18,8 +18,12 @@ function Home() {
   const [image, setImage] = useState();
   useEffect(() => {
     Axios.get("http://localhost:8080/project").then((response) => {
-      // console.log(response.data);
-      const projectsArray = response.data.slice(0, 2);
+      // we want to display latest projects hence the reversal
+      const reversedArray = response.data.reverse();
+
+      //limit the number of previewed projects to two
+      const projectsArray = reversedArray.slice(0, 2);
+      console.log(projectsArray);
       setProjectsData(projectsArray);
     });
   }, []);

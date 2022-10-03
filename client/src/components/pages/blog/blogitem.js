@@ -1,9 +1,18 @@
 import React from "react";
 import "./blog.css";
+import Markdown from "markdown-to-jsx";
+import { render } from "react-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function BlogItem(props) {
   let navigate = useNavigate();
+
+  let post = "";
+  if (props.blogposts.length > 200) {
+    post = props.blogposts.substring(0, 200) + "...";
+  } else {
+    post = props.blogposts;
+  }
   return (
     <div className="blog-post">
       <div className="heading">
@@ -11,11 +20,8 @@ function BlogItem(props) {
         <h3>{props.date}</h3>
       </div>
       <div className="text">
-        <p>
-          {props.blogposts.length > 200
-            ? props.blogposts.substring(0, 200) + "..."
-            : props.blogposts}
-        </p>
+        {" "}
+        <Markdown>{post}</Markdown>
       </div>
       <button
         onClick={() => {

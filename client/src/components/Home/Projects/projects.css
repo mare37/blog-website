@@ -71,11 +71,11 @@
   margin-bottom: 20px;
   line-height: 20px;
   font-size: 12px;
+  cursor: pointer;
 }
 
 .content {
   padding: 15px;
-  padding-top: 50px;
 }
 
 @media only screen and (min-width: 768px) {
