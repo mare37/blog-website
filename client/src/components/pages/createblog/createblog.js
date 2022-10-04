@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Axios from "axios";
 import "./createblog.css";
 import { Editor } from "@tinymce/tinymce-react";
@@ -16,6 +16,7 @@ function CreateBlog() {
   const [title, setTitle] = useState("");
   const [bodyText, setBodyText] = useState("");
   const [author, setAuthor] = useState("Jacon Keya");
+  const [button, setButton] = useState(true);
 
   function submitPost() {
     Axios.post("http://localhost:8080/blogpost", {
@@ -24,7 +25,6 @@ function CreateBlog() {
       bodyText: bodyText,
       author: author,
       date: new Date().toISOString().slice(0, 10),
-      //cookies: { "access-token": read_cookie("token") },
     })
       .then((response) => {
         console.log(response);
@@ -34,6 +34,8 @@ function CreateBlog() {
       .catch((err) => {
         console.log(err);
       });
+    //discard title and content when done with it
+    localStorage.clear();
   }
 
   const confirm = () => {
@@ -62,20 +64,29 @@ function CreateBlog() {
     if (editorRef.current) {
       let text = editorRef.current.getContent();
       setBodyText(text);
-      //  let plainText = editorRef.getContent({ format: text });
       console.log(bodyText);
     }
+    setButton(false);
   };
+  const onChange = (e) => {
+    //store content for future use
+    localStorage.setItem("content", JSON.stringify(e));
+  };
+
+  const storedTitle = JSON.parse(localStorage.getItem("title"));
+
+  const storedcontent = JSON.parse(localStorage.getItem("content"));
 
   return (
     <div id="create-blog">
       <NavBar />
       <div className="post-container">
         <input
+          value={storedTitle}
           onChange={(e) => {
-            setTitle(() => {
-              return e.target.value;
-            });
+            setTitle(e.target.value);
+            //save title for future use
+            localStorage.setItem("title", JSON.stringify(e.target.value));
           }}
           className="title"
           type="text"
@@ -83,12 +94,12 @@ function CreateBlog() {
         />
 
         <Editor
+          onEditorChange={onChange}
           className="create-blog-text"
           onInit={(evt, editor) => (editorRef.current = editor)}
-          initialValue="<p>This is the initial content of the editor.</p>"
+          initialValue={storedcontent}
           init={{
-            content_css: "document",
-            height: 500,
+            height: 350,
             menubar: false,
             plugins: [
               "advlist autolink lists link image charmap print preview anchor",
@@ -104,23 +115,31 @@ function CreateBlog() {
               "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
           }}
         />
-        <button onClick={log}>Log editor content</button>
 
-        <div className="publish-button">
-          <div className="select-author">
-            <h3>Author: </h3>
-            <select
-              onChange={(e) => {
-                setAuthor(() => {
-                  return e.target.value;
-                });
-              }}
-            >
-              <option value="Jacon Kenya">Jacon Keya</option>
-            </select>
+        {button ? (
+          <div className="publish-button">
+            <button className="save-button" onClick={log}>
+              Save Content
+            </button>
           </div>
-          <button onClick={confirm}>Publish</button>
-        </div>
+        ) : (
+          <div className="publish-button">
+            <div className="select-author">
+              <h3>Author: </h3>
+              <select
+                onChange={(e) => {
+                  setAuthor(() => {
+                    return e.target.value;
+                  });
+                }}
+              >
+                <option value="Jacon Kenya">Jacon Keya</option>
+              </select>
+            </div>
+            <button onClick={confirm}>Publish</button>
+          </div>
+        )}
+
         <SideBar />
       </div>
     </div>

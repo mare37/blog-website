@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import "./changepassword.css";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 Axios.defaults.withCredentials = true;
 
 function ChangePassword() {
+  const navigate = useNavigate();
+  const [passwordReset, setPassword] = useState(false);
+  const [error, setError] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -19,9 +23,22 @@ function ChangePassword() {
       email: email,
       currentPassword: currentPassword,
       newPassword: newPassword,
-    }).then((response) => {
-      console.log(response.data);
-    });
+    })
+      .then((response) => {
+        console.log(response.data);
+        setPassword(response.data.auth);
+
+        Axios.get("http://localhost:8080/api/logout").then((response) => {
+          console.log(response);
+        });
+      })
+      .catch((err) => {
+        //auth is false
+        const auth = err.response.data.auth;
+        setPassword(auth);
+        setError(true);
+        console.log(auth);
+      });
   };
 
   const savePhoto = (e) => {
@@ -78,61 +95,82 @@ function ChangePassword() {
 
   return (
     <div id="changepassword">
-      <div className="changepassword">
-        <form className="changepassword-form">
-          <input
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            type="email"
-            placeholder="Enter Email Address"
-          />
-          <label>Enter Current Password</label>
-          <input
-            onChange={(e) => {
-              setCurrentPassword(e.target.value);
-            }}
-            type="password"
-            name="current password"
-          />
+      {passwordReset ? (
+        <div className="changepassword-success">
+          <div className="changepassword-popup">
+            <p>PASSWORD CHANGED SUCCESSFULLY</p>
+            <a
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Log In
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div className="changepassword-main">
+          <div className="changepassword">
+            <form className="changepassword-form">
+              <input
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                type="email"
+                placeholder="Enter Email Address"
+              />
 
-          <label>Enter New Password</label>
-          <input
-            onChange={(e) => {
-              setNewPassword(e.target.value);
-            }}
-            type="password"
-            name="new password"
-          />
+              <input
+                onChange={(e) => {
+                  setCurrentPassword(e.target.value);
+                }}
+                type="password"
+                name="current password"
+                placeholder="Enter Current Password"
+              />
 
-          <button onClick={handleSubmit}>Change Password</button>
-        </form>
-      </div>
-      <div id="upload" className="changepassword">
-        <form id="upload-picture">
-          Upload Your Picture
-          <input
-            type="file"
-            onChange={(e) => {
-              savePhoto(e);
-            }}
-          />
-          <button onClick={uploadPhoto} type="submit">
-            Upload
-          </button>
-        </form>
+              <input
+                onChange={(e) => {
+                  setNewPassword(e.target.value);
+                }}
+                type="password"
+                name="new password"
+                placeholder="Enter New Password"
+              />
+              {error && (
+                <p className="wrong-password">Wrong Password or Email</p>
+              )}
 
-        <form id="upload-resume">
-          Upload Your Resume
-          <input
-            type="file"
-            onChange={(e) => {
-              saveResume(e);
-            }}
-          />
-          <button onClick={uploadResume}>Upload</button>
-        </form>
-      </div>
+              <button onClick={handleSubmit}>Change Password</button>
+            </form>
+          </div>
+          <div id="upload" className="changepassword">
+            <form id="upload-picture">
+              Upload Your Picture
+              <input
+                type="file"
+                onChange={(e) => {
+                  savePhoto(e);
+                }}
+              />
+              <button onClick={uploadPhoto} type="submit">
+                Upload
+              </button>
+            </form>
+
+            <form id="upload-resume">
+              Upload Your Resume
+              <input
+                type="file"
+                onChange={(e) => {
+                  saveResume(e);
+                }}
+              />
+              <button onClick={uploadResume}>Upload</button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

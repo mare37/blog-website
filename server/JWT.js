@@ -1,7 +1,6 @@
 const { sign, verify } = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
-//app.use(cookieParser());
 
 function createToken(user) {
   const accessToken = sign(
@@ -13,25 +12,24 @@ function createToken(user) {
 }
 
 const validateToken = (req, res, next) => {
-  // const accessToken = "";
-
   const accessToken = req.cookies[`access_token`];
-  //const accessToken = "";
-  //console.log(accessToken);
 
+  //check if they have an access token,if not decline access
   if (!accessToken) {
     return res.status(400).send({ login: false, message: "Not authenticated" });
   }
 
-  //check if they have a valid token
+  //check if the token they have is valid
   try {
     const validToken = verify(accessToken, process.env.TOKEN_SECRET);
+
+    //if token is valid, grant access
     if (validToken) {
       req.authenticated = true;
       return next();
     }
   } catch {
-    return res.status(400).json({ err: err });
+    return res.status(400).json({ err: err, auth: false });
   }
   next();
 };

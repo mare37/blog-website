@@ -93,7 +93,7 @@ function UpdateBlog() {
           onInit={(evt, editor) => (editorRef.current = editor)}
           initialValue={bodyText}
           init={{
-            height: 500,
+            height: 350,
             menubar: false,
             plugins: [
               "advlist autolink lists link image charmap print preview anchor",

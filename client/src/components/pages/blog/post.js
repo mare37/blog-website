@@ -2,7 +2,7 @@ import React from "react";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
 import "./posts.css";
-import Markdown from "markdown-to-jsx";
+
 import * as DOMPurify from "dompurify";
 
 function Post() {
