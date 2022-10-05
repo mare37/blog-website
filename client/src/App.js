@@ -21,6 +21,7 @@ import UpdateProject from "./components/pages/addproject/updateproject";
 import ContactPage from "./components/pages/contact/contactpage";
 import Messages from "./components/pages/messages/messages";
 import ChangePassword from "./components/pages/changepassword/changepassword";
+import ResetPassword from "./components/pages/resetpassword/resetpassword";
 function App() {
   const [isAdmin, setIsAdmin] = React.useState(false);
   // let [headerScrollClass, setHeaderScrollClass] = React.useState(false);
@@ -105,6 +106,15 @@ function App() {
             element={
               <>
                 <LogIn />
+              </>
+            }
+          />
+
+          <Route
+            path="/resetpassword"
+            element={
+              <>
+                <ResetPassword />
               </>
             }
           />

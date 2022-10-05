@@ -42,18 +42,6 @@ function ContactPage() {
 
   return (
     <div id="contact-page">
-      <div
-        style={{
-          backgroundImage: "url(./images/blogimage.jpg)",
-          backgroundSize: "cover",
-          zIndex: "20",
-          position: "relative",
-          marginTop: "90px",
-          height: "250px",
-        }}
-        className="contact-image"
-      ></div>
-
       <div className="contact-text">
         <h1>Let’s get in touch!</h1>
         <p>
@@ -63,18 +51,24 @@ function ContactPage() {
       </div>
 
       <form onSubmit={handleSubmit(submitForm)} className="contact-form">
-        <div>
-          <input placeholder="Full Name" {...register("fullName")} />
-          {errors.fullName && <p>Not Valid</p>}
-          <input placeholder="Email" {...register("email")} />
-          {errors.email && <p>Not Valid</p>}
-        </div>
-        <div>
-          <input placeholder="Phone Number" {...register("phoneNumber")} />
-          {errors.phoneNumber && <p>Not Valid</p>}
-          <input placeholder="Message" {...register("message")} />
-          {errors.message && <p>Not Valid</p>}
-        </div>
+        <input placeholder="Full Name" {...register("fullName")} />
+        {errors.fullName && (
+          <p className="contact-error">Please enter a valid name</p>
+        )}
+        <input placeholder="Email" {...register("email")} />
+        {errors.email && (
+          <p className="contact-error">Please enter a valid email</p>
+        )}
+
+        <input placeholder="Phone Number" {...register("phoneNumber")} />
+        {errors.phoneNumber && (
+          <p className="contact-error">Please enter a valid phone number</p>
+        )}
+        <input placeholder="Message" {...register("message")} />
+        {errors.message && (
+          <p className="contact-error">Please enter a valid message</p>
+        )}
+
         <button type="submit">Submit</button>
       </form>
     </div>

@@ -131,17 +131,6 @@
   transition: 1000ms ease left;
 }*/
 
-.navbar-contact-us {
-  margin-left: 100px;
-  padding: 12px 30px;
-  border-radius: 20px;
-  background-color: rgb(118, 118, 244);
-  color: white;
-  margin-bottom: 5px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
 .navbar-contact-us:hover {
   background-color: rgb(54, 54, 156);
 }
@@ -171,6 +160,18 @@
   letter-spacing: 0.1rem;
   margin-top: 30px;
 }
+.navbar-contact-us {
+  margin-left: 100px;
+  padding: 12px 30px;
+  border-radius: 20px;
+  background-color: rgb(118, 118, 244);
+  color: white;
+  margin-bottom: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  visibility: hidden;
+}
 
 button:hover {
   color: white;
@@ -178,6 +179,11 @@ button:hover {
 }
 
 @media only screen and (min-width: 1200px) {
+  .navbar-contact-us {
+    visibility: visible;
+    margin-right: 350px;
+  }
+
   .navbar-menu-icon {
     display: none;
   }

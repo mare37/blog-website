@@ -43,21 +43,42 @@ function LogIn() {
   }, []);
 
   return (
-    <div id="login">
+    <div
+      style={{
+        backgroundImage: `url(./images/computer3.jpg)`,
+        backgroundSize: "cover",
+        position: "relative",
+        zIndex: 1,
+      }}
+      id="login"
+    >
       <form onSubmit={handleSubmit(submitInfo)} className="login-container">
         <p>Login</p>
 
         <input placeholder="Enter Email" {...register("email")} />
-        {errors.email && <p>Enter a valid email</p>}
+        {errors.email && (
+          <section className="login-error">Enter a valid email</section>
+        )}
 
         <input
           type="password"
           placeholder="Password"
           {...register("password")}
         />
-        {errors.password && <p>Password not valid</p>}
+        {errors.password && (
+          <section className="login-error">Password not valid</section>
+        )}
 
         <button type="submit">Submit</button>
+
+        <div
+          onClick={() => {
+            navigate("/resetpassword");
+          }}
+          className="login-forgotpassword"
+        >
+          Forgot Password
+        </div>
       </form>
     </div>
   );

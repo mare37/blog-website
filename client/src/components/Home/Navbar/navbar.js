@@ -95,13 +95,11 @@ function Navbar() {
                 src="./images/deep-learning.png"
               />
             </Link>
-            <Link to="/contact">
-              <button className="navbar-contact-us">Contact Us</button>
-            </Link>
-            <Link to="/projectlist">
-              <button className="navbar-contact-us">Case Studies</button>
-            </Link>
           </section>
+          <Link to="/projectlist">
+            <button className="navbar-contact-us">Case Studies</button>
+          </Link>
+
           <ul
             onClick={handleClick}
             className={click ? "unorder-list" : "unorder-list active"}
@@ -131,6 +129,9 @@ function Navbar() {
                 ABOUT
               </HashLink>
             </li>
+            <HashLink to="/contact">
+              <li className="list-item">CONTACT US</li>
+            </HashLink>
           </ul>
 
           <div
