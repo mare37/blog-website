@@ -1,6 +1,9 @@
 const db = require("../config/database");
 const bcrypt = require("bcrypt");
-const { createToken, validateToken } = require("../JWT");
+const { sign, verify } = require("jsonwebtoken");
+const { createToken } = require("../JWT");
+const { render } = require("ejs");
+require("dotenv").config();
 
 const logIn = (req, res) => {
   //const { email, password } = req.body;
@@ -129,4 +132,74 @@ const resetPassword = (req, res) => {
   });
 };
 
-module.exports = { logIn, getLogin, register, logOut, resetPassword };
+//password reset because it has been forgoten
+
+const recoverPassword = (req, res) => {
+  const email = req.body.email;
+
+  db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
+    if (err) {
+      res.send(err);
+    }
+    console.log(result.length);
+    if (result.length > 0) {
+      const user = result[0];
+
+      const token = createToken(user);
+      res.cookie("access_Token", token, {
+        maxAge: 150000,
+        http: true,
+        secure: true,
+      });
+
+      const path = "http://localhost:8080/api/forgotpassword";
+      const link = path + "/" + token;
+      console.log(link);
+
+      res.status(200).send("Link sent to email");
+    } else {
+      res.status(400).send("User doesnt exist");
+    }
+  });
+};
+
+const changePassword = (req, res) => {
+  const token = req.cookies["access_Token"];
+
+  if (!token) {
+    res.send("Session expired");
+  }
+  let validToken = "";
+
+  if (token) {
+    validToken = verify(token, process.env.TOKEN_SECRET);
+
+    if (validToken) {
+      res.render("index");
+
+      // res.send("We are going to proceed with the process");
+    }
+  }
+
+  /* try {
+    console.log("try");
+   
+
+    if (validToken) {
+      res.send("We are going to proceed with the process");
+    }
+  } catch {
+    console.log("catch");
+    // res.status(400).send("Process failed");
+  }*/
+};
+
+module.exports = {
+  logIn,
+  getLogin,
+  register,
+  logOut,
+  resetPassword,
+  recoverPassword,
+  changePassword,
+};
