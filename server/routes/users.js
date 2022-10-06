@@ -4,6 +4,8 @@ const cors = require("cors");
 const db = require("../config/database");
 const { validateToken } = require("../JWT");
 
+//router.use(express.static(__dirname + "./public"));
+
 const {
   logIn,
   getLogin,

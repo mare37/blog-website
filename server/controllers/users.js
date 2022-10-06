@@ -2,6 +2,7 @@ const db = require("../config/database");
 const bcrypt = require("bcrypt");
 const { sign, verify } = require("jsonwebtoken");
 const { createToken } = require("../JWT");
+const nodemailer = require("nodemailer");
 const { render } = require("ejs");
 require("dotenv").config();
 
@@ -147,7 +148,7 @@ const recoverPassword = (req, res) => {
 
       const token = createToken(user);
       res.cookie("access_Token", token, {
-        maxAge: 150000,
+        maxAge: 50000,
         http: true,
         secure: true,
       });
@@ -156,7 +157,49 @@ const recoverPassword = (req, res) => {
       const link = path + "/" + token;
       console.log(link);
 
-      res.status(200).send("Link sent to email");
+      //nodemailer
+
+      ("use strict");
+
+      // async..await is not allowed in global scope, must use a wrapper
+      async function main() {
+        // Generate test SMTP service account from ethereal.email
+        // Only needed if you don't have a real mail account for testing
+        // let testAccount = await nodemailer.createTestAccount();
+
+        // create reusable transporter object using the default SMTP transport
+        let transporter = nodemailer.createTransport({
+          // host: "smtp.gmail.email",
+          // port: 587,
+          // secure: false, // true for 465, false for other ports
+          service: "Gmail",
+          auth: {
+            user: process.env.EMAIL, // generated ethereal user
+            pass: process.env.EMAIL_PASSWORD, // generated ethereal password
+          },
+        });
+
+        // send mail with defined transport object
+        let info = await transporter.sendMail({
+          from: "Sender", // sender address
+          to: "marewilson35@gmail.com", // list of receivers
+          subject: "Password Reset", // Subject line
+          text: link, // plain text body
+          html: `<b>${link}</b>`, // html body
+        });
+
+        console.log("Message sent: %s", info.messageId);
+        res.send("Message sent");
+        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+        // Preview only available when sending through an Ethereal account
+        // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+      }
+
+      main().catch(console.error);
+
+      //res.status(200).send("Link sent to email");
     } else {
       res.status(400).send("User doesnt exist");
     }
