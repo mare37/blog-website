@@ -5,6 +5,8 @@ const { createToken } = require("../JWT");
 const nodemailer = require("nodemailer");
 const { render } = require("ejs");
 require("dotenv").config();
+const { body, validationResult } = require("express-validator");
+//const bodyParser = require("body-parser");
 
 const logIn = (req, res) => {
   //const { email, password } = req.body;
@@ -135,7 +137,7 @@ const resetPassword = (req, res) => {
 
 //password reset because it has been forgoten
 
-const recoverPassword = (req, res) => {
+const getUserEmail = (req, res) => {
   const email = req.body.email;
 
   db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
@@ -144,11 +146,12 @@ const recoverPassword = (req, res) => {
     }
     console.log(result.length);
     if (result.length > 0) {
+      //we have found a matching email address
       const user = result[0];
 
       const token = createToken(user);
       res.cookie("access_Token", token, {
-        maxAge: 50000,
+        maxAge: 50000000,
         http: true,
         secure: true,
       });
@@ -185,7 +188,7 @@ const recoverPassword = (req, res) => {
           to: "marewilson35@gmail.com", // list of receivers
           subject: "Password Reset", // Subject line
           text: link, // plain text body
-          html: `<b>${link}</b>`, // html body
+          html: `<b>CLICK THIS LINK TO CHANGE YOUR PASSWORD: ${link}</b>`, // html body
         });
 
         console.log("Message sent: %s", info.messageId);
@@ -206,35 +209,69 @@ const recoverPassword = (req, res) => {
   });
 };
 
-const changePassword = (req, res) => {
+const renderChangePasswordPage = (req, res) => {
   const token = req.cookies["access_Token"];
 
   if (!token) {
-    res.send("Session expired");
+    //if there is no token to verify user
+    res.send("Link expired");
   }
   let validToken = "";
 
   if (token) {
+    //if there is a token proceed
     validToken = verify(token, process.env.TOKEN_SECRET);
 
     if (validToken) {
-      res.render("index");
+      console.log(validToken);
+      //go ahead and change your password
 
-      // res.send("We are going to proceed with the process");
+      res.render("index", { email: validToken.email });
     }
   }
+};
 
-  /* try {
-    console.log("try");
-   
+const changePassword = (req, res) => {
+  const errors = validationResult(req);
 
-    if (validToken) {
-      res.send("We are going to proceed with the process");
-    }
-  } catch {
-    console.log("catch");
-    // res.status(400).send("Process failed");
-  }*/
+  const token = req.cookies["access_Token"];
+  // console.log(token);
+
+  const validToken = verify(token, process.env.TOKEN_SECRET);
+  // console.log(validToken);
+  const email = validToken.email;
+
+  if (!errors.isEmpty()) {
+    console.log(errors);
+    return res.render("index", {
+      errors: errors.errors,
+      email: validToken.email,
+    });
+    //return res.status(400).send({ errors: errors.array() });
+  }
+
+  const password = req.body.password;
+  const confirmPassword = req.body.confirmpassword;
+  console.log(password);
+  console.log(confirmPassword);
+  if (password !== confirmPassword) {
+    return res.render("index", { notMatch: true, email: validToken.email });
+  } else {
+    bcrypt.hash(password, 10).then((hash) => {
+      db.query(
+        "UPDATE users SET password = ? WHERE email = ?",
+        [hash, email],
+        (err, result) => {
+          if (err) {
+            res.status(404).send(err);
+          } else {
+            console.log(result);
+            res.render("success");
+          }
+        }
+      );
+    });
+  }
 };
 
 module.exports = {
@@ -243,6 +280,7 @@ module.exports = {
   register,
   logOut,
   resetPassword,
-  recoverPassword,
+  getUserEmail,
+  renderChangePasswordPage,
   changePassword,
 };

@@ -9,17 +9,39 @@
   </head>
   <body id="login">
     <div class="main">
-      <form class="login-container">
-        <input placeholder="Enter New Password" />
-        <input type="password" placeholder="Confirm Password" />
+      <form method="POST" class="login-container">
+
+        <h1><%=email%></h1>
+        <% if(typeof errors !== 'undefined'){%>
+          <h3 class="errors">
+            Invalid! Password should be at least four characters
+          </h3
+        <% } %>
+           
+      
+        
+          <% if(typeof notMatch !== 'undefined'){%>
+            <h3 class="errors">
+              Passwords Don't Match
+            </h3
+          <% } %>
+        
+
+       
+        <input
+          name="password"
+          type="password"
+          placeholder="Enter New Password"
+        />
+        <input
+          name="confirmpassword"
+          type="password"
+          placeholder="Confirm Password"
+        />
         <button type="submit">Submit</button>
       </form>
     </div>
   </body>
 
-  <script>
-    function input() {
-      console.log("Test");
-    }
-  </script>
+  <script></script>
 </html>

@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import "./resetpassword.css";
 
 Axios.defaults.withCredentials = true;
 
@@ -11,6 +12,7 @@ const schema = yup.object().shape({
 });
 
 function ResetPassword() {
+  const [link, setLink] = useState(false);
   const {
     register,
     handleSubmit,
@@ -47,7 +49,20 @@ function ResetPassword() {
           <section className="login-error">Enter a valid email</section>
         )}
 
-        <button type="submit">Submit</button>
+        <button
+          onClick={() => {
+            setLink(true);
+          }}
+          type="submit"
+        >
+          Submit
+        </button>
+
+        {link ? (
+          <h3 className="reset-link">Reset Link Sent To Your Email</h3>
+        ) : (
+          ""
+        )}
       </form>
     </div>
   );
