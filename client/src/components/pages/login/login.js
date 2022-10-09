@@ -1,16 +1,21 @@
 //import axios, { Axios } from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Axios from "axios";
 import "./login.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import schema from "./formValidation";
 import { useNavigate } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 
 Axios.defaults.withCredentials = true;
 
 function LogIn() {
+  const [submitButton, setSubmitButton] = useState(true);
+  const [recaptcha, setRecaptcha] = useState(false);
+
   let navigate = useNavigate();
+  const captchaRef = useRef(null);
 
   const {
     register,
@@ -19,6 +24,16 @@ function LogIn() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const verify = () => {
+    const token = captchaRef.current.getValue();
+    captchaRef.current.reset();
+
+    if (token) {
+      //setSubmitButton(true);
+      //setRecaptcha(false);
+    }
+  };
 
   const submitInfo = (data) => {
     Axios.post("http://localhost:8080/api/login", {
@@ -68,8 +83,19 @@ function LogIn() {
         {errors.password && (
           <section className="login-error">Password not valid</section>
         )}
+        <br />
 
-        <button type="submit">Submit</button>
+        {recaptcha ? (
+          <ReCAPTCHA
+            sitekey={process.env.REACT_APP_SITE_KEY}
+            ref={captchaRef}
+            onChange={verify}
+          />
+        ) : (
+          ""
+        )}
+
+        {submitButton ? <button type="submit">Submit</button> : ""}
 
         <div
           onClick={() => {

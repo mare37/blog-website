@@ -11,23 +11,19 @@
     <div class="main">
       <form method="POST" class="login-container">
 
-        <h1><%=email%></h1>
+       
         <% if(typeof errors !== 'undefined'){%>
           <h3 class="errors">
             Invalid! Password should be at least four characters
           </h3
         <% } %>
-           
-      
-        
+                  
           <% if(typeof notMatch !== 'undefined'){%>
             <h3 class="errors">
               Passwords Don't Match
             </h3
           <% } %>
-        
-
-       
+          <h1><%=email%></h1>
         <input
           name="password"
           type="password"
@@ -43,5 +39,5 @@
     </div>
   </body>
 
-  <script></script>
+  
 </html>

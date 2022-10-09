@@ -13,6 +13,7 @@ const schema = yup.object().shape({
 
 function ResetPassword() {
   const [link, setLink] = useState(false);
+  const [input, setInput] = useState(true);
   const {
     register,
     handleSubmit,
@@ -48,10 +49,10 @@ function ResetPassword() {
         {errors.email && (
           <section className="login-error">Enter a valid email</section>
         )}
-
         <button
           onClick={() => {
             setLink(true);
+            setInput(false);
           }}
           type="submit"
         >

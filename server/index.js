@@ -11,6 +11,7 @@ const projectsRoute = require("./routes/projects");
 const usersRoute = require("./routes/users");
 const contactRoute = require("./routes/contacts");
 const photoAndResumeRoute = require("./routes/photo-and-resume");
+const verifyUser = require("./routes/userVerify");
 
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
@@ -27,6 +28,7 @@ app.use("/project", projectsRoute);
 app.use("/contact", contactRoute);
 app.use(photoAndResumeRoute);
 app.use(usersRoute);
+app.use("/verifyuser", verifyUser);
 
 //"ALTER TABLE posts AUTO_INCREMENT = 1"
 

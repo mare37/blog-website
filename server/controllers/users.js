@@ -144,14 +144,15 @@ const getUserEmail = (req, res) => {
     if (err) {
       res.send(err);
     }
-    console.log(result.length);
+    console.log(result[0]);
     if (result.length > 0) {
       //we have found a matching email address
       const user = result[0];
+      const email = user.email;
 
       const token = createToken(user);
-      res.cookie("access_Token", token, {
-        maxAge: 50000000,
+      res.cookie("password_Reset_Token", token, {
+        maxAge: 1200000,
         http: true,
         secure: true,
       });
@@ -166,43 +167,28 @@ const getUserEmail = (req, res) => {
 
       // async..await is not allowed in global scope, must use a wrapper
       async function main() {
-        // Generate test SMTP service account from ethereal.email
-        // Only needed if you don't have a real mail account for testing
-        // let testAccount = await nodemailer.createTestAccount();
-
-        // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
-          // host: "smtp.gmail.email",
-          // port: 587,
-          // secure: false, // true for 465, false for other ports
           service: "Gmail",
           auth: {
-            user: process.env.EMAIL, // generated ethereal user
-            pass: process.env.EMAIL_PASSWORD, // generated ethereal password
+            user: process.env.EMAIL,
+            pass: process.env.EMAIL_PASSWORD,
           },
         });
 
         // send mail with defined transport object
         let info = await transporter.sendMail({
           from: "Sender", // sender address
-          to: "marewilson35@gmail.com", // list of receivers
+          to: email, // list of receivers
           subject: "Password Reset", // Subject line
           text: link, // plain text body
-          html: `<b>CLICK THIS LINK TO CHANGE YOUR PASSWORD: ${link}</b>`, // html body
+          html: `<b>CLICK THIS LINK TO CHANGE YOUR PASSWORD: ${link} <br/> <br/>THIS LINK WILL EXPIRE AFTER 20 MINUTES </b>`, // html body
         });
 
         console.log("Message sent: %s", info.messageId);
         res.send("Message sent");
-        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-        // Preview only available when sending through an Ethereal account
-        // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
       }
 
       main().catch(console.error);
-
-      //res.status(200).send("Link sent to email");
     } else {
       res.status(400).send("User doesnt exist");
     }
@@ -210,7 +196,7 @@ const getUserEmail = (req, res) => {
 };
 
 const renderChangePasswordPage = (req, res) => {
-  const token = req.cookies["access_Token"];
+  const token = req.cookies["password_Reset_Token"];
 
   if (!token) {
     //if there is no token to verify user
@@ -223,7 +209,7 @@ const renderChangePasswordPage = (req, res) => {
     validToken = verify(token, process.env.TOKEN_SECRET);
 
     if (validToken) {
-      console.log(validToken);
+      // console.log(validToken);
       //go ahead and change your password
 
       res.render("index", { email: validToken.email });
@@ -234,7 +220,7 @@ const renderChangePasswordPage = (req, res) => {
 const changePassword = (req, res) => {
   const errors = validationResult(req);
 
-  const token = req.cookies["access_Token"];
+  const token = req.cookies["password_Reset_Token"];
   // console.log(token);
 
   const validToken = verify(token, process.env.TOKEN_SECRET);
@@ -242,7 +228,7 @@ const changePassword = (req, res) => {
   const email = validToken.email;
 
   if (!errors.isEmpty()) {
-    console.log(errors);
+    // console.log(errors);
     return res.render("index", {
       errors: errors.errors,
       email: validToken.email,
@@ -252,7 +238,7 @@ const changePassword = (req, res) => {
 
   const password = req.body.password;
   const confirmPassword = req.body.confirmpassword;
-  console.log(password);
+  // console.log(password);
   console.log(confirmPassword);
   if (password !== confirmPassword) {
     return res.render("index", { notMatch: true, email: validToken.email });

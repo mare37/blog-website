@@ -11,8 +11,8 @@ function ProtectedRoute() {
   React.useEffect(() => {
     Axios.get("http://localhost:8080/api/login")
       .then((response) => {
-        console.log(response.data.message);
-        console.log(response);
+        //  console.log(response.data.message);
+        // console.log(response);
 
         setAuth(response.data.login);
       })
