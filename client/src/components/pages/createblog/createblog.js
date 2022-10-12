@@ -18,13 +18,23 @@ function CreateBlog() {
   const [author, setAuthor] = useState("Jacon Keya");
   const [button, setButton] = useState(true);
 
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
   function submitPost() {
     Axios.post("http://localhost:8080/blogpost", {
       title: title,
       id: 1,
       bodyText: bodyText,
       author: author,
-      date: new Date().toISOString().slice(0, 10),
+      dateAndTime: {
+        date: new Date().toLocaleDateString("en-uk", options),
+        time: new Date().toLocaleTimeString(),
+      },
     })
       .then((response) => {
         console.log(response);

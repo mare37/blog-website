@@ -3,12 +3,13 @@ const db = require("../config/database");
 const postProject = (req, res) => {
   const projectName = req.body.projectTitle;
   const projectDescription = req.body.projectDescription;
-  const date = req.body.date;
+  const date = req.body.dateAndTime.date;
+  const time = req.body.dateAndTime.time;
   console.log(date);
 
   db.query(
-    "INSERT INTO projects (nameOfproject, projectDescription, date) VALUES(?,?,?)",
-    [projectName, projectDescription, date],
+    "INSERT INTO projects (nameOfproject, projectDescription, date,time) VALUES(?,?,?,?)",
+    [projectName, projectDescription, date, time],
     (err, result) => {
       if (err) {
         console.log(err);

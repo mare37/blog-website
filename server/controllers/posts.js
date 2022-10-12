@@ -2,14 +2,14 @@ const db = require("../config/database");
 
 const postBlog = (req, res) => {
   const title = req.body.title;
-  const id = req.body.id;
   const bodyText = req.body.bodyText;
   const author = req.body.author;
-  const date = req.body.date;
-  console.log(id);
+  const date = req.body.dateAndTime.date;
+  const time = req.body.dateAndTime.time;
+  console.log(time);
   db.query(
-    "INSERT INTO posts (title, blogposts, author, date) VALUES (?,?,?,?)",
-    [title, bodyText, author, date],
+    "INSERT INTO posts (title, blogposts, author, date,time) VALUES (?,?,?,?,?)",
+    [title, bodyText, author, date, time],
     (err, result) => {
       if (err) {
         console.log(err);

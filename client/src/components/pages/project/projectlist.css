@@ -3,16 +3,6 @@
   align-items: center;
 }
 
-.projectlist-top-text {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 50px;
-  text-align: center;
-  line-height: 30px;
-  font-size: 25px;
-}
-
 .projectList-image::after {
   content: "";
   position: absolute;
@@ -25,11 +15,17 @@
   z-index: -1;
 }
 
-.projectItem-image {
-  position: relative;
+.projectlist-top-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 50px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 25px;
 }
 
-.projectItem-image::after {
+.projectItem-details::after {
   content: "";
   position: absolute;
   left: 0;
@@ -41,18 +37,43 @@
   z-index: -1;
 }
 
-.projectItem-image-heading {
+.projectItem-details.active::after {
+  display: none;
+}
+
+.projectItem-details h2 {
   color: white;
   position: absolute;
-  top: 50px;
-  left: 110px;
+  margin-top: 50px;
+
   font-size: 28px;
   font-weight: 700;
 }
 
+.projectItem-details h2.active {
+  color: #1690d3;
+  font-weight: 700;
+}
+
 .projectItem-details {
+  transition: 500ms ease;
+  background-image: url("/public/images/projectlist-image.jpg");
+  background-size: cover;
+  z-index: 19;
+  position: relative;
+  margin-top: 69px;
   height: 450px;
   width: 310px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.projectItem-details.active {
+  height: 470px;
+  width: 330px;
+  background-image: none;
 
   margin-top: 69px;
   display: flex;
@@ -60,24 +81,30 @@
   align-items: center;
   padding: 20px;
   border-radius: 10px;
+  z-index: 20;
 
   border-color: rgb(245, 242, 242);
   box-shadow: 0 0 18px 0px rgb(208, 204, 204);
 }
 
-.projectItem-details h2 {
-  margin-top: 50px;
-  color: #1690d3;
-  font-weight: 700;
+.projectItem-details p {
+  visibility: hidden;
 }
 
-.projectItem-details p {
+.projectItem-details p.active {
   margin-top: 40px;
   font-size: 18px;
   line-height: 30px;
+  text-align: center;
+  visibility: visible;
+  margin-top: 100px;
 }
 
 .projectItem-details button {
+  visibility: hidden;
+}
+
+.projectItem-details button.active {
   margin-top: 100px;
   padding: 10px;
   width: 250px;
@@ -87,6 +114,7 @@
   background-color: white;
   border-width: 1px;
   font-size: 16px;
+  visibility: visible;
 }
 
 .projectItem-details button:hover {

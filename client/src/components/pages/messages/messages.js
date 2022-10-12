@@ -74,7 +74,10 @@ function Messages() {
         >
           <p className="messages-sender-name">{props.fullName}</p>
           <p className="messages-sender-message">{props.message}</p>
-          <p className="messages-date">04/08/2022</p>
+          <p className="messages-date">
+            {props.date}
+            <span>{props.time}</span>
+          </p>
         </div>
 
         <div className="messages-delete">
@@ -92,6 +95,7 @@ function Messages() {
 
   useEffect(() => {
     Axios.get("http://localhost:8080/contact").then((response) => {
+      console.log(response.data);
       setMessagesArray(response.data);
       setNumberOfMessages(response.data.length);
     });
@@ -111,10 +115,12 @@ function Messages() {
           id={item.idcontactinfo}
           fullName={item.fullname}
           email={item.email}
+          date={item.date}
+          time={item.time}
           phoneNumber={item.phonenumber}
           message={
-            item.message.length > 50
-              ? item.message.slice(0, 50) + "..."
+            item.message.length > 35
+              ? item.message.slice(0, 35) + "..."
               : item.message
           }
           message2={item.message}
@@ -124,53 +130,53 @@ function Messages() {
     });
 
   return (
-    <div>
-      <div className="messages">
-        <Navbar />
-        {messagesTab ? (
-          <div className="messages-container">
-            <div className="messages-inner-container">
-              <div className="messages-heading">
-                <div className="messages-information-container">
-                  <p className="messages-sender-name">Sender Name</p>
-                  <p className="messages-sender-message">Message</p>
-                  <p className="messages-date">Date</p>
-                </div>
-
-                <div className="messages-delete">
-                  <button onClick={handleDeleteAll}>Delete All Messages</button>
-                </div>
+    <div className="messages">
+      <Navbar />
+      {messagesTab ? (
+        <div className="messages-container">
+          <div className="messages-inner-container">
+            <div className="messages-heading">
+              <div className="messages-information-container">
+                <p className="messages-sender-name">Sender Name</p>
+                <p className="messages-sender-message">Message</p>
+                <p className="messages-date">Date</p>
               </div>
-              {numberOfMessages !== 0 ? (
-                messagesData
-              ) : (
-                <p className="messages-inbox-empty">Inbox Empty</p>
-              )}
-            </div>
-          </div>
-        ) : (
-          <div className="messages-container">
-            <div className="messages-inner-container2">
-              <p className="messages-inner-container2-name">
-                {info.fullName}{" "}
-                <img
-                  onClick={() => {
-                    setMessagesTab(true);
-                    reloadContacts();
-                  }}
-                  alt="image"
-                  src="./images/close.png"
-                />
-              </p>
-              <p>{info.email}</p>
-              <p>{info.phoneNumber}</p>
-              <p>{info.message}</p>
-            </div>
-          </div>
-        )}
 
-        <SideBar />
-      </div>
+              <div className="messages-delete">
+                <button onClick={handleDeleteAll}>Delete All</button>
+              </div>
+            </div>
+            {numberOfMessages !== 0 ? (
+              messagesData
+            ) : (
+              <p className="messages-inbox-empty">Inbox Empty</p>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className="messages-container">
+          <div className="messages-inner-container2">
+            <p className="messages-inner-container2-name">
+              {info.fullName}
+              <img
+                onClick={() => {
+                  setMessagesTab(true);
+                  reloadContacts();
+                }}
+                alt="image"
+                src="./images/close.png"
+              />
+            </p>
+            <p className="messages-inner-container2-email">{info.email}</p>
+            <p className="messages-inner-container2-phoneNumber">
+              {info.phoneNumber}
+            </p>
+            <p className="messages-inner-container2-message">{info.message}</p>
+          </div>
+        </div>
+      )}
+
+      <SideBar />
     </div>
   );
 }

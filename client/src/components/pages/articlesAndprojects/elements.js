@@ -56,8 +56,11 @@ export function BlogPostsElement(props) {
     <div className="element-container">
       <p className="element-id">{props.id}</p>
       <p className="element-title">{props.title}</p>
+
       <div className="date-and-buttons">
-        <p className="element-date">{props.date}</p>
+        <p className="element-date">
+          {props.date} <span>{props.time}</span>
+        </p>
         <div className="element-buttons">
           <button
             onClick={() => {
@@ -65,7 +68,7 @@ export function BlogPostsElement(props) {
             }}
             className="update"
           >
-            Update
+            Edit
           </button>
           <button
             onClick={() => {
@@ -88,7 +91,9 @@ export const ProjectsElement = (props) => {
       <p className="element-id">{props.id}</p>
       <p className="element-title">{props.nameOfProject}</p>
       <div className="date-and-buttons">
-        <p className="element-date">{props.date}</p>
+        <p className="element-date">
+          {props.date} <span>{props.time}</span>
+        </p>
         <div className="element-buttons">
           <button
             onClick={() => {

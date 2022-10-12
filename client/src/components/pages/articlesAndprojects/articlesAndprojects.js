@@ -12,11 +12,20 @@ Axios.defaults.withCredentials = true;
 function ArticlesAndProjects() {
   const [blogPosts, setBlogPosts] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [projectOrPost, setProjectOrPost] = useState(true);
+
+  const handleClickSetBlogPosts = () => {
+    setProjectOrPost(true);
+  };
+
+  const handleClickSetProjects = () => {
+    setProjectOrPost(false);
+  };
 
   useEffect(() => {
     // Getting blog posts from the backend
     Axios.get("http://localhost:8080/blogpost", {}).then((response) => {
-      //console.log(response.data);
+      console.log(response.data);
       setBlogPosts(response.data);
     });
     //Getting number of projects from the backend
@@ -39,6 +48,7 @@ function ArticlesAndProjects() {
           id={item.id}
           title={title}
           date={item.date}
+          time={item.time}
         />
       );
     });
@@ -57,6 +67,7 @@ function ArticlesAndProjects() {
           id={item.idprojects}
           nameOfProject={item.nameOfProject}
           date={item.date}
+          time={item.time}
         />
       );
     });
@@ -67,50 +78,52 @@ function ArticlesAndProjects() {
         <NavBar />
         <div className="main-bar">
           <div className="main-content">
-            <div
-              id="postsAndprojects-heading-1"
-              className="postsAndprojects-heading"
-            >
-              <p className="adm-p1">Your Blog Posts</p>
-              <p className="adm-p2">All blog posts you have in the database</p>
+            <div className="postsAndprojects-heading">
+              <button
+                className={projectOrPost ? "active" : ""}
+                onClick={handleClickSetBlogPosts}
+              >
+                All Blog Posts
+              </button>
+              <button
+                className={projectOrPost ? "" : "active"}
+                onClick={handleClickSetProjects}
+              >
+                All Projects
+              </button>
             </div>
-            <div className="blogposts">
-              <div id="element-container2">
+            {projectOrPost ? (
+              <div className="blogposts">
+                <div id="element-container2">
+                  <div className="element-container2">
+                    <p className="element-id">Id</p>
+                    <p className="element-title">Blog Post Title</p>
+                    <p className="date-and-buttons">Created</p>
+                  </div>
+                </div>
+
+                {blogPosts.length === 0 ? "No posts to show" : blogPostsData}
+              </div>
+            ) : (
+              <div className={"blogposts"}>
                 <div className="element-container2">
                   <p className="element-id">Id</p>
-                  <p className="element-title">Blog Post Title</p>
+                  <p className="element-title">Project</p>
                   <p className="date-and-buttons">Created</p>
                 </div>
+                {projects.length === 0 ? (
+                  <p className="no-projects-posts">No projects to show </p>
+                ) : (
+                  projectsData
+                )}
               </div>
+            )}
 
-              {blogPosts.length === 0 ? "No posts to show" : blogPostsData}
-            </div>
-            <div className="adm-buffer"></div>
-
-            <div
-              id="postsAndprojects-heading-2"
-              className="postsAndprojects-heading"
-            >
-              <p className="adm-p1">Your Projects</p>
-              <p className="adm-p2">All projects you have in the database</p>
-            </div>
-            <div className={"blogposts"}>
-              <div className="element-container2">
-                <p className="element-id">Id</p>
-                <p className="element-title">Project</p>
-                <p className="date-and-buttons">Created</p>
-              </div>
-              {projects.length === 0 ? (
-                <p className="no-projects-posts">No projects to show </p>
-              ) : (
-                projectsData
-              )}
-            </div>
             <div className="adm-buffer"></div>
           </div>
         </div>
-        <SideBar />
       </div>
+      <SideBar />
     </div>
   );
 }

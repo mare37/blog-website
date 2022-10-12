@@ -21,7 +21,7 @@
 }
 
 #projects .project .image {
-  height: 300px;
+  height: 250px;
   position: relative;
   transition: 0.5 ease transform;
   overflow: hidden;

@@ -49,6 +49,7 @@
 .post-cont .post-date {
   color: rgba(88, 88, 88, 0.87);
   margin-bottom: 15px;
+  font-size: 12px;
 }
 
 .post-cont .post-body {
@@ -59,7 +60,8 @@
 
 .post-cont .post-author {
   color: rgba(88, 88, 88, 0.87);
-  margin-bottom: 18px;
+  margin-bottom: 5px;
+  text-decoration: underline;
 }
 .post-subscribe-newsletter {
   display: none;

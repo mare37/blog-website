@@ -16,13 +16,13 @@ function Post() {
       setBlogContent(cleanBlogContent);
       setPost({
         title: data.data[0].title,
-        blogposts: data.data[0].blogposts,
+        date: data.data[0].date,
         author: data.data[0].author,
+        time: data.data[0].time,
       });
       console.log(data);
     });
   }, []);
-  console.log(String(post.blogposts));
 
   return (
     <div id="post-background">
@@ -36,8 +36,11 @@ function Post() {
       </div>
       <div className="post-cont">
         <h2 className="post-title">{post.title}</h2>
-        <div className="post-date">Friday 15th September</div>
+
         <div className="post-author">{`Posted by ${post.author}`}</div>
+        <div className="post-date">
+          {post.date}, <span> {post.time} EAT</span>
+        </div>
 
         <div
           className="post-body"

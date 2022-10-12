@@ -17,11 +17,21 @@ function AddProject() {
   const [projectTitle, setProjectTitle] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
 
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
   const submitProject = () => {
     Axios.post("http://localhost:8080/project", {
       projectTitle: projectTitle,
       projectDescription: projectDescription,
-      date: new Date().toISOString().slice(0, 10),
+      dateAndTime: {
+        date: new Date().toLocaleDateString("en-uk", options),
+        time: new Date().toLocaleTimeString(),
+      },
     }).then((response) => {
       navigate("/articlesAndprojects");
       alert("Project Posted Successfully");

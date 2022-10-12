@@ -15,6 +15,13 @@ const schema = yup.object().shape({
 Axios.defaults.withCredentials = true;
 
 function ContactPage() {
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
   const {
     register,
     handleSubmit,
@@ -32,6 +39,10 @@ function ContactPage() {
       phoneNumber: data.phoneNumber,
       message: data.message,
       status: "unread",
+      dateAndTime: {
+        date: new Date().toLocaleDateString("en-uk", options),
+        time: new Date().toLocaleTimeString(),
+      },
     }).then((response) => {
       //window.location.reload();
 

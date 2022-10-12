@@ -7,11 +7,13 @@ const postContact = (req, res) => {
   const phoneNumber = req.body.phoneNumber;
   const message = req.body.message;
   const status = req.body.status;
-  console.log(status);
+  const date = req.body.dateAndTime.date;
+  const time = req.body.dateAndTime.time;
+  console.log(date);
 
   db.query(
-    "INSERT INTO contactinfo (fullName,email,phoneNumber,message,status) VALUES (?,?,?,?,?)",
-    [fullName, email, phoneNumber, message, status],
+    "INSERT INTO contactinfo (fullName,email,phoneNumber,message,status,date,time) VALUES (?,?,?,?,?,?,?)",
+    [fullName, email, phoneNumber, message, status, date, time],
     (err, result) => {
       if (err) {
         res.send(err);
