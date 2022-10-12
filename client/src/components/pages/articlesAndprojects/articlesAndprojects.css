@@ -193,3 +193,15 @@
   flex-direction: row;
   justify-content: center;
 }
+
+@media only screen and (max-width: 450px) {
+  .main-content {
+    margin-left: 0;
+  }
+  .blogposts {
+    height: 1000px;
+  }
+  .element-date {
+    display: none;
+  }
+}

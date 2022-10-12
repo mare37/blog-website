@@ -25,11 +25,11 @@ function ProjectItem(props) {
             active ? "projectItem-details active" : "projectItem-details"
           }
         >
-          <h2 className={active ? "active" : ""}>Monitoring App</h2>
+          <h2 className={active ? "active" : ""}>{props.nameOfProject}</h2>
           <p className={active ? "active" : ""}>
-            The largest athletic merchandise and video engagement platform for
-            sports fans, where everyone can find merchandise, live streaming
-            events, and training videos with local and world-known athletes.
+            {props.projectDescription.length > 200
+              ? props.projectDescription.slice(0, 200) + "..."
+              : props.projectDescription}
           </p>
           <p>Hover To View Details</p>
           <button

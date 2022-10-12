@@ -11,6 +11,7 @@
   align-items: center;
 
   border-width: 1px;
+  padding: 20px;
 }
 
 .messages-inner-container {
