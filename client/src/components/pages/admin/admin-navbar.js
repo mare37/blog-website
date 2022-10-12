@@ -92,6 +92,35 @@ function Navbar() {
             </p>
           </Link>
 
+          <ul
+            onClick={handleClick}
+            className={
+              click ? "admin-unorder-list" : "admin-unorder-list active"
+            }
+          >
+            <li>
+              <HashLink className="admin-list-item" to="/admin">
+                DASHBOARD
+              </HashLink>
+            </li>
+            <li>
+              <Link className="admin-list-item" to="/">
+                HOME
+              </Link>
+            </li>
+            <li>
+              <Link className="admin-list-item" to="/blog">
+                BLOG
+              </Link>
+            </li>
+
+            <li>
+              <HashLink className="admin-list-item" to="/articlesandprojects">
+                BLOG POSTS & PROJECTS
+              </HashLink>
+            </li>
+          </ul>
+
           <button onClick={logOut}>Log Out</button>
 
           <div onClick={handleClick} className="admin-navbar-menu-icon">
