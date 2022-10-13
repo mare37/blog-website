@@ -6,6 +6,7 @@ import Services from "./Services/services";
 import Projects from "./Projects/projects";
 import About from "./About/about";
 import ContactInfo from "./ContactInfo/contactinfo";
+import Navbar from "./Navbar/navbar";
 
 Axios.defaults.withCredentials = true;
 
@@ -46,6 +47,7 @@ function Home() {
 
   return (
     <div>
+      <Navbar />
       <Hero />
       <Services />
       <Projects projectsData={projectsData} />

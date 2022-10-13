@@ -2,6 +2,8 @@ import React from "react";
 import "./blog.css";
 import BlogItem from "./blogitem";
 import Axios from "axios";
+import Navbar from "../../Home/Navbar/navbar";
+
 function Blog() {
   const [postList, setPostList] = React.useState([]);
   React.useEffect(() => {
@@ -27,6 +29,7 @@ function Blog() {
 
   return (
     <>
+      <Navbar />
       <div id="blog">
         <div
           style={{

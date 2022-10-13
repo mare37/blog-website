@@ -31,7 +31,13 @@ function Main() {
       title = item.title.substring(0, 30) + "...";
     }
     return (
-      <p className="blogpost-preview" key={key}>
+      <p
+        className="blogpost-preview"
+        key={key}
+        onClick={() => {
+          navigate(`/post/${item.id}`);
+        }}
+      >
         <span>{`\u2022`}</span>
         {title}
       </p>
@@ -44,9 +50,15 @@ function Main() {
       projectName = projectName.substring(0, 30) + "...";
     }
     return (
-      <li key={key} className="blogpost-preview">
+      <p
+        key={key}
+        className="blogpost-preview"
+        onClick={() => {
+          navigate(`/projects/${item.idprojects}`);
+        }}
+      >
         {projectName}
-      </li>
+      </p>
     );
   });
 

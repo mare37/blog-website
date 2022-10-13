@@ -55,7 +55,14 @@ export function BlogPostsElement(props) {
   return (
     <div className="element-container">
       <p className="element-id">{props.id}</p>
-      <p className="element-title">{props.title}</p>
+      <p
+        onClick={() => {
+          navigate(`/post/${props.id}`);
+        }}
+        className="element-title"
+      >
+        {props.title}
+      </p>
 
       <div className="date-and-buttons">
         <p className="element-date">
@@ -89,7 +96,14 @@ export const ProjectsElement = (props) => {
   return (
     <div className="element-container">
       <p className="element-id">{props.id}</p>
-      <p className="element-title">{props.nameOfProject}</p>
+      <p
+        className="element-title"
+        onClick={() => {
+          navigate(`/projects/${props.id}`);
+        }}
+      >
+        {props.nameOfProject}
+      </p>
       <div className="date-and-buttons">
         <p className="element-date">
           {props.date} <span>{props.time}</span>

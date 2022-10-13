@@ -62,6 +62,7 @@ function Navbar() {
   }, [headerScrollClass]);
 
   const { postId } = useParams();
+  const { projectId } = useParams();
 
   let headerClass;
   if (
@@ -69,11 +70,15 @@ function Navbar() {
     window.location.pathname === "/projectlist" ||
     window.location.pathname === "/contact"
   ) {
-    console.log("/blog");
+    // console.log("/blog");
     headerClass = "header-blog";
   }
   if (window.location.pathname === `/post/${postId}`) {
     console.log(`/post/${postId}`);
+    headerClass = "header-blog";
+  }
+  if (window.location.pathname === `/project/${projectId}`) {
+    // console.log(`/post/${postId}`);
     headerClass = "header-blog";
   }
   if (window.location.pathname === "/" && headerScrollClass === true) {

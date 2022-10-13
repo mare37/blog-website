@@ -6,7 +6,6 @@ function Hero() {
       <section
         style={{
           backgroundImage: `url(./images/computer.jpg)`,
-
           backgroundSize: "cover",
           position: "relative",
           zIndex: 1,

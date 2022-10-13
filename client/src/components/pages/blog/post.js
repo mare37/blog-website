@@ -2,6 +2,7 @@ import React from "react";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
 import "./posts.css";
+import Navbar from "../../Home/Navbar/navbar";
 
 import * as DOMPurify from "dompurify";
 
@@ -25,36 +26,39 @@ function Post() {
   }, []);
 
   return (
-    <div id="post-background">
-      <div className="post-header">
-        <div>
-          <h2>
-            <span> AI </span> BLOG
-          </h2>
-          <p>Latest artificial inteligence information</p>
+    <>
+      <Navbar />
+      <div id="post-background">
+        <div className="post-header">
+          <div>
+            <h2>
+              <span> AI </span> BLOG
+            </h2>
+            <p>Latest artificial inteligence information</p>
+          </div>
+        </div>
+        <div className="post-cont">
+          <h2 className="post-title">{post.title}</h2>
+
+          <div className="post-author">{`Posted by ${post.author}`}</div>
+          <div className="post-date">
+            {post.date}, <span> {post.time} EAT</span>
+          </div>
+
+          <div
+            className="post-body"
+            dangerouslySetInnerHTML={{ __html: blogContent }}
+          />
+        </div>
+
+        <div className="post-subscribe-newsletter">
+          <div className="post-subscribe-box">
+            <input placeholder="Email" />
+            <button>Subscribe To Our Newsletter</button>
+          </div>
         </div>
       </div>
-      <div className="post-cont">
-        <h2 className="post-title">{post.title}</h2>
-
-        <div className="post-author">{`Posted by ${post.author}`}</div>
-        <div className="post-date">
-          {post.date}, <span> {post.time} EAT</span>
-        </div>
-
-        <div
-          className="post-body"
-          dangerouslySetInnerHTML={{ __html: blogContent }}
-        />
-      </div>
-
-      <div className="post-subscribe-newsletter">
-        <div className="post-subscribe-box">
-          <input placeholder="Email" />
-          <button>Subscribe To Our Newsletter</button>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 

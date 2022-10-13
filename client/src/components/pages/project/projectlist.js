@@ -3,6 +3,7 @@ import "./projectlist.css";
 import ProjectItem from "./projectItem";
 import Axios from "axios";
 //import Navbar from "../Home/Navbar/navbar";
+import Navbar from "../../Home/Navbar/navbar";
 
 Axios.defaults.withCredentials = true;
 
@@ -28,6 +29,7 @@ function ProjectList() {
 
   return (
     <>
+      <Navbar />
       <div id="projectlist">
         <div
           style={{
