@@ -1,26 +1,27 @@
 import React from "react";
 import "./blog.css";
-import Markdown from "markdown-to-jsx";
-import { Navigate, useNavigate } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
+
+import * as DOMPurify from "dompurify";
 
 function BlogItem(props) {
   let navigate = useNavigate();
 
   let post = "";
-  if (props.blogposts.length > 200) {
-    post = props.blogposts.substring(0, 400) + "...";
+  const cleanBlogContent = DOMPurify.sanitize(props.blogposts);
+  if (cleanBlogContent.length > 400) {
+    post = cleanBlogContent.substring(0, 400) + "...";
   } else {
-    post = props.blogposts;
+    post = cleanBlogContent;
   }
   return (
     <div className="blog-post">
       <div className="heading">
         <h2>{props.title}</h2>
       </div>
-      <div className="text">
-        {" "}
-        <Markdown>{post}</Markdown>
-      </div>
+      <div className="text" dangerouslySetInnerHTML={{ __html: post }} />
+
       <button
         onClick={() => {
           navigate(`/post/${props.id}`);

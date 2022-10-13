@@ -1,17 +1,11 @@
 import React from "react";
 import "./footer.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 function Footer() {
   const navigate = useNavigate();
   const date = new Date().getFullYear();
-
-  const openLink = (url) => {
-    const newWindow = window.open(url, "_blank", "noopener,noreferrer");
-    if (newWindow) newWindow.opener = null;
-
-    console.log(url);
-  };
 
   return (
     <div id="footer">
@@ -21,18 +15,31 @@ function Footer() {
           <p className="footer-text">One stop shopforeverything nmachine</p>
         </section>
         <section className="footer-social-icons">
-          <a href="https://facebook.com" target={"_blank"}>
+          <a href="https://facebook.com" target={"_blank"} rel="noreferrer">
             <img src="./images/facebook.png" alt="img" />
           </a>
-          <a href="https://instagram.com" target={"_blank"}>
+          <a href="https://instagram.com" target={"_blank"} rel="noreferrer">
             <img src="./images/instagram.png" alt="img" />
           </a>
-          <a href="https://twitter.com" target={"_blank"}>
+          <a href="https://twitter.com" target={"_blank"} rel="noreferrer">
             <img src=" ./images/twitter.png" alt="img" />
           </a>
         </section>
         <div className="footer-terms">
-          <p>Terms And Conditions</p> <p>Private Policy</p>
+          <p
+            onClick={() => {
+              navigate("/termsandconditions");
+            }}
+          >
+            Terms And Conditions
+          </p>
+
+          <HashLink
+            className="private-policy"
+            to="/termsandconditions#private-policy"
+          >
+            <p>Private Policy</p>
+          </HashLink>
         </div>
         <h6>All Rights Reserved {date} </h6>
       </div>

@@ -99,7 +99,7 @@ export const ProjectsElement = (props) => {
       <p
         className="element-title"
         onClick={() => {
-          navigate(`/projects/${props.id}`);
+          navigate(`/project/${props.id}`);
         }}
       >
         {props.nameOfProject}

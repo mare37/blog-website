@@ -42,7 +42,9 @@ const getOneproject = (req, res) => {
         console.log(err);
         res.send("Failed to get project");
       }
-      res.status(200).send(result);
+      if (result) {
+        res.status(200).send(result);
+      }
     }
   );
 };

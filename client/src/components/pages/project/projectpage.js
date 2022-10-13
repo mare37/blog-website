@@ -6,22 +6,26 @@ import Navbar from "../../Home/Navbar/navbar";
 
 function ProjectPage() {
   const { projectId } = useParams();
-  const [projectInfo, setProjectInfo] = useState({
-    title: "",
-    projectDescription: "",
-  });
+  const [projectInfo, setProjectInfo] = useState({});
 
   useEffect(() => {
-    Axios.get(`http://localhost:8080/project/${projectId}`).then((response) => {
-      console.log(response.data[0]);
-      setProjectInfo(() => {
-        return {
+    Axios.get(`http://localhost:8080/project/${projectId}`)
+      .then((response) => {
+        console.log(response.data[0]);
+        setProjectInfo({
           title: response.data[0].nameOfProject,
           projectDescription: response.data[0].projectDescription,
-        };
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+
+        setProjectInfo({
+          title: "ERROR 404",
+          projectDescription: "ERROR!PROJECT MOVED OR DELETED",
+        });
       });
-    });
-  }, []);
+  }, [projectId]);
 
   return (
     <>

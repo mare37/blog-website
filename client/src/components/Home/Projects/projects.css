@@ -9,6 +9,21 @@
   margin: 0 auto;
 }
 
+.more-case-studies {
+  padding: 12px 30px;
+  border-radius: 20px;
+  background-color: rgb(118, 118, 244);
+  color: white;
+  margin-bottom: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.more-case-studies:hover {
+  background-color: blue;
+}
+
 #projects .project {
   width: 350px;
 
@@ -129,5 +144,8 @@
 
   #projects .project .image {
     max-width: 400px;
+  }
+  .more-case-studies {
+    display: none;
   }
 }

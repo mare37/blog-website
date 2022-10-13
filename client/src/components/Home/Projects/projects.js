@@ -1,9 +1,11 @@
 import React from "react";
 import "./projects.css";
 import Project from "./project";
+import { useNavigate } from "react-router-dom";
 
 //Data being drawn from the Homepage component!
 function Projects(props) {
+  const navigate = useNavigate();
   let data = props.projectsData.map((dataItem, index) => {
     return (
       <Project
@@ -22,6 +24,14 @@ function Projects(props) {
         RECENT <span>PROJECTS</span>
       </h1>
       {data}
+      <button
+        onClick={() => {
+          navigate("/projectlist");
+        }}
+        className="more-case-studies"
+      >
+        More Case Studies
+      </button>
     </div>
   );
 }

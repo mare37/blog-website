@@ -11,8 +11,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 Axios.defaults.withCredentials = true;
 
 function LogIn() {
-  const [submitButton, setSubmitButton] = useState(true);
-  const [recaptcha, setRecaptcha] = useState(false);
+  const [submitButton, setSubmitButton] = useState(false);
+  const [recaptcha, setRecaptcha] = useState(true);
 
   let navigate = useNavigate();
   const captchaRef = useRef(null);
@@ -30,8 +30,8 @@ function LogIn() {
     captchaRef.current.reset();
 
     if (token) {
-      //setSubmitButton(true);
-      //setRecaptcha(false);
+      setSubmitButton(true);
+      setRecaptcha(false);
     }
   };
 
@@ -55,7 +55,7 @@ function LogIn() {
       }
       // console.log(isAuth);
     });
-  }, []);
+  }, [navigate]);
 
   return (
     <div

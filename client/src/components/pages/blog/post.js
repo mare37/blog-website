@@ -12,18 +12,24 @@ function Post() {
   const [blogContent, setBlogContent] = React.useState("");
 
   React.useEffect(() => {
-    Axios.get(`http://localhost:8080/blogpost/${postId}`).then((data) => {
-      let cleanBlogContent = DOMPurify.sanitize(data.data[0].blogposts);
-      setBlogContent(cleanBlogContent);
-      setPost({
-        title: data.data[0].title,
-        date: data.data[0].date,
-        author: data.data[0].author,
-        time: data.data[0].time,
+    Axios.get(`http://localhost:8080/blogpost/${postId}`)
+      .then((data) => {
+        let cleanBlogContent = DOMPurify.sanitize(data.data[0].blogposts);
+        setBlogContent(cleanBlogContent);
+        setPost({
+          title: data.data[0].title,
+          date: data.data[0].date,
+          author: data.data[0].author,
+          time: data.data[0].time,
+        });
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err.data);
+        setPost({ title: "ERROR 404" });
+        setBlogContent("ERROR! POST MOVED OR DELETED");
       });
-      console.log(data);
-    });
-  }, []);
+  }, [postId]);
 
   return (
     <>

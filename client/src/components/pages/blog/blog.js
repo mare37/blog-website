@@ -45,12 +45,6 @@ function Blog() {
           <p className="top-heading">Latest Posts</p>
         </div>
         <div className="blog">{blogData}</div>
-        <div className="post-subscribe-newsletter">
-          <div className="post-subscribe-box">
-            <input placeholder="Email" />
-            <button>Subscribe To Our Newsletter</button>
-          </div>
-        </div>
       </div>
     </>
   );

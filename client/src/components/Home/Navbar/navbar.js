@@ -6,44 +6,12 @@ import { HashLink } from "react-router-hash-link";
 function Navbar() {
   let [click, setClick] = React.useState(true);
   let [headerScrollClass, setHeaderScrollClass] = React.useState(false);
-  // let [styleDiv, setStyle] = React.useState(false);
-  //  const ref = React.useRef(null);
 
   function handleClick() {
     setClick((preValue) => {
       return !preValue;
     });
   }
-
-  function changeMobileMenu() {
-    setClick((preValue) => {
-      return !preValue;
-    });
-    // console.log(click);
-  }
-
-  //
-
-  /* React.useEffect(() => {
-    setPath(window.location.pathname);
-  }, []);
-  console.log(window.location.pathname);*/
-
-  //-----------------------------------------------------------------
-
-  /*let list;
-  React.useEffect(() => {
-    list = Array.from(document.getElementsByClassName("unorder-list"));
-  }, []);
-
-  React.useEffect(() => {
-    const element = ref.current;
-    element.addEventListener("click", () => {
-      list[1].classList.toggle("active");
-    });
-  }, []);*/
-
-  //--------------------------------------------------------------------
 
   const changeBackground = () => {
     if (window.scrollY > 100) {
@@ -130,7 +98,7 @@ function Navbar() {
               </HashLink>
             </li>
             <li>
-              <HashLink className="list-item" to="/#about">
+              <HashLink className="list-item" to="/#about2">
                 ABOUT
               </HashLink>
             </li>

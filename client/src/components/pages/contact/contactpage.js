@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import "./contactpage.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
 import Navbar from "../../Home/Navbar/navbar";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const schema = yup.object().shape({
   fullName: yup.string().required(),
@@ -16,6 +17,22 @@ const schema = yup.object().shape({
 Axios.defaults.withCredentials = true;
 
 function ContactPage() {
+  const [submitButton, setSubmitButton] = useState(false);
+  const [recaptcha, setRecaptcha] = useState(true);
+  const [messageSent, setMessageSent] = useState(false);
+
+  const captchaRef = useRef(null);
+
+  const verify = () => {
+    const token = captchaRef.current.getValue();
+    captchaRef.current.reset();
+
+    if (token) {
+      setSubmitButton(true);
+      setRecaptcha(false);
+    }
+  };
+
   const options = {
     weekday: "long",
     year: "numeric",
@@ -46,6 +63,7 @@ function ContactPage() {
       },
     }).then((response) => {
       //window.location.reload();
+      setMessageSent(true);
 
       console.log(response);
       // alert("MESSAGE SENT SUCCESSFULLY!");
@@ -83,7 +101,19 @@ function ContactPage() {
             <p className="contact-error">Please enter a valid message</p>
           )}
 
-          <button type="submit">Submit</button>
+          {messageSent ? <div>MESSAGE SENT SUCCESSFULLY</div> : ""}
+
+          {recaptcha ? (
+            <ReCAPTCHA
+              sitekey={process.env.REACT_APP_SITE_KEY}
+              ref={captchaRef}
+              onChange={verify}
+            />
+          ) : (
+            ""
+          )}
+
+          {submitButton ? <button type="submit">Submit</button> : ""}
         </form>
       </div>
     </>

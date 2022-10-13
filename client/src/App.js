@@ -22,6 +22,7 @@ import ContactPage from "./components/pages/contact/contactpage";
 import Messages from "./components/pages/messages/messages";
 import ChangePassword from "./components/pages/changepassword/changepassword";
 import ResetPassword from "./components/pages/resetpassword/resetpassword";
+import TermsAndConditions from "./components/pages/termsandpolicy";
 
 function App() {
   if (window.scrollY > 300) {
@@ -46,6 +47,7 @@ function App() {
           <Route path="/login" element={<LogIn />} />
 
           <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="/termsandconditions" element={<TermsAndConditions />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="/createblog" element={<CreateBlog />} />
