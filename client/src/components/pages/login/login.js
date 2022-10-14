@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import schema from "./formValidation";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
+import site from "../../../site";
 
 Axios.defaults.withCredentials = true;
 
@@ -36,7 +37,7 @@ function LogIn() {
   };
 
   const submitInfo = (data) => {
-    Axios.post("http://localhost:8080/api/login", {
+    Axios.post(`http://${site.hostname}:${site.port}/api/login`, {
       email: data.email,
       password: data.password,
     }).then((response) => {
@@ -46,15 +47,17 @@ function LogIn() {
   };
 
   useEffect(() => {
-    Axios.get("http://localhost:8080/api/login").then((response) => {
-      //
-      if (response.data.login) {
-        console.log(response.data.login);
-        console.log("CODE 1 RAN");
-        navigate("/admin");
+    Axios.get(`http://${site.hostname}:${site.port}/api/login`).then(
+      (response) => {
+        //
+        if (response.data.login) {
+          console.log(response.data.login);
+          console.log("CODE 1 RAN");
+          navigate("/admin");
+        }
+        // console.log(isAuth);
       }
-      // console.log(isAuth);
-    });
+    );
   }, [navigate]);
 
   return (

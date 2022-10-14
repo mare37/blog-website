@@ -3,13 +3,14 @@ import Axios from "axios";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { useNavigate } from "react-router-dom";
+import site from "../../../site";
 
 function Delete(id, elementName) {
   console.log(id);
   if (elementName === "BlogPostsElement") {
     Axios({
       method: "delete",
-      url: "http://localhost:8080/blogpost",
+      url: `http://${site.hostname}:${site.port}/blogpost`,
       header: "application/json",
       data: { id: id },
     }).then((response) => {
@@ -18,7 +19,7 @@ function Delete(id, elementName) {
   } else {
     Axios({
       method: "delete",
-      url: "http://localhost:8080/project",
+      url: `http://${site.hostname}:${site.port}/project`,
       header: "application/json",
       data: { id: id },
     }).then((response) => {

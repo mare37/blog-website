@@ -5,6 +5,7 @@ import Axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import site from "../../../site";
 
 Axios.defaults.withCredentials = true;
 
@@ -15,15 +16,17 @@ function UpdateProject() {
   const [projectDescription, setProjectDescription] = useState("");
 
   useEffect(() => {
-    Axios.get(`http://localhost:8080/project/${postId}`).then((response) => {
-      console.log(response.data);
-      setProjectTitle(response.data[0].nameOfProject);
-      setProjectDescription(response.data[0].projectDescription);
-    });
+    Axios.get(`http://${site.hostname}:${site.port}/project/${postId}`).then(
+      (response) => {
+        console.log(response.data);
+        setProjectTitle(response.data[0].nameOfProject);
+        setProjectDescription(response.data[0].projectDescription);
+      }
+    );
   }, [postId]);
 
   const update = () => {
-    Axios.put(`http://localhost:8080/project/${postId}`, {
+    Axios.put(`http://${site.hostname}:${site.port}/project/${postId}`, {
       projectTitle: projectTitle,
       projectDescription: projectDescription,
     }).then((response) => {

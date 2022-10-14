@@ -6,6 +6,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useParams, useNavigate } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import site from "../../../site";
 
 Axios.defaults.withCredentials = true;
 
@@ -28,15 +29,17 @@ function UpdateBlog() {
   };
 
   useEffect(() => {
-    Axios.get(`http://localhost:8080/blogpost/${postId}`).then((response) => {
-      setTitle(response.data[0].title);
-      setBodyText(response.data[0].blogposts);
-    });
+    Axios.get(`http://${site.hostname}:${site.port}/blogpost/${postId}`).then(
+      (response) => {
+        setTitle(response.data[0].title);
+        setBodyText(response.data[0].blogposts);
+      }
+    );
   }, [postId]);
   //  console.log(bodyText);
 
   function updatePost() {
-    Axios.put(`http://localhost:8080/blogpost/${postId}`, {
+    Axios.put(`http://${site.hostname}:${site.port}/blogpost/${postId}`, {
       title: title,
       bodyText: bodyText,
       author: author,

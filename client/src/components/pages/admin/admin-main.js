@@ -4,6 +4,7 @@ import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import SideBar from "./admin-sidebar";
+import site from "../../../site";
 
 function Main() {
   let navigate = useNavigate();
@@ -14,15 +15,19 @@ function Main() {
 
   useEffect(() => {
     // Getting number of articles from the backend
-    Axios.get("http://localhost:8080/blogpost").then((response) => {
-      setNumberOfBlogPosts(response.data.length);
-      setBlogPosts(response.data.slice(0, 3));
-    });
+    Axios.get(`http://${site.hostname}:${site.port}/blogpost`).then(
+      (response) => {
+        setNumberOfBlogPosts(response.data.length);
+        setBlogPosts(response.data.slice(0, 3));
+      }
+    );
     //Getting number of projects from the backend
-    Axios.get("http://localhost:8080/project").then((response) => {
-      setNumberOfProjects(response.data.length);
-      setProjects(response.data.slice(0, 3));
-    });
+    Axios.get(`http://${site.hostname}:${site.port}/project`).then(
+      (response) => {
+        setNumberOfProjects(response.data.length);
+        setProjects(response.data.slice(0, 3));
+      }
+    );
   }, []);
 
   let blogPostsData = blogPosts.map((item, key) => {

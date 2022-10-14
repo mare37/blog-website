@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, Navigate } from "react-router-dom";
 //import LogIn from "./login";
 import Axios from "axios";
+import site from "../../site";
 
 Axios.defaults.withCredentials = true;
 
@@ -9,7 +10,7 @@ function ProtectedRoute() {
   const [isAuth, setAuth] = React.useState(null);
 
   React.useEffect(() => {
-    Axios.get("http://localhost:8080/api/login")
+    Axios.get(`http://${site.hostname}:${site.port}/api/login`)
       .then((response) => {
         //  console.log(response.data.message);
         // console.log(response);

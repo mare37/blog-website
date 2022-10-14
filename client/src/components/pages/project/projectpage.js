@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 import Axios from "axios";
 //CSS FROM BLOG PAGE blog.css
 import Navbar from "../../Home/Navbar/navbar";
+import site from "../../../site";
 
 function ProjectPage() {
   const { projectId } = useParams();
   const [projectInfo, setProjectInfo] = useState({});
 
   useEffect(() => {
-    Axios.get(`http://localhost:8080/project/${projectId}`)
+    Axios.get(`http://${site.hostname}:${site.port}/project/${projectId}`)
       .then((response) => {
         console.log(response.data[0]);
         setProjectInfo({

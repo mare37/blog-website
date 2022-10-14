@@ -9,6 +9,7 @@ import SideBar from "../admin/admin-sidebar";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 //Using css from createblog.css
+import site from "../../../site";
 
 Axios.defaults.withCredentials = true;
 
@@ -25,7 +26,7 @@ function AddProject() {
   };
 
   const submitProject = () => {
-    Axios.post("http://localhost:8080/project", {
+    Axios.post(`http://${site.hostname}:${site.port}/project`, {
       projectTitle: projectTitle,
       projectDescription: projectDescription,
       dateAndTime: {

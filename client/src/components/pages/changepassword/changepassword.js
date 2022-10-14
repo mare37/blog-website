@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./changepassword.css";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import site from "../../../site";
 
 Axios.defaults.withCredentials = true;
 
@@ -19,7 +20,7 @@ function ChangePassword() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:8080/api/resetpassword", {
+    Axios.post(`http://${site.hostname}:${site.port}/api/resetpassword`, {
       email: email,
       currentPassword: currentPassword,
       newPassword: newPassword,
@@ -28,9 +29,11 @@ function ChangePassword() {
         console.log(response.data);
         setPassword(response.data.auth);
 
-        Axios.get("http://localhost:8080/api/logout").then((response) => {
-          console.log(response);
-        });
+        Axios.get(`http://${site.hostname}:${site.port}/api/logout`).then(
+          (response) => {
+            console.log(response);
+          }
+        );
       })
       .catch((err) => {
         //auth is false
@@ -61,7 +64,7 @@ function ChangePassword() {
     try {
       const res = await Axios({
         method: "post",
-        url: "http://localhost:8080/resume",
+        url: `http://${site.hostname}:${site.port}/resume`,
         withCredentials: true,
         header: { "content-Type": "multipart-/form-data" },
         data: formData,
@@ -82,7 +85,7 @@ function ChangePassword() {
     try {
       const res = await Axios({
         method: "post",
-        url: "http://localhost:8080/photo",
+        url: `http://${site.hostname}:${site.port}/photo`,
         withCredentials: true,
         header: { "content-Type": "multipart-/form-data" },
         data: formData,

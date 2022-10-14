@@ -3,6 +3,7 @@ import "./admin-navbar.css";
 import Axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import site from "../../../site";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -12,26 +13,30 @@ function Navbar() {
   let [clickDropMenu, setclickDropMenu] = useState(false);
 
   const logOut = () => {
-    Axios.get("http://localhost:8080/api/logout").then((response) => {
-      console.log(response);
-      navigate("/login");
-    });
+    Axios.get(`http://${site.hostname}:${site.port}/api/logout`).then(
+      (response) => {
+        console.log(response);
+        navigate("/login");
+      }
+    );
   };
 
   useEffect(() => {
-    Axios.get("http://localhost:8080/contact").then((response) => {
-      console.log(response.data);
-      setMessagesArray(response.data);
-      const unReadMessages = messagesArray.filter((item) => {
-        if (item.status === "unread") {
-          console.log(item.status);
-          return true;
-        } else {
-          return false;
-        }
-      });
-      setNumberOfMessages(unReadMessages.length);
-    });
+    Axios.get(`http://${site.hostname}:${site.port}/contact`).then(
+      (response) => {
+        console.log(response.data);
+        setMessagesArray(response.data);
+        const unReadMessages = messagesArray.filter((item) => {
+          if (item.status === "unread") {
+            console.log(item.status);
+            return true;
+          } else {
+            return false;
+          }
+        });
+        setNumberOfMessages(unReadMessages.length);
+      }
+    );
   }, [numberOfMessages]);
 
   //setNumberOfMessages(unReadMessages.length);

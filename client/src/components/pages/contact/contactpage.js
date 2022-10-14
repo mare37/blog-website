@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import Axios from "axios";
 import Navbar from "../../Home/Navbar/navbar";
 import ReCAPTCHA from "react-google-recaptcha";
+import site from "../../../site";
 
 const schema = yup.object().shape({
   fullName: yup.string().required(),
@@ -51,7 +52,7 @@ function ContactPage() {
   const submitForm = (data) => {
     //console.log(data);
 
-    Axios.post("http://localhost:8080/contact", {
+    Axios.post(`http://${site.hostname}:${site.port}/contact`, {
       fullName: data.fullName,
       email: data.email,
       phoneNumber: data.phoneNumber,

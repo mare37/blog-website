@@ -4,16 +4,19 @@ import ProjectItem from "./projectItem";
 import Axios from "axios";
 //import Navbar from "../Home/Navbar/navbar";
 import Navbar from "../../Home/Navbar/navbar";
+import site from "../../../site";
 
 Axios.defaults.withCredentials = true;
 
 function ProjectList() {
   const [projects, setProjects] = useState([]);
   useEffect(() => {
-    Axios.get("http://localhost:8080/project").then((response) => {
-      console.log(response.data);
-      setProjects(response.data);
-    });
+    Axios.get(`http://${site.hostname}:${site.port}/project`).then(
+      (response) => {
+        console.log(response.data);
+        setProjects(response.data);
+      }
+    );
   }, []);
 
   let projectData = projects.map((item, key) => {

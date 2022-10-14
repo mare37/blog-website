@@ -8,6 +8,7 @@ import SideBar from "../admin/admin-sidebar";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { useNavigate } from "react-router-dom";
+import site from "../../../site";
 
 Axios.defaults.withCredentials = true;
 
@@ -26,7 +27,7 @@ function CreateBlog() {
   };
 
   function submitPost() {
-    Axios.post("http://localhost:8080/blogpost", {
+    Axios.post(`http://${site.hostname}:${site.port}/blogpost`, {
       title: title,
       id: 1,
       bodyText: bodyText,

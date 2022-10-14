@@ -6,6 +6,7 @@ import Axios from "axios";
 import { BlogPostsElement, ProjectsElement } from "./elements";
 import NavBar from "../admin/admin-navbar";
 import SideBar from "../admin/admin-sidebar";
+import site from "../../../site";
 
 Axios.defaults.withCredentials = true;
 
@@ -24,14 +25,18 @@ function ArticlesAndProjects() {
 
   useEffect(() => {
     // Getting blog posts from the backend
-    Axios.get("http://localhost:8080/blogpost", {}).then((response) => {
-      console.log(response.data);
-      setBlogPosts(response.data);
-    });
+    Axios.get(`http://${site.hostname}:${site.port}/blogpost`, {}).then(
+      (response) => {
+        console.log(response.data);
+        setBlogPosts(response.data);
+      }
+    );
     //Getting number of projects from the backend
-    Axios.get("http://localhost:8080/project").then((response) => {
-      setProjects(response.data);
-    });
+    Axios.get(`http://${site.hostname}:${site.port}/project`).then(
+      (response) => {
+        setProjects(response.data);
+      }
+    );
   }, []);
 
   let blogPostsData = blogPosts

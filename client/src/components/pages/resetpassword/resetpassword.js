@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import "./resetpassword.css";
 import ReCAPTCHA from "react-google-recaptcha";
+import site from "../../../site";
 
 Axios.defaults.withCredentials = true;
 
@@ -42,7 +43,7 @@ function ResetPassword() {
     console.log(data.email);
     setSubmitButton(false);
 
-    Axios.post("http://localhost:8080/api/forgotpassword", {
+    Axios.post(`http://${site.hostname}:${site.port}/api/forgotpassword`, {
       email: data.email,
     }).then((response) => {
       //navigate("/admin");

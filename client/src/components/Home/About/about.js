@@ -1,14 +1,14 @@
 import React from "react";
 import "./about.css";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+
+import site from "../../../site";
 
 Axios.defaults.withCredentials = true;
 
 function About(props) {
-  const navigate = useNavigate();
   const downloadResume = () => {
-    Axios.get("http://localhost:8080/resume")
+    Axios.get(`http://${site.hostname}:${site.port}/resume`)
       .then((response) => {})
       .catch((err) => {
         console.log(err);

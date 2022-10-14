@@ -3,6 +3,7 @@ import Axios from "axios";
 import { useParams } from "react-router-dom";
 import "./posts.css";
 import Navbar from "../../Home/Navbar/navbar";
+import site from "../../../site";
 
 import * as DOMPurify from "dompurify";
 
@@ -12,7 +13,7 @@ function Post() {
   const [blogContent, setBlogContent] = React.useState("");
 
   React.useEffect(() => {
-    Axios.get(`http://localhost:8080/blogpost/${postId}`)
+    Axios.get(`http://${site.hostname}:${site.port}/blogpost/${postId}`)
       .then((data) => {
         let cleanBlogContent = DOMPurify.sanitize(data.data[0].blogposts);
         setBlogContent(cleanBlogContent);

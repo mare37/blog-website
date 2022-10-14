@@ -4,6 +4,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const { validateToken } = require("./JWT");
 const bodyParser = require("body-parser");
+const site = require("./config/site");
 
 //importing routes
 const postsRoute = require("./routes/posts");
@@ -42,6 +43,6 @@ app.get("/", validateToken, (req, res) => {
   res.send("HOME");
 });
 
-app.listen(8080, () => {
-  console.log(`Server running...`);
+app.listen(site.port, () => {
+  console.log(`Server running on port ${site.port}...`);
 });

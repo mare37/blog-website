@@ -3,13 +3,16 @@ import "./blog.css";
 import BlogItem from "./blogitem";
 import Axios from "axios";
 import Navbar from "../../Home/Navbar/navbar";
+import site from "../../../site";
 
 function Blog() {
   const [postList, setPostList] = React.useState([]);
   React.useEffect(() => {
-    Axios.get("http://localhost:8080/blogpost").then((postsData) => {
-      setPostList(postsData.data);
-    });
+    Axios.get(`http://${site.hostname}:${site.port}/blogpost`).then(
+      (postsData) => {
+        setPostList(postsData.data);
+      }
+    );
   }, []);
 
   let blogData = postList

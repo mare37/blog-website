@@ -3,6 +3,7 @@ import Axios from "axios";
 import Navbar from "../admin/admin-navbar";
 import SideBar from "../admin/admin-sidebar";
 //import MessageElement from "./messagesElements";
+import site from "../../../site";
 
 import "./messages.css";
 
@@ -18,14 +19,16 @@ function Messages() {
   });
 
   const reloadContacts = () => {
-    Axios.get("http://localhost:8080/contact").then((response) => {
-      setMessagesArray(response.data);
-      setNumberOfMessages(response.data.length);
-    });
+    Axios.get(`http://${site.hostname}:${site.port}/contact`).then(
+      (response) => {
+        setMessagesArray(response.data);
+        setNumberOfMessages(response.data.length);
+      }
+    );
   };
 
   const handleReadStatus = (id) => {
-    Axios.put("http://localhost:8080/contact", {
+    Axios.put(`http://${site.hostname}:${site.port}/contact`, {
       id: id,
     });
   };
@@ -33,7 +36,7 @@ function Messages() {
   const handleDeleteAll = () => {
     Axios({
       method: "delete",
-      url: "http://localhost:8080/contact",
+      url: `http://${site.hostname}:${site.port}/contact`,
     }).then((response) => {
       console.log(response.data);
     });
@@ -44,7 +47,7 @@ function Messages() {
     console.log(id);
     Axios({
       method: "delete",
-      url: `http://localhost:8080/contact/${id}`,
+      url: `http://${site.hostname}:${site.port}/contact/${id}`,
       header: "application/json",
     }).then((response) => {
       console.log(response.data);
@@ -94,11 +97,13 @@ function Messages() {
   };
 
   useEffect(() => {
-    Axios.get("http://localhost:8080/contact").then((response) => {
-      console.log(response.data);
-      setMessagesArray(response.data);
-      setNumberOfMessages(response.data.length);
-    });
+    Axios.get(`http://${site.hostname}:${site.port}/contact`).then(
+      (response) => {
+        console.log(response.data);
+        setMessagesArray(response.data);
+        setNumberOfMessages(response.data.length);
+      }
+    );
   }, []);
 
   let messagesData = messagesArray

@@ -35,6 +35,7 @@
   border: none;
   color: crimson;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .admin-navigationbar button:hover {
