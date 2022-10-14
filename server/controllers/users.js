@@ -6,6 +6,7 @@ const nodemailer = require("nodemailer");
 const { render } = require("ejs");
 require("dotenv").config();
 const { body, validationResult } = require("express-validator");
+const site = require("../config/site");
 //const bodyParser = require("body-parser");
 
 const logIn = (req, res) => {
@@ -157,7 +158,7 @@ const getUserEmail = (req, res) => {
         secure: true,
       });
 
-      const path = "http://localhost:8080/api/forgotpassword";
+      const path = `http://${site.hostname}:${site.port}/api/forgotpassword`;
       const link = path + "/" + token;
       console.log(link);
 
