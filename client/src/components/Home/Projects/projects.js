@@ -20,7 +20,7 @@ function Projects(props) {
 
   return (
     <div id="projects">
-      <h1 className="main-heading">
+      <h1 id="main-heading" className="main-heading">
         RECENT <span>PROJECTS</span>
       </h1>
       {data}

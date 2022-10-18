@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./contactpage.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,6 +7,8 @@ import Axios from "axios";
 import Navbar from "../../Home/Navbar/navbar";
 import ReCAPTCHA from "react-google-recaptcha";
 import site from "../../../site";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const schema = yup.object().shape({
   fullName: yup.string().required(),
@@ -18,6 +20,10 @@ const schema = yup.object().shape({
 Axios.defaults.withCredentials = true;
 
 function ContactPage() {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   const [submitButton, setSubmitButton] = useState(false);
   const [recaptcha, setRecaptcha] = useState(true);
   const [messageSent, setMessageSent] = useState(false);
@@ -76,14 +82,18 @@ function ContactPage() {
       <Navbar />
       <div id="contact-page">
         <div className="contact-text">
-          <h1>Let’s get in touch!</h1>
-          <p>
+          <h1 data-aos="fade-up">Let’s get in touch!</h1>
+          <p data-aos="fade-up">
             Have a project in mind? Fill in the form and we’ll get in touch with
             you shortly.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit(submitForm)} className="contact-form">
+        <form
+          data-aos="fade-up"
+          onSubmit={handleSubmit(submitForm)}
+          className="contact-form"
+        >
           <input placeholder="Full Name" {...register("fullName")} />
           {errors.fullName && (
             <p className="contact-error">Please enter a valid name</p>
@@ -114,7 +124,13 @@ function ContactPage() {
             ""
           )}
 
-          {submitButton ? <button type="submit">Submit</button> : ""}
+          {submitButton ? (
+            <button data-aos="fade-up" type="submit">
+              Submit
+            </button>
+          ) : (
+            ""
+          )}
         </form>
       </div>
     </>

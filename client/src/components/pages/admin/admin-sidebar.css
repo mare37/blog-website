@@ -6,7 +6,7 @@
   background-color: #212529;
   position: absolute;
   top: 150px;
-  left: -140%;
+  left: -150%;
 }
 
 @media only screen and (min-width: 1200px) {

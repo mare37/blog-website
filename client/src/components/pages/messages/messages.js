@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Navbar from "../admin/admin-navbar";
 import SideBar from "../admin/admin-sidebar";
+import { Link } from "react-router-dom";
 //import MessageElement from "./messagesElements";
 import site from "../../../site";
 
@@ -139,10 +140,14 @@ function Messages() {
       <Navbar />
       {messagesTab ? (
         <div className="messages-container">
+          <Link to={"/admin"}>
+            <p className="back-to-dashboard">Back to Dashboard</p>
+          </Link>
+
           <div className="messages-inner-container">
             <div className="messages-heading">
               <div className="messages-information-container">
-                <p className="messages-sender-name">Sender Name</p>
+                <p className="messages-sender-name">Sender</p>
                 <p className="messages-sender-message">Message</p>
                 <p className="messages-date">Date</p>
               </div>

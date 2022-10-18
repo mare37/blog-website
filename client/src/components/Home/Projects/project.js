@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./projects.css";
 import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Project(props) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
   return (
     <div
       onClick={() => {
         navigate(`/project/${props.id}`);
       }}
       className="project"
+      data-aos="fade-up"
     >
       <section className="content">
         <h1 className="content-heading">{props.heading1}</h1>

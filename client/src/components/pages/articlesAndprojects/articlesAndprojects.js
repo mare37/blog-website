@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import "./articlesAndprojects.css";
 import Axios from "axios";
@@ -83,6 +84,10 @@ function ArticlesAndProjects() {
         <NavBar />
         <div className="main-bar">
           <div className="main-content">
+            <Link to={"/admin"}>
+              <p className="back-to-dashboard">Back to Dashboard</p>
+            </Link>
+
             <div className="postsAndprojects-heading">
               <button
                 className={projectOrPost ? "active" : ""}
@@ -107,7 +112,11 @@ function ArticlesAndProjects() {
                   </div>
                 </div>
 
-                {blogPosts.length === 0 ? "No posts to show" : blogPostsData}
+                {blogPosts.length === 0 ? (
+                  <p className="messages-inbox-empty">No Posts</p>
+                ) : (
+                  blogPostsData
+                )}
               </div>
             ) : (
               <div className={"blogposts"}>
@@ -117,14 +126,12 @@ function ArticlesAndProjects() {
                   <p className="date-and-buttons">Created</p>
                 </div>
                 {projects.length === 0 ? (
-                  <p className="no-projects-posts">No projects to show </p>
+                  <p className="messages-inbox-empty">No projects</p>
                 ) : (
                   projectsData
                 )}
               </div>
             )}
-
-            <div className="adm-buffer"></div>
           </div>
         </div>
       </div>

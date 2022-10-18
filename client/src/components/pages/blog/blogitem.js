@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./blog.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 import { useNavigate } from "react-router-dom";
 
 import * as DOMPurify from "dompurify";
 
 function BlogItem(props) {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
   let navigate = useNavigate();
 
   let post = "";
@@ -16,7 +21,7 @@ function BlogItem(props) {
     post = cleanBlogContent;
   }
   return (
-    <div className="blog-post">
+    <div data-aos="fade-up" className="blog-post">
       <div className="heading">
         <h2>{props.title}</h2>
       </div>

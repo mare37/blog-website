@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./changepassword.css";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import site from "../../../site";
 
 Axios.defaults.withCredentials = true;
@@ -113,6 +113,11 @@ function ChangePassword() {
         </div>
       ) : (
         <div className="changepassword-main">
+          <Link to={"/admin"}>
+            {" "}
+            <p className="back-to-dashboard">Back to Dashboard</p>{" "}
+          </Link>
+
           <div className="changepassword">
             <form className="changepassword-form">
               <input

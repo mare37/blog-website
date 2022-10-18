@@ -2,10 +2,16 @@ import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./navbar.css";
 import { HashLink } from "react-router-hash-link";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Navbar() {
   let [click, setClick] = React.useState(true);
   let [headerScrollClass, setHeaderScrollClass] = React.useState(false);
+
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
 
   function handleClick() {
     setClick((preValue) => {
@@ -69,7 +75,8 @@ function Navbar() {
               />
             </Link>
           </section>
-          <Link to="/projectlist">
+
+          <Link className="navbar-button-container" to="/projectlist">
             <button className="navbar-contact-us">Case Studies</button>
           </Link>
 

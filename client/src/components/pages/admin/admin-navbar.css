@@ -24,7 +24,7 @@
 
 .admin-navigationbar p {
   margin-right: 30px;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .admin-navigationbar button {
@@ -138,10 +138,14 @@
   background-color: white;
   box-shadow: 0 0 18px 0px rgb(208, 204, 204);
   transition: 1000ms ease top;
+  width: 120px;
+}
+.admin-navbar-options p {
+  height: 20px;
 }
 
 .admin-navbar-options.active {
-  top: -500%;
+  top: -600%;
   transition: 1000ms ease top;
 }
 
@@ -179,13 +183,13 @@
   width: 100vw;
   position: absolute;
   padding: 0 10px;
-  top: 0;
+  top: -15px;
 
   left: 300%;
   overflow-x: hidden;
   z-index: 1004;
-  background-color: rgb(10, 10, 21);
-  padding: 25px 0;
+  background-color: rgb(10, 10, 21, 0.9);
+
   border-radius: 25px;
 
   transition: 1000ms ease left;
@@ -202,6 +206,21 @@
   margin-bottom: 40px;
 
   margin-right: 100px;
+}
+
+@media only screen and (min-width: 768px) {
+  .dashboard-link {
+    color: black;
+    position: absolute;
+    left: 0%;
+  }
+
+  .admin-navigationbar {
+    justify-content: flex-end;
+  }
+  .admin-unorder-list.active {
+    left: -50%;
+  }
 }
 
 @media only screen and (min-width: 1200px) {

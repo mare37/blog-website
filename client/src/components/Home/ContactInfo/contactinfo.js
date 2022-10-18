@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./contactinfo.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function ContactInfo() {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
   return (
     <div id="contactInfo">
       <div className="contactInfo-container">
-        <section className="contactInfo-main-heading">
+        <section data-aos="fade-up" className="contactInfo-main-heading">
           <h1>
             CONTACT <span>INFO</span>
           </h1>
         </section>
-        <div className="contactInfo-item-container">
+        <div data-aos="fade-up" className="contactInfo-item-container">
           <section className="contactInfo-item">
             <img
               className="contactInfo-image"

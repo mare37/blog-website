@@ -1,5 +1,6 @@
 #admin-mainbar {
   width: 100vw;
+  background-color: rgb(238, 238, 238);
 }
 .admin-mainbar {
 }
@@ -33,9 +34,9 @@
   align-items: center;
   justify-content: center;*/
 
-  height: 150px;
+  height: 120px;
   width: 250px;
-  border-radius: 10px;
+  border-radius: 30%;
   border-width: 1px;
   padding: 30px;
 
@@ -52,7 +53,7 @@
   display: inline-block;
   vertical-align: top;
   padding-bottom: 20px;
-  color: rgb(2, 57, 89);
+  color: rgb(2, 84, 132);
   font-weight: bolder;
   font-size: 30px;
 
@@ -72,7 +73,7 @@
   width: 170px;
   border-bottom: solid;
   border-bottom-width: 1px;
-  border-bottom-color: rgb(2, 57, 89);
+  border-bottom-color: rgb(2, 84, 132);
 }
 
 .admin-contentcontainer h3 {
@@ -103,9 +104,9 @@
   padding-top: 30px;
   padding-bottom: 40px;*/
 
-  height: 300px;
-  width: 300px;
-  border-radius: 10px;
+  height: 200px;
+  width: 250px;
+  border-radius: 20%;
   border-width: 1px;
   padding: 30px;
 

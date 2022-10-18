@@ -17,6 +17,7 @@
   flex-direction: column;
 
   justify-content: center;
+  margin-top: 60px;
 }
 
 .about-image {
@@ -24,37 +25,65 @@
   width: 250px;
 }
 
-#about .text-container h1 {
+.about-me {
   margin-bottom: 20px;
   font-weight: 500;
   letter-spacing: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-#about .text-container span {
+.about-me span {
   color: crimson;
   font-weight: 500;
 }
 
-#about .text-container h3 {
-  font-weight: 700;
-  margin-bottom: 10px;
+.about-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.text-container {
 }
 
-#about .text-container p {
-  text-align: left;
+.text-container h3 {
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.text-container p {
+  text-align: center;
   margin-bottom: 50px;
   line-height: 30px;
 }
 
-#about .text-container .button {
-  color: black;
+.about-button {
   margin-bottom: 50px;
+
+  display: inline-block;
+  padding: 10px 30px;
+  color: black;
+  background-color: transparent;
+  border: 2px solid crimson;
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+  margin-top: 30px;
 }
+
+.about-button:hover {
+  color: black;
+  background-color: crimson;
+}
+
 .image-container {
   position: relative;
 }
 
-#about .image-container::after {
+.image-container::after {
   content: "";
   position: absolute;
   left: -33px;
@@ -67,28 +96,28 @@
 }
 
 @media only screen and (min-width: 768px) {
-  #about {
+  .about-main-container {
     display: flex;
-    justify-content: center;
-    padding: 50px;
-
-    flex-direction: row-reverse;
-  }
-  .about-image {
+    flex-direction: row;
+    padding: 40px;
   }
 
-  #about .text-container h1 {
-    text-align: left;
-  }
-
-  .image-container {
-    margin-right: 50px;
+  .text-container {
+    margin-left: 30px;
   }
 }
 
 @media only screen and (min-width: 1200px) {
-  #about {
+  .about-main-container {
     display: flex;
-    width: 700px;
+    flex-direction: row;
+
+    padding: 40px;
+    width: 70%;
+  }
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: -10px;
   }
 }

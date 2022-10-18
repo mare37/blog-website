@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./blog.css";
 import BlogItem from "./blogitem";
 import Axios from "axios";
 import Navbar from "../../Home/Navbar/navbar";
 import site from "../../../site";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Blog() {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
   const [postList, setPostList] = React.useState([]);
   React.useEffect(() => {
     Axios.get(`http://${site.hostname}:${site.port}/blogpost`).then(
@@ -45,7 +50,9 @@ function Blog() {
           }}
           className="blog-image"
         >
-          <p className="top-heading">Latest Posts</p>
+          <p data-aos="fade-up" className="top-heading">
+            Latest Posts
+          </p>
         </div>
         <div className="blog">{blogData}</div>
       </div>
