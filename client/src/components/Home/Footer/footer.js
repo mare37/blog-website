@@ -24,6 +24,12 @@ function Footer() {
           <a href="https://twitter.com" target={"_blank"} rel="noreferrer">
             <img src=" ./images/twitter.png" alt="img" />
           </a>
+          <a href="https://linkedin.com" target={"_blank"} rel="noreferrer">
+            <img src=" ./images/linkedin.png" alt="img" />
+          </a>
+          <a href="https://github.com" target={"_blank"} rel="noreferrer">
+            <img src=" ./images/github.png" alt="img" />
+          </a>
         </section>
         <div className="footer-terms">
           <p

@@ -34,11 +34,12 @@
   align-items: center;
   justify-content: center;*/
 
-  height: 120px;
+  height: 100px;
   width: 250px;
   border-radius: 30%;
   border-width: 1px;
   padding: 30px;
+  background-color: rgb(255, 255, 255);
 
   border-color: rgb(245, 242, 242);
   box-shadow: 0 0 18px 0px rgb(208, 204, 204);
@@ -109,6 +110,7 @@
   border-radius: 20%;
   border-width: 1px;
   padding: 30px;
+  background-color: rgb(255, 255, 255);
 
   border-color: rgb(245, 242, 242);
   box-shadow: 0 0 18px 0px rgb(208, 204, 204);

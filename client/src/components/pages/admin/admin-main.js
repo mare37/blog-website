@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import SideBar from "./admin-sidebar";
 import site from "../../../site";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Main() {
   let navigate = useNavigate();
@@ -12,6 +14,10 @@ function Main() {
   const [numberOfProjects, setNumberOfProjects] = useState(null);
   const [blogPosts, setBlogPosts] = useState([]);
   const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    AOS.init({});
+  }, []);
 
   useEffect(() => {
     // Getting number of articles from the backend
@@ -72,7 +78,7 @@ function Main() {
       <div>
         <div className="admin-maincontent">
           <div className="admin-contentcontainer">
-            <div>
+            <div data-aos-duration="1000" data-aos="zoom-in">
               <HashLink to="/articlesandprojects#postsAndprojects-heading-1">
                 <span>{`>>`}</span>
               </HashLink>
@@ -82,7 +88,7 @@ function Main() {
                 <h3>{numberOfBlogPosts}</h3>
               </section>
             </div>
-            <div>
+            <div data-aos="zoom-in" data-aos-duration="2000">
               <HashLink to="/articlesandprojects#postsAndprojects-heading-2">
                 <span>{`>>`}</span>
               </HashLink>
@@ -91,7 +97,7 @@ function Main() {
                 <h3>{numberOfProjects}</h3>
               </section>
             </div>
-            <div>
+            <div data-aos="zoom-in" data-aos-duration="3000">
               <span>{`>>`}</span>
               <section>
                 <p>WEBSITE VISITORS</p>
@@ -100,12 +106,12 @@ function Main() {
             </div>
           </div>
           <div className="admin-contentcontainer2">
-            <div>
+            <div data-aos="fade-up" data-aos-duration="2000">
               <section>
                 <p className="admin-blogpostpreview-headings">
                   RECENT BLOG POSTS
                 </p>
-                {blogPostsData}
+                {blogPostsData.length === 0 ? "No recent posts" : blogPostsData}
               </section>
 
               <section className="admin-preview-button">
@@ -118,7 +124,7 @@ function Main() {
                 </button>
               </section>
             </div>
-            <div>
+            <div data-aos="fade-up" data-aos-duration="2000">
               <section>
                 <p className="admin-blogpostpreview-headings">
                   RECENT PROJECTS

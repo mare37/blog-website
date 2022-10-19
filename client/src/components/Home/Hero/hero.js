@@ -20,10 +20,14 @@ function Hero() {
         className="hero"
       >
         <div className="container">
-          <h1 data-aos="fade-up" className="container-heading">
+          <h1
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            className="container-heading"
+          >
             The Top Machine Learning Experts. For Real Results. On Time
           </h1>
-          <p data-aos="fade-up" className="body-text">
+          <p data-aos="fade-up" data-aos-duration="3000" className="body-text">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type

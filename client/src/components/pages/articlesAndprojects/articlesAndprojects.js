@@ -107,7 +107,7 @@ function ArticlesAndProjects() {
                 <div id="element-container2">
                   <div className="element-container2">
                     <p className="element-id">Id</p>
-                    <p className="element-title">Blog Post Title</p>
+                    <p className="element-title">Post</p>
                     <p className="date-and-buttons">Created</p>
                   </div>
                 </div>

@@ -17,7 +17,7 @@
 }
 
 .blogposts {
-  background-color: rgb(230, 239, 245);
+  background-color: rgb(227, 230, 232);
   height: 250px;
   overflow: scroll;
   overflow-x: hidden;
@@ -178,7 +178,9 @@
 
 .postsAndprojects-heading button.active {
   color: white;
-  background-color: blue;
+  background-color: #6e6ed4;
+  border: none;
+  outline: none;
 }
 
 .postsAndprojects-heading .adm-p1 {
@@ -201,7 +203,7 @@
 .back-to-dashboard {
   margin-top: 20px;
   margin-bottom: 50px;
-  color: blue;
+  color: black;
   text-decoration: underline;
 }
 
