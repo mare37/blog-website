@@ -51,7 +51,7 @@ function ArticlesAndProjects() {
       return (
         <BlogPostsElement
           key={key}
-          id={item.id}
+          id={item.posts_id}
           title={title}
           date={item.date}
           time={item.time}

@@ -35,7 +35,7 @@ const getOneproject = (req, res) => {
   const { projectId } = req.params;
   console.log(projectId);
   db.query(
-    "SELECT * FROM projects WHERE idprojects = ?",
+    "SELECT * FROM projects WHERE projects_id = ?",
     [projectId],
     (err, result) => {
       if (err) {

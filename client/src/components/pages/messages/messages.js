@@ -29,6 +29,8 @@ function Messages() {
   };
 
   const handleReadStatus = (id) => {
+    console.log("handle read status");
+    console.log(id);
     Axios.put(`http://${site.hostname}:${site.port}/contact`, {
       id: id,
     });
@@ -118,7 +120,7 @@ function Messages() {
       return (
         <MessageElement
           key={key}
-          id={item.idcontactinfo}
+          id={item.contactinfo_id}
           fullName={item.fullname}
           email={item.email}
           date={item.date}

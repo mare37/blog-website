@@ -13,6 +13,7 @@ function Post() {
   const [blogContent, setBlogContent] = React.useState("");
 
   React.useEffect(() => {
+    console.log(postId);
     Axios.get(`http://${site.hostname}:${site.port}/blogpost/${postId}`)
       .then((data) => {
         let cleanBlogContent = DOMPurify.sanitize(data.data[0].blogposts);

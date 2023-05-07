@@ -50,6 +50,7 @@ const confirm = (id, elementName) => {
   });
 };
 
+
 //blogs element
 export function BlogPostsElement(props) {
   const navigate = useNavigate();

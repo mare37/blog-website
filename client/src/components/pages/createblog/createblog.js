@@ -27,6 +27,12 @@ function CreateBlog() {
   };
 
   function submitPost() {
+
+
+    
+
+
+
     Axios.post(`http://${site.hostname}:${site.port}/blogpost`, {
       title: title,
       id: 1,

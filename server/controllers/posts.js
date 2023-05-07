@@ -33,10 +33,13 @@ const getAllBlogPosts = (req, res) => {
   });
 };
 
+
 const getOneBlogPost = (req, res) => {
   const { postId } = req.params;
 
-  db.query(`SELECT * FROM posts WHERE id = ${postId} `, (err, result) => {
+  console.log(postId);
+
+  db.query(`SELECT * FROM posts WHERE posts_id = ?`,[postId], (err, result) => {
     if (err) {
       console.log(err);
       res.status(404).send(err);

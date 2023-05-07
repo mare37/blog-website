@@ -68,7 +68,7 @@ const register = (req, res) => {
         if (err) {
           res.status(404).send(err);
         } else {
-          restatus(200).send("USER REGISTERED");
+          res.status(200).send("USER REGISTERED");
         }
       }
     );

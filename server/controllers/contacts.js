@@ -4,7 +4,7 @@ const db = require("../config/database");
 const postContact = (req, res) => {
   const fullName = req.body.fullName;
   const email = req.body.email;
-  const phoneNumber = req.body.phoneNumber;
+  const phoneNumber = req.body.phoneNumber
   const message = req.body.message;
   const status = req.body.status;
   const date = req.body.dateAndTime.date;
@@ -12,10 +12,11 @@ const postContact = (req, res) => {
   console.log(date);
 
   db.query(
-    "INSERT INTO contactinfo (fullName,email,phoneNumber,message,status,date,time) VALUES (?,?,?,?,?,?,?)",
-    [fullName, email, phoneNumber, message, status, date, time],
+    "INSERT INTO contactinfo (fullname,email,phonenumber,message,status,date,time) VALUES (?,?,?,?,?,?,?)",
+    [fullName, email, phoneNumber.toString(), message, status, date, time],
     (err, result) => {
       if (err) {
+        console.log(err);
         res.send(err);
       }
 
@@ -38,10 +39,11 @@ const changeReadStatus = (req, res) => {
   const id = req.body.id;
   console.log(id);
   db.query(
-    "UPDATE contactinfo SET status = ?  WHERE idcontactinfo = ?",
+    "UPDATE contactinfo SET status = ?  WHERE contactinfo_id = ?",
     [status, id],
     (err, response) => {
       if (err) {
+        console.log(err);
         res.status(400).send(err);
       }
       res.status(200).send(response);
@@ -53,7 +55,7 @@ const deleteOneMesage = (req, res) => {
   const { id } = req.params;
   console.log(id);
   db.query(
-    "DELETE FROM contactinfo WHERE idcontactinfo = ?",
+    "DELETE FROM contactinfo WHERE contactinfo_id = ?",
     [id],
     (err, response) => {
       if (err) {

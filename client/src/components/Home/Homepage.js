@@ -11,6 +11,7 @@ import site from "../../site";
 
 Axios.defaults.withCredentials = true;
 
+
 function Home() {
   if (window.scrollY > 300) {
     console.log("Scrolling");
@@ -35,17 +36,15 @@ function Home() {
   useEffect(() => {
     Axios({
       method: "GET",
-      url: `http://${site.hostname}:${site.port}/photo`,
+      url: `http://${site.hostname}:${site.port}/photo`,        
       withCredentials: true,
-      // header: { "content-Type": "image/png" },
+       // header: { "content-Type": "image/png" },
     })
       .then((response) => {
-        console.log(
-          `http://${site.hostname}:${site.port}/images/` + response.data
-        );
-        setImage(
-          `http://${site.hostname}:${site.port}/images/` + response.data
-        );
+
+        console.log(response.data);
+
+        setImage(response.data[0].item);
       })
       .catch((err) => {
         console.log(err);

@@ -46,6 +46,7 @@ function ChangePassword() {
 
   const savePhoto = (e) => {
     const file = e.target.files;
+    console.log(file);
     setPhoto(e.target.files[0]);
     setPhotoName(file[0].name);
   };

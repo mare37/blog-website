@@ -13,6 +13,8 @@ function About(props) {
     AOS.init({ duration: 2000 });
   }, []);
 
+  console.log(props.image);
+
   return (
     <div id="about2">
       <div id="about">
@@ -23,7 +25,7 @@ function About(props) {
           <section data-aos="fade-up" className="image-container">
             <img
               className="about-image"
-              src="./images/developer.jpg"
+              src={`./images/${props.image}`}
               alt="img"
             />
           </section>
@@ -46,7 +48,7 @@ function About(props) {
             </p>
           </section>
         </div>
-        <a href="http://localhost:8080/resume">
+        <a href="http://localhost:3001/resume">
           <button data-aos="fade-up" className="about-button">
             Download Resume
           </button>

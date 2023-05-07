@@ -46,7 +46,7 @@ function App() {
 
           <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="/termsandconditions" element={<TermsAndConditions />} />
-          <Route path="/createblog" element={<CreateBlog />} />
+          
 
           <Route
             path="/articlesandprojects"
@@ -60,8 +60,10 @@ function App() {
             <Route path="/addproject" element={<AddProject />} />
           </Route>
           <Route path="/login" element={<LogIn />} />
-          <Route element={<ProtectedRoute />}></Route>
+          <Route element={<ProtectedRoute />}>
           <Route path="/admin" element={<Admin />} />
+          </Route>
+        
 
           <Route element={<ProtectedRoute />}></Route>
 
@@ -72,7 +74,9 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/updateproject/:postId" element={<UpdateProject />} />
           </Route>
-          <Route element={<ProtectedRoute />}></Route>
+          <Route element={<ProtectedRoute />}>
+          <Route path="/createblog" element={<CreateBlog />} />
+          </Route>
           <Route element={<ProtectedRoute />}></Route>
         </Routes>
         <Footer />
