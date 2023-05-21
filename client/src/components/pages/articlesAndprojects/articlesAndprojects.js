@@ -26,14 +26,14 @@ function ArticlesAndProjects() {
 
   useEffect(() => {
     // Getting blog posts from the backend
-    Axios.get(`http://${site.hostname}:${site.port}/blogpost`, {}).then(
+    Axios.get(`/api/blogpost`, {}).then(
       (response) => {
         console.log(response.data);
         setBlogPosts(response.data);
       }
     );
     //Getting number of projects from the backend
-    Axios.get(`http://${site.hostname}:${site.port}/project`).then(
+    Axios.get(`/api/project`).then(
       (response) => {
         setProjects(response.data);
       }

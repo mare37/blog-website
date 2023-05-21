@@ -33,7 +33,9 @@ app.use("/verifyuser", verifyUser);
 
 //"ALTER TABLE posts AUTO_INCREMENT = 1"
 
-app.get("/", validateToken, (req, res) => {
+//validateToken
+
+app.get("/",validateToken,    (req, res) => {
   //db
   // .query
   // "ALTER TABLE posts AUTO_INCREMENT = 1"

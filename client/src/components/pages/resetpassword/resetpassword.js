@@ -43,7 +43,7 @@ function ResetPassword() {
     console.log(data.email);
     setSubmitButton(false);
 
-    Axios.post(`http://${site.hostname}:${site.port}/api/forgotpassword`, {
+    Axios.post(`/api/forgotpassword`, {
       email: data.email,
     }).then((response) => {
       //navigate("/admin");

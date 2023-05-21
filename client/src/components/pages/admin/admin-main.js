@@ -21,14 +21,14 @@ function Main() {
 
   useEffect(() => {
     // Getting number of articles from the backend
-    Axios.get(`http://${site.hostname}:${site.port}/blogpost`).then(
+    Axios.get(`/api/blogpost`).then(
       (response) => {
         setNumberOfBlogPosts(response.data.length);
         setBlogPosts(response.data.slice(0, 3));
       }
     );
     //Getting number of projects from the backend
-    Axios.get(`http://${site.hostname}:${site.port}/project`).then(
+    Axios.get(`/api/project`).then(
       (response) => {
         setNumberOfProjects(response.data.length);
         setProjects(response.data.slice(0, 3));

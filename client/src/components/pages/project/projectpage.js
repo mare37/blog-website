@@ -10,7 +10,7 @@ function ProjectPage() {
   const [projectInfo, setProjectInfo] = useState({});
 
   useEffect(() => {
-    Axios.get(`http://${site.hostname}:${site.port}/project/${projectId}`)
+    Axios.get(`/api/project/${projectId}`)
       .then((response) => {
         console.log(response.data[0]);
         setProjectInfo({

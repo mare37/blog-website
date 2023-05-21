@@ -37,7 +37,7 @@ function LogIn() {
   };
 
   const submitInfo = (data) => {
-    Axios.post(`http://${site.hostname}:${site.port}/api/login`, {
+    Axios.post(`/api/login`, {
       email: data.email,
       password: data.password,
     }).then((response) => {
@@ -47,7 +47,7 @@ function LogIn() {
   };
 
   useEffect(() => {
-    Axios.get(`http://${site.hostname}:${site.port}/api/login`).then(
+    Axios.get(`/api/login`).then(
       (response) => {
         //
         if (response.data.login) {

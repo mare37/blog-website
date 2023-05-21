@@ -10,7 +10,7 @@ function Delete(id, elementName) {
   if (elementName === "BlogPostsElement") {
     Axios({
       method: "delete",
-      url: `http://${site.hostname}:${site.port}/blogpost`,
+      url: `/api/blogpost`,
       header: "application/json",
       data: { id: id },
     }).then((response) => {
@@ -19,7 +19,7 @@ function Delete(id, elementName) {
   } else {
     Axios({
       method: "delete",
-      url: `http://${site.hostname}:${site.port}/project`,
+      url: `/api/project`,
       header: "application/json",
       data: { id: id },
     }).then((response) => {

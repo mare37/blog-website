@@ -58,7 +58,7 @@ function ContactPage() {
   const submitForm = (data) => {
     //console.log(data);
 
-    Axios.post(`http://${site.hostname}:${site.port}/contact`, {
+    Axios.post(`/api/contact`, {
       fullName: data.fullName,
       email: data.email,
       phoneNumber: data.phoneNumber,

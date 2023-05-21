@@ -11,7 +11,7 @@ Axios.defaults.withCredentials = true;
 function ProjectList() {
   const [projects, setProjects] = useState([]);
   useEffect(() => {
-    Axios.get(`http://${site.hostname}:${site.port}/project`).then(
+    Axios.get(`/api/project`).then(
       (response) => {
         console.log(response.data);
         setProjects(response.data);

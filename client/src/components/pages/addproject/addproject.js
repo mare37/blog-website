@@ -26,7 +26,7 @@ function AddProject() {
   };
 
   const submitProject = () => {
-    Axios.post(`http://${site.hostname}:${site.port}/project`, {
+    Axios.post(`/api/project`, {
       projectTitle: projectTitle,
       projectDescription: projectDescription,
       dateAndTime: {

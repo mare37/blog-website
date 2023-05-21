@@ -33,7 +33,7 @@ function CreateBlog() {
 
 
 
-    Axios.post(`http://${site.hostname}:${site.port}/blogpost`, {
+    Axios.post(`/api/blogpost`, {
       title: title,
       id: 1,
       bodyText: bodyText,

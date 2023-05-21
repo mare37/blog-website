@@ -29,7 +29,7 @@ function UpdateBlog() {
   };
 
   useEffect(() => {
-    Axios.get(`http://${site.hostname}:${site.port}/blogpost/${postId}`).then(
+    Axios.get(`/api/blogpost/${postId}`).then(
       (response) => {
         setTitle(response.data[0].title);
         setBodyText(response.data[0].blogposts);
@@ -39,7 +39,7 @@ function UpdateBlog() {
   //  console.log(bodyText);
 
   function updatePost() {
-    Axios.put(`http://${site.hostname}:${site.port}/blogpost/${postId}`, {
+    Axios.put(`/api/blogpost/${postId}`, {
       title: title,
       bodyText: bodyText,
       author: author,
