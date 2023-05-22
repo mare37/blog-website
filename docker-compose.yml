@@ -7,12 +7,12 @@ x-common-variables: &common-variables
 
 services:
   mysql_db:
-    image: mysql
+    image: mysql:8.0.33
     restart: always
     cap_add:
       - SYS_NICE
     volumes:
-      - "./setup.sql:/docker-entrypoint-initdb.d/setup.sql"
+      - "./dbinit:/docker-entrypoint-initdb.d/setup.sql"
     ports:
       - "9906:3306"
     environment:
