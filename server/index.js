@@ -4,6 +4,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const { validateToken } = require("./JWT");
 const bodyParser = require("body-parser");
+const logger = require('express-logger')
 const site = require("./config/site");
 
 //importing routes
@@ -17,6 +18,7 @@ const verifyUser = require("./routes/userVerify");
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 app.use(cookieParser());
+app.use(logger("/logfile"));
 //app.use(express.static("./public"));
 
 //app.set("views", path.join(__dirname, "views"));
@@ -35,7 +37,7 @@ app.use("/verifyuser", verifyUser);
 
 //validateToken
 
-app.get("/",validateToken,    (req, res) => {
+app.get("/",  (req, res) => {
   //db
   // .query
   // "ALTER TABLE posts AUTO_INCREMENT = 1"

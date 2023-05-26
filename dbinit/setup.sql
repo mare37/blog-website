@@ -2,6 +2,8 @@ CREATE DATABASE IF NOT EXISTS websitedata;
 
 USE websitedata;
 
+
+
 DROP TABLE IF EXISTS contactinfo;
 
 DROP TABLE IF EXISTS photoandresume;
@@ -18,19 +20,19 @@ CREATE TABLE contactinfo (
     fullname       varchar(450) NOT NULL,
     email           varchar(450) NOT NULL,
     phonenumber     varchar(450) NOT NULL,
-    message         varchar(5000) NOT NULL,
-    status          varchar(450) NOT NULL,
+    messages         varchar(5000) NOT NULL,
+    status         varchar(450) NOT NULL,
     date            varchar(450) NOT NULL,
-    time            varchar(450) NOT NULL,
-    PRIMARY KEY (contactinfo)
-)
+    time           varchar(450) NOT NULL,
+    PRIMARY KEY (contactinfo_id)
+);
 
 
 CREATE TABLE photoandresume (
     id int NOT NULL AUTO_INCREMENT,
     item      VARCHAR(500) NOT NULL,
     PRIMARY KEY (id)
-)
+);
 
 
 
@@ -39,10 +41,10 @@ CREATE TABLE posts (
     title       varchar(450) NOT NULL,
     blogposts           varchar(450) NOT NULL,
     author     varchar(450) NOT NULL,
-    date        varchar(500) NOT NULL,
-    time            varchar(450) NOT NULL,
+    date      varchar(500) NOT NULL,
+    time           varchar(450) NOT NULL,
     PRIMARY KEY (posts_id)
-)
+);
 
 
 CREATE TABLE projects (
@@ -50,9 +52,9 @@ CREATE TABLE projects (
     nameOfProject       varchar(450) NOT NULL,
     projectDescription          varchar(450) NOT NULL,
     date        varchar(500) NOT NULL,
-    time            varchar(450) NOT NULL,
+    time           varchar(450) NOT NULL,
     PRIMARY KEY (projects_id)
-)
+);
 
 
 CREATE TABLE users (
@@ -60,4 +62,9 @@ CREATE TABLE users (
     email      varchar(450) NOT NULL,
     password         varchar(450) NOT NULL,
     PRIMARY KEY (users_id)
-)
+);
+
+
+
+INSERT INTO projects (nameOfProject, projectDescription, date, time)
+VALUES ('test', 'description', '2023-05-25', '12:00 PM');
