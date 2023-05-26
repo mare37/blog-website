@@ -1,4 +1,5 @@
 const db = require("../config/database");
+const logger = require("../logger")
 
 const postBlog = (req, res) => {
   const title = req.body.title;
@@ -6,29 +7,35 @@ const postBlog = (req, res) => {
   const author = req.body.author;
   const date = req.body.dateAndTime.date;
   const time = req.body.dateAndTime.time;
-  console.log(time);
+  console.log(time)
   db.query(
     "INSERT INTO posts (title, blogposts, author, date,time) VALUES (?,?,?,?,?)",
     [title, bodyText, author, date, time],
     (err, result) => {
       if (err) {
-        console.log(err);
+       // console.log(err);
+       // logger.error( JSON.stringify(err)  );
+       logger.error(   JSON.stringify( {method: 'POST', route:'/blogpost', err: err} ));
+      
       } else {
-        // console.log(result);
+        logger.info(  JSON.stringify( {method: 'POST', route:'/blogpost', info: 'Blog posted sucessfully'} )    )
+        res.send(result).status(200);
       }
     }
   );
-
-  res.send("Blog Created");
+    
 };
 
 const getAllBlogPosts = (req, res) => {
   console.log(req.body.id);
   db.query("SELECT * FROM posts", (err, result) => {
     if (err) {
-      console.log(err);
+     // console.log(err);
+      logger.error(   JSON.stringify( {method: 'GET', route:'/blogpost', err: err} ));
+      res.send("Something went wrong!").status(500);
     } else {
-      res.send(result);
+      logger.info(  JSON.stringify( {method: 'POST', route:'/blogpost', info: 'All blogs retrieved succesfully'} )    )
+      res.send(result).status(200);
     }
   });
 };
@@ -41,10 +48,13 @@ const getOneBlogPost = (req, res) => {
 
   db.query(`SELECT * FROM posts WHERE posts_id = ?`,[postId], (err, result) => {
     if (err) {
-      console.log(err);
-      res.status(404).send(err);
+      //console.log(err);
+      logger.error(   JSON.stringify( {method: 'GET', route:'/blogpost/:postId', err: err} ));
+      res.send("Something went wrong!").status(500);
     } else {
-      res.send(result);
+      //console.log(result);
+      logger.info(  JSON.stringify( {method: 'GET', route:'/blogpos/:postId', info: 'Blog retrieved succesfully'} )    )
+      res.send(result).status(200);
     }
   });
 };
@@ -54,11 +64,16 @@ const deleteOneBlogPost = (req, res) => {
 
   db.query("DELETE FROM posts WHERE id = ?", [id], (err, response) => {
     if (err) {
-      console.log(err);
+      //console.log(err);
+      logger.error(   JSON.stringify( {method: 'DELETE', route:'/blogpost', err: err} ));
+      res.send("Something went wrong!").status(500);
+    }else{
+      logger.info(  JSON.stringify( {method: 'DELETE', route:'/blogpos', info: 'Blog deleted'} )    )
+      res.send(result).status(200);
     }
   });
 
-  res.send("Blog Post Deleted");
+  
 };
 
 const updateBlogPost = (req, res) => {
@@ -67,14 +82,19 @@ const updateBlogPost = (req, res) => {
   const blogpost = req.body.bodyText;
 
   db.query(
-    "UPDATE posts SET title = ?, blogposts = ? WHERE id = ?",
+    "UPDATE posts SET title = ?, blogposts = ? WHERE posts_id = ?",
     [title, blogpost, postId],
     (err, result) => {
       if (err) {
-        console.log(err);
-        res.send("Failed");
+       // console.log(err);
+        logger.error(   JSON.stringify( {method: 'PUT', route:'/blogpost/postId', err: err} ));
+        res.send("Something went wrong!").status(500);
+      }else{
+        logger.info(  JSON.stringify( {method: 'PUT', route:'/blogpost/postId', info: 'Blog updated successfully'} )    )
+        res.send(result).status(200);
+
       }
-      res.send("Update succesfull");
+      
     }
   );
 };

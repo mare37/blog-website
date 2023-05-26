@@ -27,7 +27,7 @@ const getAllProjects = (req, res) => {
     if (err) {
       res.send(err);
     }
-    res.send(result);
+    res.send(result).status(200);
   });
 };
 

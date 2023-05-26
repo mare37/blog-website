@@ -40,6 +40,7 @@ function ArticlesAndProjects() {
     );
   }, []);
 
+
   let blogPostsData = blogPosts
     .slice(0)
     .reverse()
