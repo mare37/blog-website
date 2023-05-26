@@ -1,0 +1,57 @@
+26-05-2023 13:16:10 - [INFO   ] - [object Object] 
+26-05-2023 13:16:10 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"Blog posted sucessfully"} 
+26-05-2023 13:16:56 - [INFO   ] - Server running on port 3001... 
+26-05-2023 13:17:38 - [INFO   ] - Server running on port 3001... 
+26-05-2023 13:18:32 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"Blog posted sucessfully"} 
+26-05-2023 13:20:48 - [INFO   ] - Server running on port 3001... 
+26-05-2023 13:26:04 - [INFO   ] - Server running on port 3001... 
+26-05-2023 13:26:39 - [INFO   ] - Server running on port 3001... 
+26-05-2023 13:30:28 - [INFO   ] - Server running on port 3001... 
+26-05-2023 13:38:14 - [INFO   ] - Server running on port 3001... 
+26-05-2023 13:41:47 - [INFO   ] - Server running on port 3001... 
+26-05-2023 13:43:11 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 13:43:31 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:44:13 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:46:25 - [INFO   ] - Server running on port 3001... 
+26-05-2023 13:47:13 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:48:34 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:50:07 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:50:07 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:50:07 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:50:18 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:50:19 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:50:19 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:50:25 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:50:25 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:50:56 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:50:56 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:50:57 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:51:21 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:55:35 - [INFO   ] - Server running on port 3001... 
+26-05-2023 13:55:51 - [INFO   ] - Server running on port 3001... 
+26-05-2023 13:56:14 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:56:26 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 13:56:46 - [ERROR  ] - {"method":"PUT","route":"/blogpost/postId","err":{"code":"ER_BAD_FIELD_ERROR","errno":1054,"sqlState":"42S22","sqlMessage":"Unknown column 'id' in 'where clause'","sql":"UPDATE posts SET title = 'habari', blogposts = '<p>africa</p>' WHERE id = '9'"}} 
+26-05-2023 13:56:48 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:56:51 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 13:56:55 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 13:59:40 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 14:03:14 - [INFO   ] - Server running on port 3001... 
+26-05-2023 14:03:29 - [INFO   ] - {"method":"PUT","route":"/blogpost/postId","info":"Blog updated successfully"} 
+26-05-2023 14:03:31 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 14:03:38 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 14:03:41 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 14:03:42 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 14:04:59 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 14:05:03 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 14:05:36 - [INFO   ] - {"method":"PUT","route":"/blogpost/postId","info":"Blog updated successfully"} 
+26-05-2023 14:05:45 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 14:05:52 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 14:06:08 - [INFO   ] - {"method":"PUT","route":"/blogpost/postId","info":"Blog updated successfully"} 
+26-05-2023 14:06:18 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 14:06:20 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 14:09:32 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 14:11:35 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 14:11:44 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 14:11:53 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 14:49:08 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
