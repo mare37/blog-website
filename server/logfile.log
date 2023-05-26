@@ -55,3 +55,23 @@
 26-05-2023 14:11:44 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
 26-05-2023 14:11:53 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
 26-05-2023 14:49:08 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 15:23:14 - [INFO   ] - Server running on port 3001... 
+26-05-2023 15:35:51 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 15:37:55 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 15:37:58 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 15:38:21 - [INFO   ] - {"method":"PUT","route":"/blogpost/postId","info":"Blog updated successfully"} 
+26-05-2023 15:38:23 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 15:38:25 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 15:38:28 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 15:38:41 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 15:40:00 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 15:43:12 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 15:44:06 - [INFO   ] - {"method":"PUT","route":"/blogpost/postId","info":"Blog updated successfully"} 
+26-05-2023 15:44:08 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 15:44:13 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 15:44:16 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 15:44:22 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 15:44:54 - [INFO   ] - {"method":"PUT","route":"/blogpost/postId","info":"Blog updated successfully"} 
+26-05-2023 15:44:56 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 
+26-05-2023 15:44:59 - [INFO   ] - {"method":"GET","route":"/blogpos/:postId","info":"Blog retrieved succesfully"} 
+26-05-2023 15:45:05 - [INFO   ] - {"method":"POST","route":"/blogpost","info":"All blogs retrieved succesfully"} 

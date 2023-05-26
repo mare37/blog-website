@@ -11,7 +11,7 @@ const logger = createLogger({
         new transports.Console({
             prettyPrint: true,
         }),
-        new transports.File({filename: 'logfile.txt' })
+        new transports.File({filename: 'logfile.log' })
 
     ]
 });
