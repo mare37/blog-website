@@ -1,4 +1,5 @@
 const db = require("../config/database");
+const logger = require("../logger");
 
 const postProject = (req, res) => {
   const projectName = req.body.projectTitle;
@@ -13,21 +14,29 @@ const postProject = (req, res) => {
     (err, result) => {
       if (err) {
         console.log(err);
+        logger.error(   JSON.stringify( {method: 'POST', route:'/projects', err: err} ));
+        res.send(err).status(500);
       } else {
         console.log(result);
+        logger.info(  JSON.stringify( {method: 'POST', route:'/projects', info: 'Project posted sucessfully'} )    )
+        res.status(200).send("Project posted successfully")
       }
     }
   );
 
-  res.status(200).send("ok");
+ ;
 };
 
 const getAllProjects = (req, res) => {
   db.query("SELECT * FROM projects", (err, result) => {
     if (err) {
-      res.send(err);
+      logger.error(  JSON.stringify( {method: 'GET', route:'/projects', err: err} )    )
+      res.send(err).status(500);
+    }else{
+      logger.info(  JSON.stringify( {method: 'GET', route:'/projects', info:"All projects retrieved succesfully"} )    )
+      res.send(result).status(200);
     }
-    res.send(result);
+    
   });
 };
 
@@ -40,9 +49,11 @@ const getOneproject = (req, res) => {
     (err, result) => {
       if (err) {
         console.log(err);
-        res.send("Failed to get project");
+        logger.error(  JSON.stringify( {method: 'GET', route:'/project', err: err} )    )
+        res.send("Failed to get project").status(500);
       }
       if (result) {
+        logger.info(  JSON.stringify( {method: 'GET', route:'/project', info: "Successfully retrieved ONE project"} )    )
         res.status(200).send(result);
       }
     }
@@ -57,12 +68,17 @@ const deleteOneProject = (req, res) => {
     (err, response) => {
       if (err) {
         console.log(err);
+        logger.error(  JSON.stringify( {method: 'DELETE', route:'/project', err: err} )    )
+        res.send("Something went wrong").status(500);
+      }else{
+        logger.info(  JSON.stringify( {method: 'GET', route:'/project', info: " ONE projet Successfully deleted"} ) )
+         res.send("One project Successfully deleted").status(200);
       }
-      console.log(response);
+      
     }
   );
 
-  res.send("Project Deleted");
+  
 };
 
 const updateOneProject = (req, res) => {
@@ -75,9 +91,13 @@ const updateOneProject = (req, res) => {
     (err, result) => {
       if (err) {
         console.log(err);
-        res.status(400).send(err);
+        logger.error(  JSON.stringify( {method: 'PUT', route:'/project', err: err} )    )
+        res.status(500).send(err);
+      }else{
+        logger.info(  JSON.stringify( {method: 'PUT', route:'/project', info: "One project successfully updated"} )    )
+        res.status(200).send(result);
       }
-      res.status(200).send(result);
+     
     }
   );
 };

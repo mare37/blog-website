@@ -21,6 +21,7 @@
     "mysql2": "^3.2.4",
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.19",
-    "parser": "^0.1.4"
+    "parser": "^0.1.4",
+    "winston": "^3.9.0"
   }
 }
