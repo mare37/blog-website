@@ -5,7 +5,7 @@ import "./posts.css";
 import Navbar from "../../Home/Navbar/navbar";
 import site from "../../../site";
 
-import * as DOMPurify from "dompurify";
+import * as DOMPurify from "dompurify"; 
 
 function Post() {
   let { postId } = useParams();
@@ -27,7 +27,7 @@ function Post() {
         console.log(data);
       })
       .catch((err) => {
-        console.log(err.data);
+        console.log(err);
         setPost({ title: "ERROR 404" });
         setBlogContent("ERROR! POST MOVED OR DELETED");
       });

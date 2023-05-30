@@ -15,11 +15,13 @@ const logIn = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   console.log(email);
+  console.log(password);
 
   let user = "SELECT * FROM users WHERE email = ?";
   db.query(user, [email], (err, result) => {
     if (err) {
-      logger.error(   JSON.stringify( {method: 'POST', route:'/blogpost', err: err} ));
+      console.log(err);
+      logger.error(   JSON.stringify( {method: 'POST', route:'/login', err: err} ));
       res.status(500).send(err);
     }
     console.log(result);
@@ -38,7 +40,7 @@ const logIn = (req, res) => {
           });
 
           logger.info(  JSON.stringify( {method: 'POST', route:'/login', info: 'You are logged in'} )    )
-          res.send(result).status(200);
+       
 
           res.send({
             auth: true,

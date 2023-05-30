@@ -27,7 +27,7 @@ function Blog() {
       return (
         <BlogItem
           key={key}
-          id={item.id}
+          id={item.posts_id}
           title={item.title}
           date={item.date}
           blogposts={item.blogposts}

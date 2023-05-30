@@ -17,8 +17,9 @@ services:
       - "9906:3306"
     environment:
       <<: *common-variables
+      MYSQL_ALLOW_EMPTY_PASSWORD: ok
       MYSQL_ROOT_PASSWORD: "MYSQL_ROOT_PASSWORD"
-      MYSQL_HOST: "localhost"
+      MYSQL_ROOT_HOST: '%'
 
   nginx:
     depends_on:
@@ -40,8 +41,6 @@ services:
     volumes:
       - /app/node_modules
       - ./server:/app
-    ports:
-      - 3001:3001
     environment:
       <<: *common-variables
       MYSQL_HOST_IP: mysql_db
@@ -50,8 +49,6 @@ services:
     stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true
-    ports:
-      - 3000:3000
     build:
       dockerfile: Dockerfile
       context: ./client
