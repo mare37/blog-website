@@ -34,7 +34,7 @@ function ResetPassword() {
     captchaRef.current.reset();
 
     if (token) {
-      setSubmitButton(true);
+     // setSubmitButton(true);
       setRecaptcha(false);
     }
   };
@@ -74,18 +74,8 @@ function ResetPassword() {
           <section className="login-error">Enter a valid email</section>
         )}
 
-        {recaptcha ? (
-          <ReCAPTCHA
-            sitekey={process.env.REACT_APP_SITE_KEY}
-            ref={captchaRef}
-            onChange={verify}
-          />
-        ) : (
-          ""
-        )}
 
-        {submitButton ? (
-          <button
+        <button
             onClick={() => {
               setLink(true);
               setInput(false);
@@ -94,9 +84,8 @@ function ResetPassword() {
           >
             Submit
           </button>
-        ) : (
-          ""
-        )}
+       
+      
         {link ? (
           <div className="reset-link"> RESET LINK SENT TO YOUR EMAIL</div>
         ) : (

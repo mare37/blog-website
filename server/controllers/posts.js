@@ -69,8 +69,8 @@ const deleteOneBlogPost = (req, res) => {
       logger.error(   JSON.stringify( {method: 'DELETE', route:'/blogpost', err: err} ));
       res.send("Something went wrong!").status(500);
     }else{
-      logger.info(  JSON.stringify( {method: 'DELETE', route:'/blogpos', info: 'Blog deleted'} )    )
-      res.send(result).status(200);
+      logger.info(  JSON.stringify( {method: 'DELETE', route:'/blogpost', info: 'Blog deleted'} )    )
+      res.send(response).status(200);
     }
   });
 

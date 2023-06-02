@@ -5,7 +5,7 @@ require("dotenv").config();
 function createToken(user) {
   const accessToken = sign(
     { email: user.email, id: user.userid },
-    process.env.TOKEN_SECRET
+    "ONE"
   );
 
   return accessToken;

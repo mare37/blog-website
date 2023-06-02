@@ -12,7 +12,7 @@ function Footer() {
       <div className="footer-container">
         <section className="footer-content">
           <h1>Jacon Keya</h1>
-          <p className="footer-text">One stop shopforeverything nmachine</p>
+          <p className="footer-text">Everything Machine Learning</p>
         </section>
         <section className="footer-social-icons">
           <a href="https://facebook.com" target={"_blank"} rel="noreferrer">

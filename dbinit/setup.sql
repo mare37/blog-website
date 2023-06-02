@@ -39,7 +39,7 @@ CREATE TABLE photoandresume (
 CREATE TABLE posts (
     posts_id int NOT NULL AUTO_INCREMENT,
     title       varchar(450) NOT NULL,
-    blogposts           varchar(4500) NOT NULL,
+    blogposts           varchar(8000) NOT NULL,
     author     varchar(450) NOT NULL,
     date      varchar(500) NOT NULL,
     time           varchar(450) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE posts (
 CREATE TABLE projects (
     projects_id int NOT NULL AUTO_INCREMENT,
     nameOfProject       varchar(450) NOT NULL,
-    projectDescription          varchar(4500) NOT NULL,
+    projectDescription          varchar(8000) NOT NULL,
     date        varchar(500) NOT NULL,
     time           varchar(450) NOT NULL,
     PRIMARY KEY (projects_id)
@@ -75,3 +75,4 @@ VALUES ('Introduction To Machine Learning ', 'Lorem ipsum dolor sit amet, consec
 
 INSERT INTO users ( email, password)
 VALUES ('test@email.com', '$2b$10$XtEVIue4tzDjEz3mLWq/GORReRanRzB1mTLUiuhMi2qt1RW9lgrYi');
+

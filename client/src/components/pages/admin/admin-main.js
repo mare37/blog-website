@@ -39,14 +39,14 @@ function Main() {
   let blogPostsData = blogPosts.map((item, key) => {
     let title = item.title;
     if (item.title.length > 30) {
-      title = item.title.substring(0, 30) + "...";
+      title = item.title.substring(0, 25) + "...";
     }
     return (
       <p
         className="blogpost-preview"
         key={key}
         onClick={() => {
-          navigate(`/post/${item.id}`);
+          navigate(`/post/${item.posts_id}`);
         }}
       >
         <span>{`\u2022`}</span>

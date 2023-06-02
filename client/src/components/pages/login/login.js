@@ -31,7 +31,7 @@ function LogIn() {
     captchaRef.current.reset();
 
     if (token) {
-      setSubmitButton(true);
+      //setSubmitButton(true);
       setRecaptcha(false);
     }
   };
@@ -88,17 +88,9 @@ function LogIn() {
         )}
         <br />
 
-        {recaptcha ? (
-          <ReCAPTCHA
-            sitekey={process.env.REACT_APP_SITE_KEY}
-            ref={captchaRef}
-            onChange={verify}
-          />
-        ) : (
-          ""
-        )}
-
-        {submitButton ? <button type="submit">Submit</button> : ""}
+    
+        <button type="submit">Submit</button>
+        
 
         <div
           onClick={() => {

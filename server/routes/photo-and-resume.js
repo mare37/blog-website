@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 
 var storage = multer.diskStorage({
   destination: (req, file, callBack) => {
-    callBack(null, "C:/Users/TEDDY/Desktop/blog-website/client/public/images"); // './public/images/' directory name where save the file
+    callBack(null, "./public/images"); // './public/images/' directory name where save the file
   },
   filename: (req, file, callBack) => {
     callBack(
@@ -19,7 +19,7 @@ var storage = multer.diskStorage({
 });
 var storage2 = multer.diskStorage({
   destination: (req, file, callBack) => {
-    callBack(null, "C:/Users/TEDDY/Desktop/blog-website/client/public/images"); // './public/images/' directory name where save the file
+    callBack(null, "./public/images"); // './public/images/' directory name where save the file
   },
   filename: (req, file, callBack) => {
     callBack(

@@ -10,7 +10,7 @@ function ContactInfo() {
   return (
     <div id="contactInfo">
       <div className="contactInfo-container">
-        <section data-aos="fade-up" className="contactInfo-main-heading">
+        <section  className="contactInfo-main-heading">
           <h1>
             CONTACT <span>INFO</span>
           </h1>

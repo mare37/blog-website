@@ -82,15 +82,14 @@ function ContactPage() {
       <Navbar />
       <div id="contact-page">
         <div className="contact-text">
-          <h1 data-aos="fade-up">Let’s get in touch!</h1>
-          <p data-aos="fade-up">
+          <h1>Let’s get in touch!</h1>
+          <p>
             Have a project in mind? Fill in the form and we’ll get in touch with
             you shortly.
           </p>
         </div>
 
         <form
-          data-aos="fade-up"
           onSubmit={handleSubmit(submitForm)}
           className="contact-form"
         >
@@ -114,23 +113,13 @@ function ContactPage() {
 
           {messageSent ? <div>MESSAGE SENT SUCCESSFULLY</div> : ""}
 
-          {recaptcha ? (
-            <ReCAPTCHA
-              sitekey={process.env.REACT_APP_SITE_KEY}
-              ref={captchaRef}
-              onChange={verify}
-            />
-          ) : (
-            ""
-          )}
+        
 
-          {submitButton ? (
-            <button data-aos="fade-up" type="submit">
+            <button type="submit">
               Submit
             </button>
-          ) : (
-            ""
-          )}
+
+        
         </form>
       </div>
     </>

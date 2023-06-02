@@ -73,7 +73,7 @@ export function BlogPostsElement(props) {
         <div className="element-buttons">
           <button
             onClick={() => {
-              navigate(`/updateblog/${props.id}`);
+              navigate(`/updateblog/${props.id}`); 
             }}
             className="update"
           >
