@@ -6,6 +6,8 @@ const { validateToken } = require("./JWT");
 const bodyParser = require("body-parser");
 //const logger = require('express-logger')
 const site = require("./config/site");
+const db = require("./config/database")
+
 
 //importing routes
 const postsRoute = require("./routes/posts");
@@ -37,6 +39,34 @@ app.use("/verifyuser", verifyUser);
 
 //validateToken
 
+const attemptConnection = ()=>{
+
+  db.connect( function(err) {
+    if (err) {
+      console.error('error connecting: ' + err.stack);
+    }else{
+      console.log('connected as id ' + db.threadId);
+      
+      app.listen(site.port, () => {
+      console.log(`Server running on port ${site.port}...`);
+    });
+      
+    }
+   
+    
+  })
+  
+
+
+}
+
+attemptConnection();
+
+
+
+
+
+
 app.get("/",  (req, res) => {
   //db
   // .query
@@ -47,6 +77,3 @@ app.get("/",  (req, res) => {
   res.send("HOME");
 });
 
-app.listen(site.port, () => {
-  console.log(`Server running on port ${site.port}...`);
-});

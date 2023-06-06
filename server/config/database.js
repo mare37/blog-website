@@ -4,6 +4,8 @@ require("dotenv").config();
 const db = mysql.createConnection({
   host: "mysql_db",
   user: "root",
+  connectionLimit: 10,
+  waitForConnections: true,
  // password: process.env.DATABASE_PASSWORD,
  
   password:"MYSQL_ROOT_PASSWORD",
@@ -12,14 +14,6 @@ const db = mysql.createConnection({
 });
 
 
-db.connect( function(err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-  }
- 
-  console.log('connected as id ' + db.threadId);
-})
 
 
 

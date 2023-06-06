@@ -21,7 +21,7 @@ const validateToken = (req, res, next) => {
 
   //check if the token they have is valid
   try {
-    const validToken = verify(accessToken, process.env.TOKEN_SECRET);
+    const validToken = verify(accessToken, "ONE");
 
     //if token is valid, grant access
     if (validToken) {
