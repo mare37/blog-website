@@ -20,7 +20,9 @@ function Home() {
   const [projectsData, setProjectsData] = useState([]);
   const [image, setImage] = useState();
   useEffect(() => {
-    Axios.get(`/api/project`).then(
+
+   // `/api/project`
+    Axios.get(`http://localhost:5001/project`).then(
       (response) => {
         // we want to display latest projects hence the reversal
         const reversedArray = response.data.reverse();

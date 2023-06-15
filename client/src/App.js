@@ -47,43 +47,39 @@ function App() {
           <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="/termsandconditions" element={<TermsAndConditions />} />
 
-
-         <Route element={<ProtectedRoute />}>
-         <Route
-            path="/articlesandprojects"
-            element={<ArticlesAndProjects />}
-          />
-         </Route>
-
-         <Route element={<ProtectedRoute />}>
-         <Route path="/messages" element={<Messages />} />
-         </Route>
-  
+          <Route element={<ProtectedRoute />}>
+            <Route path="/messages" element={<Messages />} />
+          </Route>
 
           <Route element={<ProtectedRoute />}>
-          <Route path="/changepassword" element={<ChangePassword />} />
+            <Route path="/changepassword" element={<ChangePassword />} />
           </Route>
 
           <Route element={<ProtectedRoute />}>
             <Route path="/addproject" element={<AddProject />} />
           </Route>
-          
 
           <Route element={<ProtectedRoute />}>
-          <Route path="/admin" element={<Admin />} /> 
+            <Route
+              path="/articlesandprojects"
+              element={<ArticlesAndProjects />}
+            />
           </Route>
-        
+
           <Route element={<ProtectedRoute />}>
-          <Route path="/updateblog/:postId" element={<UpdateBlog />} />
+            <Route path="/admin" element={<Admin />} />
           </Route>
-        
+
+          <Route element={<ProtectedRoute />}>
+            <Route path="/updateblog/:postId" element={<UpdateBlog />} />
+          </Route>
+
           <Route element={<ProtectedRoute />}>
             <Route path="/updateproject/:postId" element={<UpdateProject />} />
           </Route>
           <Route element={<ProtectedRoute />}>
-          <Route path="/createblog" element={<CreateBlog />} />
+            <Route path="/createblog" element={<CreateBlog />} />
           </Route>
-         
         </Routes>
         <Footer />
       </Router>

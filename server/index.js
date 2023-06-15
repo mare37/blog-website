@@ -3,10 +3,13 @@ const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const { validateToken } = require("./JWT");
+require("dotenv").config();
 const bodyParser = require("body-parser");
 //const logger = require('express-logger')
 const site = require("./config/site");
 const db = require("./config/database")
+
+const port = process.env.PORT || 5001;
 
 
 //importing routes
@@ -47,8 +50,8 @@ const attemptConnection = ()=>{
     }else{
       console.log('connected as id ' + db.threadId);
       
-      app.listen(site.port, () => {
-      console.log(`Server running on port ${site.port}...`);
+      app.listen(port, () => {
+      console.log(`Server running on port ${port}...`);
     });
       
     }

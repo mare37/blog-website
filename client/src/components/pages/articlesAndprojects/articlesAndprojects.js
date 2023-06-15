@@ -26,6 +26,8 @@ function ArticlesAndProjects() {
 
   useEffect(() => {
     // Getting blog posts from the backend
+
+    //`/api/blogpost`
     Axios.get(`/api/blogpost`, {}).then(
       (response) => {
         console.log(response.data);
@@ -33,8 +35,11 @@ function ArticlesAndProjects() {
       }
     );
     //Getting number of projects from the backend
+
+    //`/api/project`
     Axios.get(`/api/project`).then(
       (response) => {
+        console.log(response.data);
         setProjects(response.data);
       }
     );
@@ -70,7 +75,7 @@ function ArticlesAndProjects() {
       return (
         <ProjectsElement
           key={key}
-          id={item.idprojects}
+          id={item.projects_id}
           nameOfProject={item.nameOfProject}
           date={item.date}
           time={item.time}

@@ -15,7 +15,7 @@ router.use(cors({ origin: true, credentials: true }));
 router.use(express.json());
 
 //post project to database
-router.post("/", validateToken, postProject);
+router.post("/", postProject);
 
 // get all projects from the database
 router.get("/", getAllProjects);
