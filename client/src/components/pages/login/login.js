@@ -31,13 +31,13 @@ function LogIn() {
     captchaRef.current.reset();
 
     if (token) {
-      setSubmitButton(true);
+      //setSubmitButton(true);
       setRecaptcha(false);
     }
   };
 
   const submitInfo = (data) => {
-    Axios.post(`http://${site.hostname}:${site.port}/api/login`, {
+    Axios.post(`/api/login`, {
       email: data.email,
       password: data.password,
     }).then((response) => {
@@ -47,7 +47,7 @@ function LogIn() {
   };
 
   useEffect(() => {
-    Axios.get(`http://${site.hostname}:${site.port}/api/login`).then(
+    Axios.get(`/api/login`).then(
       (response) => {
         //
         if (response.data.login) {
@@ -88,17 +88,9 @@ function LogIn() {
         )}
         <br />
 
-        {recaptcha ? (
-          <ReCAPTCHA
-            sitekey={process.env.REACT_APP_SITE_KEY}
-            ref={captchaRef}
-            onChange={verify}
-          />
-        ) : (
-          ""
-        )}
-
-        {submitButton ? <button type="submit">Submit</button> : ""}
+    
+        <button type="submit">Submit</button>
+        
 
         <div
           onClick={() => {

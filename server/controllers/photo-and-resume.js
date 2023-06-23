@@ -1,10 +1,15 @@
 const db = require("../config/database");
+const logger = require("../logger");
 
 const multer = require("multer");
 
+
 const postPhoto = (req, res) => {
   if (!req.file) {
+
     console.log("No upload");
+    logger.info(   JSON.stringify( {method: 'POST', route:'/photo', info: "Photo to upload doesnt exist"} ));
+
     res.send("No upload");
   } else {
     db.query(
@@ -13,10 +18,13 @@ const postPhoto = (req, res) => {
       (err, response) => {
         if (err) {
           console.log(err);
+          logger.error(   JSON.stringify( {method: 'POST', route:'/photo', err: err} ));
+          res.send("Something went wrong").status(500)
         }
         // console.log(response);
       }
     );
+
     db.query(
       "INSERT INTO photoandresume (id,item) VALUES (?,?)",
       [1, req.file.filename],
@@ -24,8 +32,11 @@ const postPhoto = (req, res) => {
       (err, result) => {
         if (err) {
           console.log(err);
-          res.status(400).send(err);
+          logger.error(   JSON.stringify( {method: 'POST', route:'/photo', err: err} ));
+          res.status(500).send(err);
         }else{
+
+          logger.info(   JSON.stringify( {method: 'POST', route:'/photo', info: "Photo Successfully Uploaded"} ));
 
           res.send("Photo Successfully Uploaded");
         }
@@ -45,13 +56,19 @@ const getPhoto = (req, res) => {
     (err, response) => {
       if (err) {
         console.log(err);
+        logger.error(   JSON.stringify( {method: 'GET', route:'/photo', err:err} ));
+        res.send("Something went wrong").status(500)
+      }else{
+        logger.info(   JSON.stringify( {method: 'GET', route:'/photo', info:"Successfully retrieved photo"} ));
+        res.send(response).status(200)
+
       }
 
      // const imagedata = Buffer.from(response[0].item, "base64");
 
      
 
-      res.send(response);
+     
 
       // res.send(response);
     }
@@ -65,6 +82,7 @@ const postResume = (req, res) => {
 
   if (!req.file) {
     console.log("No upload");
+    logger.info(   JSON.stringify( {method: 'POST', route:'/resume', info: "Resume to upload doesnt exist"} ));
     res.send("No upload");
   } else {
     db.query(
@@ -73,6 +91,8 @@ const postResume = (req, res) => {
       (err, response) => {
         if (err) {
           console.log(err);
+          logger.error(   JSON.stringify( {method: 'POST', route:'/resume', err: err} ));
+          res.status(500).send(err);
         }
         // console.log(response);
       }
@@ -84,9 +104,14 @@ const postResume = (req, res) => {
       (err, result) => {
         if (err) {
           console.log(err);
-          res.status(400).send(err);
+          logger.error(   JSON.stringify( {method: 'POST', route:'/resume', err: err} ));
+          res.status(500).send(err);
+        }else{
+
+          logger.info(   JSON.stringify( {method: 'POST', route:'/resume', info:"Resume Successfully Uploaded"} ));
+          res.send("Resume Successfully Uploaded");
         }
-        res.send("Resume Successfully Uploaded");
+       
       }
     );
   }
@@ -109,19 +134,34 @@ const getResume = (req, res) => {
     [2],
     (err, response) => {
       if (err) {
+        logger.error(   JSON.stringify( {method: 'GET', route:'/resume', err: err} ));
+        res.send("Something went wrong").status(500);
       //  console.log(err);
+      }else{
+
+
+       
+        res.download(
+          `C:/Users/TEDDY/Desktop/blog-website/client/public/images/${response[0].item}`,
+          "resume.docx",
+          (err) => {
+            if (err) {
+              console.log(err);
+              logger.error(   JSON.stringify( {method: 'GET', route:'/resume', err: err} ));
+              res.send("Something went wrong").status(500);
+              
+            }else{
+
+              logger.info(   JSON.stringify( {method: 'GET', route:'/resume', info:"Resume successfully downloaded"}
+               ));
+               res.status(200);
+            }
+          }
+        );
+        
       }
 
-      res.download(
-        `C:/Users/TEDDY/Desktop/blog-website/client/public/images/${response[0].item}`,
-        "resume.docx",
-        (err) => {
-          if (err) {
-            console.log(err);
-          }
-        }
-      );
-      res.status(200);
+    
 
 
 

@@ -5,7 +5,7 @@ require("dotenv").config();
 function createToken(user) {
   const accessToken = sign(
     { email: user.email, id: user.userid },
-    process.env.TOKEN_SECRET
+    "ONE"
   );
 
   return accessToken;
@@ -21,7 +21,7 @@ const validateToken = (req, res, next) => {
 
   //check if the token they have is valid
   try {
-    const validToken = verify(accessToken, process.env.TOKEN_SECRET);
+    const validToken = verify(accessToken, "ONE");
 
     //if token is valid, grant access
     if (validToken) {

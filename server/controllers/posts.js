@@ -16,6 +16,9 @@ const postBlog = (req, res) => {
        // console.log(err);
        // logger.error( JSON.stringify(err)  );
        logger.error(   JSON.stringify( {method: 'POST', route:'/blogpost', err: err} ));
+
+       res.send("Something went wrong").status(500);
+
       
       } else {
         logger.info(  JSON.stringify( {method: 'POST', route:'/blogpost', info: 'Blog posted sucessfully'} )    )
@@ -48,11 +51,15 @@ const getOneBlogPost = (req, res) => {
 
   db.query(`SELECT * FROM posts WHERE posts_id = ?`,[postId], (err, result) => {
     if (err) {
+
+   
+
       //console.log(err);
       logger.error(   JSON.stringify( {method: 'GET', route:'/blogpost/:postId', err: err} ));
       res.send("Something went wrong!").status(500);
     } else {
       //console.log(result);
+
       logger.info(  JSON.stringify( {method: 'GET', route:'/blogpos/:postId', info: 'Blog retrieved succesfully'} )    )
       res.send(result).status(200);
     }
@@ -62,14 +69,16 @@ const getOneBlogPost = (req, res) => {
 const deleteOneBlogPost = (req, res) => {
   const id = req.body.id;
 
-  db.query("DELETE FROM posts WHERE id = ?", [id], (err, response) => {
+  db.query("DELETE FROM posts WHERE posts_id = ?", [id], (err, response) => {
     if (err) {
       //console.log(err);
       logger.error(   JSON.stringify( {method: 'DELETE', route:'/blogpost', err: err} ));
       res.send("Something went wrong!").status(500);
     }else{
-      logger.info(  JSON.stringify( {method: 'DELETE', route:'/blogpos', info: 'Blog deleted'} )    )
-      res.send(result).status(200);
+
+      logger.info(  JSON.stringify( {method: 'DELETE', route:'/blogpost', info: 'Blog deleted'} )    )
+      res.send(response).status(200);
+
     }
   });
 

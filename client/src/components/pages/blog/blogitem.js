@@ -21,7 +21,7 @@ function BlogItem(props) {
     post = cleanBlogContent;
   }
   return (
-    <div data-aos="fade-up" className="blog-post">
+    <div  className="blog-post">
       <div className="heading">
         <h2>{props.title}</h2>
       </div>

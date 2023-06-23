@@ -6,6 +6,7 @@ const nodemailer = require("nodemailer");
 const { render } = require("ejs");
 require("dotenv").config();
 const { body, validationResult } = require("express-validator");
+const logger = require("../logger");
 const site = require("../config/site");
 //const bodyParser = require("body-parser");
 
@@ -14,10 +15,13 @@ const logIn = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   console.log(email);
+  console.log(password);
 
   let user = "SELECT * FROM users WHERE email = ?";
   db.query(user, [email], (err, result) => {
     if (err) {
+      console.log(err);
+      logger.error(   JSON.stringify( {method: 'POST', route:'/login', err: err} ));
       res.status(500).send(err);
     }
     console.log(result);
@@ -35,26 +39,32 @@ const logIn = (req, res) => {
             secure: true,
           });
 
+          logger.info(  JSON.stringify( {method: 'POST', route:'/login', info: 'You are logged in'} )    )
+       
+
           res.send({
             auth: true,
             message: "You are logged in!",
-          });
+          }).status(200);
         } else {
           console.log(match);
+          logger.info(  JSON.stringify( {method: 'POST', route:'/login', info: 'Wrong password'} )    )
           res.send({
             auth: false,
             message: "Wrong password!",
-          });
+          }).status(401);
         }
       });
     } else {
-      res.status(400).send("User doesnt exist");
+      logger.info(  JSON.stringify( {method: 'POST', route:'/login', info: 'User doesnt exist'} )    )
+      res.status(401).send("User doesnt exist");
     }
   });
 };
 
 const getLogin = (req, res) => {
-  res.status(200).send({ login: true, message: "You are logged in" });
+  logger.info(  JSON.stringify( {method: 'GET', route:'/login', info: 'You are still logged in'} )    )
+  res.status(200).send({ login: true, message: "You are still logged in" });
 };
 
 const register = (req, res) => {
@@ -66,8 +76,10 @@ const register = (req, res) => {
       [email, hash],
       (err, result) => {
         if (err) {
-          res.status(404).send(err);
+          logger.error(   JSON.stringify( {method: 'POST', route:'/register', err: err} ));
+          res.status(500).send(err);
         } else {
+          logger.info(  JSON.stringify( {method: 'POST', route:'/register', info: 'User registered successfully'} )    )
           res.status(200).send("USER REGISTERED");
         }
       }
@@ -81,6 +93,7 @@ const logOut = (req, res) => {
     httpOnly: true,
     secure: true,
   });
+  logger.info(  JSON.stringify( {method: 'GET', route:'/logout', info: 'You have logged out'} )    )
   res.status(200).send("You have logged out");
 };
 
@@ -95,7 +108,8 @@ const resetPassword = (req, res) => {
   db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
     if (err) {
       console.log(err);
-      res.status(400).send({
+      logger.error(   JSON.stringify( {method: 'POST', route:'/resetpassword', err: err} ));
+      res.status(500).send({
         auth: false,
         message: err,
       });
@@ -110,8 +124,11 @@ const resetPassword = (req, res) => {
               [hash],
               (err, success) => {
                 if (err) {
-                  res.send(err);
+                  logger.error(   JSON.stringify( {method: 'POST', route:'/resetpassword', err: err} ));
+                  res.send(err).status(500);
                 }
+
+                logger.info(   JSON.stringify( {method: 'POST', route:'/resetpassword', info:"Password Changed Successfully" } ));
                 res.status(200).send({
                   auth: true,
                   message: "Password Changed Successfully",
@@ -121,13 +138,15 @@ const resetPassword = (req, res) => {
           });
         }
         if (!match) {
-          res.status(400).send({
+          logger.info(   JSON.stringify( {method: 'POST', route:'/resetpassword', info:"Wrong password" } ));
+          res.status(401).send({
             auth: false,
             message: "Wrong Password",
           });
         }
       });
     } else {
+      logger.info(   JSON.stringify( {method: 'POST', route:'/resetpassword', info:"User doesnt exist" } ));
       res.status(400).send({
         auth: false,
         message: "User doesnt exist",
@@ -143,7 +162,8 @@ const getUserEmail = (req, res) => {
 
   db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
     if (err) {
-      res.send(err);
+      logger.error(   JSON.stringify( {method: 'POST', route:'/forgotpassword', err: err} ));
+      res.send(err).status(500);
     }
     console.log(result[0]);
     if (result.length > 0) {
@@ -158,7 +178,7 @@ const getUserEmail = (req, res) => {
         secure: true,
       });
 
-      const path = `http://${site.hostname}:${site.port}/api/forgotpassword`;
+      const path = `http://${site.hostname}:${site.port}/forgotpassword`;
       const link = path + "/" + token;
       console.log(link);
 
@@ -186,12 +206,18 @@ const getUserEmail = (req, res) => {
         });
 
         console.log("Message sent: %s", info.messageId);
+
+        logger.info(   JSON.stringify( {method: 'POST', route:'/forgotpassword', info: "Message sent:" + " " +info.messageId } ));
+
         res.send("Message sent");
       }
 
       main().catch(console.error);
     } else {
-      res.status(400).send("User doesnt exist");
+
+      logger.info(   JSON.stringify( {method: 'POST', route:'/forgotpassword', info: "User doesnt exist"} ));   
+
+      res.status(401).send("User doesnt exist");
     }
   });
 };
@@ -201,6 +227,7 @@ const renderChangePasswordPage = (req, res) => {
 
   if (!token) {
     //if there is no token to verify user
+    logger.info(   JSON.stringify( {method: 'GET', route:'/forgotpassword/:id', info: "Link expired"} ));   
     res.send("Link expired");
   }
   let validToken = "";
@@ -212,7 +239,7 @@ const renderChangePasswordPage = (req, res) => {
     if (validToken) {
       // console.log(validToken);
       //go ahead and change your password
-
+      logger.info(   JSON.stringify( {method: 'GET', route:'/forgotpassword/:id', info: "Proceed with change of password"} ));  
       res.render("index", { email: validToken.email });
     }
   }
@@ -230,6 +257,7 @@ const changePassword = (req, res) => {
 
   if (!errors.isEmpty()) {
     // console.log(errors);
+    logger.error(   JSON.stringify( {method: 'POST', route:'/forgotpassword/:id', err: errors.errors} ));  
     return res.render("index", {
       errors: errors.errors,
       email: validToken.email,
@@ -242,7 +270,10 @@ const changePassword = (req, res) => {
   // console.log(password);
   console.log(confirmPassword);
   if (password !== confirmPassword) {
+
+    logger.info(   JSON.stringify( {method: 'POST', route:'/forgotpassword/:id', info: "Passwords dont match"} ));  
     return res.render("index", { notMatch: true, email: validToken.email });
+
   } else {
     bcrypt.hash(password, 10).then((hash) => {
       db.query(
@@ -250,10 +281,16 @@ const changePassword = (req, res) => {
         [hash, email],
         (err, result) => {
           if (err) {
-            res.status(404).send(err);
+
+            logger.error(   JSON.stringify( {method: 'POST', route:'/forgotpassword/:id', err: err} ));  
+            res.status(401).send(err);
+
           } else {
+
             console.log(result);
+            logger.info(   JSON.stringify( {method: 'POST', route:'/forgotpassword/:id', info: "Successfully changed password"} ));  
             res.render("success");
+
           }
         }
       );

@@ -8,7 +8,7 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import site from "../../../site";
 
-Axios.defaults.withCredentials = true;
+Axios.defaults.withCredentials = true; 
 
 function UpdateBlog() {
   const navigate = useNavigate();
@@ -17,7 +17,11 @@ function UpdateBlog() {
   const [title, setTitle] = useState("");
   const [bodyText, setBodyText] = useState("");
   const [author, setAuthor] = useState("Jacon Keya");
-  const [button, setButton] = useState(false);
+
+  const [updateButton, setUpdateButton] = useState(false);
+
+ 
+
 
   const editorRef = useRef(null);
   const log = () => {
@@ -26,13 +30,16 @@ function UpdateBlog() {
       setBodyText(text);
       //  let plainText = editorRef.getContent({ format: text });
       console.log(bodyText);
-      setButton(true);
+
+      setUpdateButton(true)
+   
+
 
     }
   };
 
   useEffect(() => {
-    Axios.get(`http://${site.hostname}:${site.port}/blogpost/${postId}`).then(
+    Axios.get(`/api/blogpost/${postId}`).then(
       (response) => {
         setTitle(response.data[0].title);
         setBodyText(response.data[0].blogposts);
@@ -42,7 +49,7 @@ function UpdateBlog() {
   //  console.log(bodyText);
 
   function updatePost() {
-    Axios.put(`http://${site.hostname}:${site.port}/blogpost/${postId}`, {
+    Axios.put(`/api/blogpost/${postId}`, {
       title: title,
       bodyText: bodyText,
       author: author,
@@ -130,9 +137,13 @@ function UpdateBlog() {
           </select>
         </div>
 
-        {button?  <div className="publish-button">
-          <button onClick={confirm}>Update</button>
-        </div>: ""  }
+
+        <div className="publish-button">
+          {updateButton ? <button onClick={confirm}>Update</button>: "" }
+         
+        </div>
+
+      
 
        
       </div>

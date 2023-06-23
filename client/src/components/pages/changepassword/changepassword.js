@@ -20,7 +20,7 @@ function ChangePassword() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post(`http://${site.hostname}:${site.port}/api/resetpassword`, {
+    Axios.post(`/api/resetpassword`, {
       email: email,
       currentPassword: currentPassword,
       newPassword: newPassword,
@@ -29,7 +29,7 @@ function ChangePassword() {
         console.log(response.data);
         setPassword(response.data.auth);
 
-        Axios.get(`http://${site.hostname}:${site.port}/api/logout`).then(
+        Axios.get(`/api/logout`).then(
           (response) => {
             console.log(response);
           }
@@ -65,7 +65,7 @@ function ChangePassword() {
     try {
       const res = await Axios({
         method: "post",
-        url: `http://${site.hostname}:${site.port}/resume`,
+        url: `/api/resume`,
         withCredentials: true,
         header: { "content-Type": "multipart-/form-data" },
         data: formData,
@@ -86,7 +86,7 @@ function ChangePassword() {
     try {
       const res = await Axios({
         method: "post",
-        url: `http://${site.hostname}:${site.port}/photo`,
+        url: `/api/photo`,
         withCredentials: true,
         header: { "content-Type": "multipart-/form-data" },
         data: formData,

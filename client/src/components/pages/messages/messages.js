@@ -20,7 +20,7 @@ function Messages() {
   });
 
   const reloadContacts = () => {
-    Axios.get(`http://${site.hostname}:${site.port}/contact`).then(
+    Axios.get(`/api/contact`).then(
       (response) => {
         setMessagesArray(response.data);
         setNumberOfMessages(response.data.length);
@@ -31,7 +31,7 @@ function Messages() {
   const handleReadStatus = (id) => {
     console.log("handle read status");
     console.log(id);
-    Axios.put(`http://${site.hostname}:${site.port}/contact`, {
+    Axios.put(`/api/contact`, {
       id: id,
     });
   };
@@ -39,7 +39,7 @@ function Messages() {
   const handleDeleteAll = () => {
     Axios({
       method: "delete",
-      url: `http://${site.hostname}:${site.port}/contact`,
+      url: `/api/contact`,
     }).then((response) => {
       console.log(response.data);
     });
@@ -50,7 +50,7 @@ function Messages() {
     console.log(id);
     Axios({
       method: "delete",
-      url: `http://${site.hostname}:${site.port}/contact/${id}`,
+      url: `/api/contact/${id}`,
       header: "application/json",
     }).then((response) => {
       console.log(response.data);
@@ -100,7 +100,7 @@ function Messages() {
   };
 
   useEffect(() => {
-    Axios.get(`http://${site.hostname}:${site.port}/contact`).then(
+    Axios.get(`/api/contact`).then(
       (response) => {
         console.log(response.data);
         setMessagesArray(response.data);

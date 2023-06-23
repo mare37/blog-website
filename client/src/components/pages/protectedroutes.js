@@ -10,7 +10,7 @@ function ProtectedRoute() {
   const [isAuth, setAuth] = React.useState(null);
 
   React.useEffect(() => {
-    Axios.get(`http://${site.hostname}:${site.port}/api/login`)
+    Axios.get(`/api/login`)
       .then((response) => {
         //  console.log(response.data.message);
         // console.log(response);

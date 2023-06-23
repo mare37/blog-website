@@ -21,14 +21,14 @@ function Main() {
 
   useEffect(() => {
     // Getting number of articles from the backend
-    Axios.get(`http://${site.hostname}:${site.port}/blogpost`).then(
+    Axios.get(`/api/blogpost`).then(
       (response) => {
         setNumberOfBlogPosts(response.data.length);
         setBlogPosts(response.data.slice(0, 3));
       }
     );
     //Getting number of projects from the backend
-    Axios.get(`http://${site.hostname}:${site.port}/project`).then(
+    Axios.get(`/api/project`).then(
       (response) => {
         setNumberOfProjects(response.data.length);
         setProjects(response.data.slice(0, 3));
@@ -39,14 +39,14 @@ function Main() {
   let blogPostsData = blogPosts.map((item, key) => {
     let title = item.title;
     if (item.title.length > 30) {
-      title = item.title.substring(0, 30) + "...";
+      title = item.title.substring(0, 25) + "...";
     }
     return (
       <p
         className="blogpost-preview"
         key={key}
         onClick={() => {
-          navigate(`/post/${item.id}`);
+          navigate(`/post/${item.posts_id}`);
         }}
       >
         <span>{`\u2022`}</span>

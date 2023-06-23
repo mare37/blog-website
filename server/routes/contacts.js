@@ -14,10 +14,11 @@ const {
 router.use(cors({ origin: true, credentials: true }));
 router.use(express.json());
 
+
 router.post("/", postContact);
-router.get("/", getAllContacts);
-router.put("/", changeReadStatus);
-router.delete("/:id", deleteOneMesage);
-router.delete("/", deleteAllMessages);
+router.get("/", validateToken, getAllContacts);
+router.put("/", validateToken,   changeReadStatus);
+router.delete("/:id", validateToken,   deleteOneMesage);
+router.delete("/",  validateToken,   deleteAllMessages);
 
 module.exports = router;

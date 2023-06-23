@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon -L index.js"
   },
   "dependencies": {
     "axios": "^1.1.2",
@@ -13,6 +14,7 @@
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
+    "express-logger": "^0.0.3",
     "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
@@ -20,8 +22,12 @@
     "mysql-query-promise": "^1.0.1",
     "mysql2": "^3.2.4",
     "nodemailer": "^6.8.0",
-    "nodemon": "^2.0.19",
+
     "parser": "^0.1.4",
-    "winston": "^3.8.2"
+    "winston": "^3.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+
   }
 }

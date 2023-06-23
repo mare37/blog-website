@@ -8,9 +8,11 @@ import site from "../../../site";
 function Delete(id, elementName) {
   console.log(id);
   if (elementName === "BlogPostsElement") {
+
+    // `/api/project`
     Axios({
       method: "delete",
-      url: `http://${site.hostname}:${site.port}/blogpost`,
+      url:`/api/blogpost`,
       header: "application/json",
       data: { id: id },
     }).then((response) => {
@@ -19,7 +21,7 @@ function Delete(id, elementName) {
   } else {
     Axios({
       method: "delete",
-      url: `http://${site.hostname}:${site.port}/project`,
+      url:`/api/project`,
       header: "application/json",
       data: { id: id },
     }).then((response) => {
@@ -73,7 +75,7 @@ export function BlogPostsElement(props) {
         <div className="element-buttons">
           <button
             onClick={() => {
-              navigate(`/updateblog/${props.id}`);
+              navigate(`/updateblog/${props.id}`); 
             }}
             className="update"
           >

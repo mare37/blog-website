@@ -10,7 +10,7 @@ function Projects(props) {
     return (
       <Project
         key={index}
-        id={dataItem.idprojects}
+        id={dataItem.projects_id}
         heading1={"Case Study"}
         heading2={dataItem.nameOfProject}
         body={dataItem.projectDescription}

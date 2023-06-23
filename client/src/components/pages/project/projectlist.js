@@ -5,13 +5,20 @@ import Axios from "axios";
 //import Navbar from "../Home/Navbar/navbar";
 import Navbar from "../../Home/Navbar/navbar";
 import site from "../../../site";
+import AOS from "aos";
 
 Axios.defaults.withCredentials = true;
 
 function ProjectList() {
   const [projects, setProjects] = useState([]);
+
   useEffect(() => {
-    Axios.get(`http://${site.hostname}:${site.port}/project`).then(
+    AOS.init({ duration: 2000 });
+  }, []);
+
+
+  useEffect(() => {
+    Axios.get(`/api/project`).then(
       (response) => {
         console.log(response.data);
         setProjects(response.data);
@@ -45,7 +52,7 @@ function ProjectList() {
           }}
           className="projectList-image"
         >
-          <p className="projectlist-top-heading">Case Studies</p>
+          <p  data-aos="fade-up"   className="projectlist-top-heading">Case Studies</p>
         </div>
         <div className="projectlist-top-text">
           We always go the extra mile to deliver top-notch products for you.

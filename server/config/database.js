@@ -2,21 +2,34 @@ const mysql = require("mysql2");
 require("dotenv").config();
 
 const db = mysql.createConnection({
-  host: "localhost",
+  host: "mysql_db",
   user: "root",
-  password: process.env.DATABASE_PASSWORD,
   database: "websitedata",
+  connectionLimit: 10,
+  waitForConnections: true,
+ // password: process.env.DATABASE_PASSWORD,
+ //hello
+ 
+  password:"MYSQL_ROOT_PASSWORD",
+ 
+  
 });
 
 
-db.connect( function(err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-  }
+/*const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  database: "websitedata",
+  connectionLimit: 10,
+  waitForConnections: true,
+ // password: process.env.DATABASE_PASSWORD,
  
-  console.log('connected as id ' + db.threadId);
-})
+  password:"Joyjenny007@",
+ 
+  
+});*/
+
+
 
 
 

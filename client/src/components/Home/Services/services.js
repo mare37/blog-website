@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 
 function Services() {
   React.useEffect(() => {
-    AOS.init({ duration: 2000 });
+    AOS.init({ duration: 100 });
   }, []);
 
   let data = servicesData.map((item) => {
@@ -19,10 +19,10 @@ function Services() {
   return (
     <div id="services" className="services">
       <div className="service-heading-container">
-        <h1 data-aos="fade-up" className="services-heading">
+        <h1 className="services-heading">
           SERVICES
         </h1>
-        <p data-aos="fade-up" className="service-text">
+        <p  className="service-text">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and

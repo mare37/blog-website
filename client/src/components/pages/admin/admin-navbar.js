@@ -13,7 +13,7 @@ function Navbar() {
   let [clickDropMenu, setclickDropMenu] = useState(false);
 
   const logOut = () => {
-    Axios.get(`http://${site.hostname}:${site.port}/api/logout`).then(
+    Axios.get(`/api/logout`).then(
       (response) => {
         console.log(response);
         navigate("/login");
@@ -22,7 +22,7 @@ function Navbar() {
   };
 
   useEffect(() => {
-    Axios.get(`http://${site.hostname}:${site.port}/contact`).then(
+    Axios.get(`/api/contact`).then(
       (response) => {
         console.log(response.data);
         setMessagesArray(response.data);

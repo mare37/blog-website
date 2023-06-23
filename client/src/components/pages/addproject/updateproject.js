@@ -16,7 +16,7 @@ function UpdateProject() {
   const [projectDescription, setProjectDescription] = useState("");
 
   useEffect(() => {
-    Axios.get(`http://${site.hostname}:${site.port}/project/${postId}`).then(
+    Axios.get(`/api/project/${postId}`).then(
       (response) => {
         console.log(response.data);
         setProjectTitle(response.data[0].nameOfProject);
@@ -26,7 +26,7 @@ function UpdateProject() {
   }, [postId]);
 
   const update = () => {
-    Axios.put(`http://${site.hostname}:${site.port}/project/${postId}`, {
+    Axios.put(`/api/project/${postId}`, {
       projectTitle: projectTitle,
       projectDescription: projectDescription,
     }).then((response) => {

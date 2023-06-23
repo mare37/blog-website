@@ -36,7 +36,7 @@ function App() {
 
         <Routes>
           <Route path="/" exact element={<Home />} />
-
+          <Route path="/login" element={<LogIn />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/post/:postId" element={<Post />} />
@@ -46,38 +46,40 @@ function App() {
 
           <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="/termsandconditions" element={<TermsAndConditions />} />
-          
 
-          <Route
-            path="/articlesandprojects"
-            element={<ArticlesAndProjects />}
-          />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/messages" element={<Messages />} />
+          </Route>
 
-          <Route path="/messages" element={<Messages />} />
-          <Route path="/changepassword" element={<ChangePassword />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/changepassword" element={<ChangePassword />} />
+          </Route>
 
           <Route element={<ProtectedRoute />}>
             <Route path="/addproject" element={<AddProject />} />
           </Route>
-          <Route path="/login" element={<LogIn />} />
+
           <Route element={<ProtectedRoute />}>
-          <Route path="/admin" element={<Admin />} />
+            <Route
+              path="/articlesandprojects"
+              element={<ArticlesAndProjects />}
+            />
           </Route>
-        
 
-          <Route element={<ProtectedRoute />}></Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/admin" element={<Admin />} />
+          </Route>
 
-          <Route element={<ProtectedRoute />}></Route>
           <Route element={<ProtectedRoute />}>
             <Route path="/updateblog/:postId" element={<UpdateBlog />} />
           </Route>
+
           <Route element={<ProtectedRoute />}>
             <Route path="/updateproject/:postId" element={<UpdateProject />} />
           </Route>
           <Route element={<ProtectedRoute />}>
-          <Route path="/createblog" element={<CreateBlog />} />
+            <Route path="/createblog" element={<CreateBlog />} />
           </Route>
-          <Route element={<ProtectedRoute />}></Route>
         </Routes>
         <Footer />
       </Router>
