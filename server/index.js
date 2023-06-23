@@ -2,10 +2,15 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const morgan = require("morgan")
 const { validateToken } = require("./JWT");
 require("dotenv").config();
 const bodyParser = require("body-parser");
+
 //const logger = require('express-logger')
+
+
+
 const site = require("./config/site");
 const db = require("./config/database")
 
@@ -23,7 +28,11 @@ const verifyUser = require("./routes/userVerify");
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 app.use(cookieParser());
+
 //app.use(logger("/logfile"));
+
+
+
 //app.use(express.static("./public"));
 
 //app.set("views", path.join(__dirname, "views"));
@@ -79,4 +88,5 @@ app.get("/",  (req, res) => {
 
   res.send("HOME");
 });
+
 

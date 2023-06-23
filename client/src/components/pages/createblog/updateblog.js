@@ -17,7 +17,11 @@ function UpdateBlog() {
   const [title, setTitle] = useState("");
   const [bodyText, setBodyText] = useState("");
   const [author, setAuthor] = useState("Jacon Keya");
+
   const [updateButton, setUpdateButton] = useState(false);
+
+ 
+
 
   const editorRef = useRef(null);
   const log = () => {
@@ -26,7 +30,11 @@ function UpdateBlog() {
       setBodyText(text);
       //  let plainText = editorRef.getContent({ format: text });
       console.log(bodyText);
-      setUpdateButton(true);
+
+      setUpdateButton(true)
+   
+
+
     }
   };
 
@@ -92,7 +100,7 @@ function UpdateBlog() {
           className="title"
           type="text"
           placeholder="Title..."
-        />
+        /> 
 
         <Editor
           onInit={(evt, editor) => (editorRef.current = editor)}
@@ -129,10 +137,15 @@ function UpdateBlog() {
           </select>
         </div>
 
+
         <div className="publish-button">
           {updateButton ? <button onClick={confirm}>Update</button>: "" }
          
         </div>
+
+      
+
+       
       </div>
     </div>
   );

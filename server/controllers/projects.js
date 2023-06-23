@@ -87,6 +87,9 @@ const getAllProjects = (req, res) => {
       );
       res.send(result).status(200);
     }
+
+    res.send(result).status(200);
+
   });
 };
 
